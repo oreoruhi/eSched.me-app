@@ -1,0 +1,42 @@
+/* Empty. Add your own CSS if you like */
+
+.login-container {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#11c1f3), color-stop(60%,#fff));
+}
+
+.signUp {
+	margin-top: 50px;
+}
+
+.login-container > .signUp > .header {
+    -webkit-flex: 4;
+    padding-top: 10px;
+}	
+
+.login-container > .signUp > .button-row img {
+    max-width: 80%;
+}
+
+.login-container > .signUp > .sign-in {
+    padding-top: 20px;
+}
+
+.login-container > .esched-img img {
+    max-width: 80%;
+    padding-top: 100px;
+}
+
+.marginPut {
+    margin: 10px;
+}
+
+.login-container > .signUp > .ad-text {
+    padding-bottom: 20px;
+}
+
+.top-space {
+	margin-top: 10%;
+}

@@ -1,0 +1,81 @@
+<ion-view view-title="Signup" align-title="center">
+    <ion-content scroll="false">
+    <ion-nav-bar class="col bar-calm">
+    </ion-nav-bar>  
+    <section class="login-container">
+            <div class="row">
+                <div class="col header">
+                    <center><img src="./img/esched-clock-small.png" class = "logo top-space" /></center>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+            <form>
+                <div class="list">
+                    <div class="row">
+                        <div class="col">
+                            <label class="item item-input">
+                                <input id="email" name="email" type="email" placeholder="Your email"
+                                       ng-model="vm.email">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="item item-input">
+                                <input id="firstname" name="firstname" type="text" placeholder="Your first name"
+                                       ng-model="vm.firstname">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="item item-input">
+                                <input id="username" name="lastname" type="text" placeholder="Your last name"
+                                       ng-model="vm.lastname">
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            <label class="item item-input">
+                                <input id="password" name="password" type="password" placeholder="Your password"
+                                       ng-model="vm.password">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            <label class="item item-input">
+                                <input id="again" name="confirmPassword" type="password" placeholder="Confirm your password"
+                                       ng-model="vm.confirmPassword">
+                            </label>
+                        </div>
+                    </div>
+                    <h4 style="color:red;" ng-bind="vm.errormessage"></h4>
+
+                    <div class="">
+                        <center>
+                            <a href="#/">
+                                <button class="button button-mediul button-stable" type="button">
+                                    Cancel
+                                </button>
+                            </a> &nbsp;&nbsp;
+                            <button class="button button-medium button-calm" type="submit" 
+                                    ng-click="vm.register(vm.firstname, vm.lastname, vm.email, vm.password, vm.confirmPassword)">
+                                Submit
+                            </button>
+                        </center>
+                    </div>
+                </div>
+            </form>
+
+                </div>
+            </div>        
+    </section>
+    </ion-content>
+</ion-view>
