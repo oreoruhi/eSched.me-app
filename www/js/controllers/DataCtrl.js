@@ -1,4 +1,4 @@
-angular.module('SimpleRESTIonic.controllers')
+angular.module('eSchedMe.controllers')
 .controller('DataCtrl', DataCtrlFunction);
 
 DataCtrlFunction.$inject = ['$http', '$rootScope', '$state','Backand', 'DataService', 'LoginService']

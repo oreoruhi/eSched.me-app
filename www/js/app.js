@@ -1,9 +1,9 @@
 // Ionic template App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'SimpleRESTIonic' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'eSchedMe' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controllers', 'SimpleRESTIonic.services'])
+angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services'])
 
     .run(function ($ionicPlatform, Backand) {
         $ionicPlatform.ready(function () {

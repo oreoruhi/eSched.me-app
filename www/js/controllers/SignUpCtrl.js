@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var app = angular.module('SimpleRESTIonic')
+  var app = angular.module('eSchedMe')
   app.controller('SignUpCtrl', function(Backand, $state, $rootScope, LoginService, AuthService) {
     var self = this;
 

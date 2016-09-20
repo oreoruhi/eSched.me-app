@@ -1,4 +1,4 @@
-angular.module('SimpleRESTIonic.services', [])
+angular.module('eSchedMe.services', [])
 
     .service('APIInterceptor', function ($rootScope, $q) {
         var service = this;

@@ -1,4 +1,4 @@
-angular.module('SimpleRESTIonic.controllers', [])
+angular.module('eSchedMe.controllers', [])
 
     .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
         var login = this;

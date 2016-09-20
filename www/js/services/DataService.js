@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var app = angular.module('SimpleRESTIonic');
+    var app = angular.module('eSchedMe');
 
     app.service('DataService', ['Backand','$http', DataServiceFunction]);
 
