@@ -1,7 +1,12 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
+    .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService, ionicToast) {
         var login = this;
+
+        function clearLogin() {
+          login.email = '';
+          login.password = '';
+        }
 
         function signin() {
             LoginService.signin(login.email, login.password)
@@ -10,7 +15,10 @@ angular.module('eSchedMe.controllers', [])
                     onLogin();
 
                 }, function (error) {
-                    console.log(error)
+                    if(error) {
+                      clearLogin();
+                      ionicToast.show(error.error_description, 'top', false, 1500);
+                    }
                 })
         }
 

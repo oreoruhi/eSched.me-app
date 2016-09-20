@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('eSchedMe')
-  app.controller('SignUpCtrl', function(Backand, $state, $rootScope, LoginService, AuthService) {
+  app.controller('SignUpCtrl', function(Backand, $state, $rootScope, LoginService, AuthService, ionicToast) {
     var self = this;
 
     function _init() {
@@ -25,7 +25,9 @@
 
     function errorHandler(error) {
       // to-do: notifier
-      console.log('Error: ' + JSON.stringify(error));
+      if(error) {
+        ionicToast.show(error.data.error_description, 'top', false, 2000);
+      }
     }
 
 
@@ -37,6 +39,7 @@
 
     function onSignupSuccess(result) {
         //to-do: notifier
+        ionicToast.show(result.data.message, 'top', true, 2500);
         console.log(result);
     }
 
