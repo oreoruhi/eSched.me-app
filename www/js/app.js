@@ -69,7 +69,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
     .run(function ($rootScope, $state, LoginService, Backand, DataService) {
 
         function unauthorized() {
-            console.log("user is unauthorized, sending to login");
+            console.log("User is unauthorized. Sending to login page.");
             $state.go('login');
         }
 

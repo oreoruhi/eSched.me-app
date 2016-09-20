@@ -54,8 +54,8 @@ and (max-device-width : 1024px)  {
         max-width: 80%;
     }
 
-    .signUp, .item-input {
-        max-width: 50%;
+    .signUp, .item-input, .marginButton {
+        max-width: 65%;
         margin: 0 auto;
     }
 
