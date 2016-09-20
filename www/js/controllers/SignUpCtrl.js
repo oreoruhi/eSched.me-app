@@ -20,7 +20,7 @@
 
     function onLogin() {
         $rootScope.$broadcast('authorized');
-        $state.go('dashboard');
+        $state.go('dashboard.newsfeed');
     }
 
     function errorHandler(error) {

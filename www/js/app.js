@@ -52,6 +52,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
       .state('dashboard', {
         url: '/dashboard',
+        abstract: true,
         templateUrl: 'templates/dashboard.html',
         controller: 'DataCtrl as dataCtrl',
         data: {
@@ -59,6 +60,50 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
+      .state('dashboard.newsfeed', {
+        url: '/newsfeed',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/newsfeed.html'
+          }
+        }
+      })
+
+      .state('dashboard.profile', {
+        url: '/profile',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/profile.html'
+          }
+        }
+      })
+
+      .state('dashboard.project', {
+        url: '/project',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/project.html'
+          }
+        }
+      })
+
+      .state('dashboard.group', {
+        url: '/group',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/group.html'
+          }
+        }
+      })
+
+      .state('dashboard.timeline', {
+        url: '/timeline',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/timeline.html'
+          }
+        }
+      })
 
 
       $urlRouterProvider.otherwise('/');
@@ -83,7 +128,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
         $rootScope.$on(Backand.EVENTS.SIGNIN, function (event, data) {
           $rootScope.$broadcast('authorized');
-          $state.go('dashboard');
+          $state.go('dashboard.newsfeed');
         });
 
 
@@ -91,7 +136,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             if (toState.name === 'login') {
                 signout();
             }
-            if(toState.name === 'dashboard') {
+            if(toState.name === 'dashboard.newsfeed') {
               if(toState.data.role !== Backand.getUserRole()) {
                 event.preventDefault();
                 $state.go('login');

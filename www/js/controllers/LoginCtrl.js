@@ -18,7 +18,7 @@ angular.module('eSchedMe.controllers', [])
             $rootScope.$broadcast('authorized');
             login.email = '';
             login.password = '';
-            $state.go('dashboard');
+            $state.go('dashboard.newsfeed');
         }
 
         function signout() {
