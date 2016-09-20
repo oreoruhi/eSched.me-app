@@ -26,7 +26,7 @@
 
 .login-container > .esched-img img {
     max-width: 80%;
-    padding-top: 100px;
+    padding-top: 15%;
 }
 
 .marginPut {
@@ -40,3 +40,24 @@
 .top-space {
 	margin-top: 10%;
 }
+
+body .button {
+     box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23);
+     border-radius: 0;
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+
+    .login-container > .signUp > .button-row img {
+        max-width: 80%;
+    }
+
+    .signUp, .item-input {
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
+}
+
