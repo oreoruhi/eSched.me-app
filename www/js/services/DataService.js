@@ -27,7 +27,7 @@
                 url: Backand.getApiUrl() + '/1/query/data/GetUsersById',
                 params: {
                     parameters: {
-                        user_id: 60
+                        user_id: id
                     }
                 }
             });

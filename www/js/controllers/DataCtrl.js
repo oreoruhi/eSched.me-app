@@ -1,9 +1,9 @@
 angular.module('SimpleRESTIonic.controllers')
 .controller('DataCtrl', DataCtrlFunction);
 
-DataCtrlFunction.$inject = ['$http', 'Backand', 'DataService', 'LoginService']
+DataCtrlFunction.$inject = ['$http', '$rootScope', '$state','Backand', 'DataService', 'LoginService']
 
-function DataCtrlFunction($http, Backand, DataService, LoginService) {
+function DataCtrlFunction($http, $rootScope, $state, Backand, DataService, LoginService) {
   var dataCtrl = this;
 
   function init() {
