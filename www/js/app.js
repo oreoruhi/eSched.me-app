@@ -42,18 +42,18 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
         url: '/',
         templateUrl: 'templates/signin.html',
         controller: 'LoginCtrl as login'
-      }) 
+      })
 
       .state('signup-form', {
         url: '/signup-form',
         templateUrl: 'templates/signup-form.html',
         controller: 'SignUpCtrl as vm'
-      }) 
+      })
 
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'templates/dashboard.html',
-        controller: 'LoginCtrl as vm',
+        controller: 'DataCtrl as dataCtrl',
         data: {
           role: 'User'
         }
@@ -66,7 +66,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
       $httpProvider.interceptors.push('APIInterceptor');
     })
 
-    .run(function ($rootScope, $state, LoginService, Backand) {
+    .run(function ($rootScope, $state, LoginService, Backand, DataService) {
 
         function unauthorized() {
             console.log("user is unauthorized, sending to login");
@@ -88,11 +88,10 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.controll
 
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            if (toState.name == 'login') {
+            if (toState.name === 'login') {
                 signout();
             }
-            if(toState.name == 'dashboard') {
-              console.log(Backand.getUserRole());
+            if(toState.name === 'dashboard') {
               if(toState.data.role !== Backand.getUserRole()) {
                 event.preventDefault();
                 $state.go('login');
