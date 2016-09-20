@@ -1,42 +1,37 @@
-/*(function() {
+(function() {
     'use strict';
 
     var app = angular.module('SimpleRESTIonic');
 
-    app.service('DataService', ['Backand', '$q', '$http', DataServiceFunction]);
+    app.service('DataService', ['Backand','$http', DataServiceFunction]);
 
-    function DataServiceFunction(Backand, $http, $q) {
+    function DataServiceFunction(Backand, $http) {
         var vm = this;
 
 
         vm.baseUrl          = Backand.getApiUrl();
-        
+
         vm.GetUsers    = function(){
-            $http ({
+            return $http ({
               method: 'GET',
               url: Backand.getApiUrl() + '/1/query/data/getUsers',
               params: {
                 parameters: {}
               }
-            }).then(function(result) {
-                return result.data;
-            }).catch(function(err) {
-                if (err) return $q.reject();
             });
         }
 
-        vm.GetUsersById = function(id) {
+        vm.GetUserById = function(id) {
             return $http({
                 method: "GET",
                 url: Backand.getApiUrl() + '/1/query/data/GetUsersById',
                 params: {
                     parameters: {
-                        user_id: id
+                        user_id: 60
                     }
                 }
             });
+       }
 
     }
-
 })();
-*/
