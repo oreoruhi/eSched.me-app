@@ -17,7 +17,7 @@ angular.module('eSchedMe.controllers', [])
                 }, function (error) {
                     if(error) {
                       clearLogin();
-                      ionicToast.show(error.error_description, 'top', false, 1500);
+                      ionicToast.show("You have entered invalid login credentials.", 'bottom', false, 2000);
                     }
                 })
         }

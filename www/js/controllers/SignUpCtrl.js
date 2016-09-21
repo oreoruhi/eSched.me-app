@@ -26,7 +26,7 @@
     function errorHandler(error) {
       // to-do: notifier
       if(error) {
-        ionicToast.show(error.data.error_description, 'top', false, 2000);
+        ionicToast.show("You have entered invalid login credentials.", 'bottom', false, 2000);
       }
     }
 
@@ -34,12 +34,12 @@
     self.register = function(firstname, lastname, email, password, confirmPassword) {
         AuthService.signup(firstname, lastname, email, password, confirmPassword)
         .then(onSignupSuccess)
-        .catch(errorHandler);
+        .catch(ionicToast.show("Something went wrong while processing your request. Please try again.", 'bottom', false, 2000));
     };
 
     function onSignupSuccess(result) {
         //to-do: notifier
-        ionicToast.show(result.data.message, 'top', true, 2500);
+        ionicToast.show("You have successfully registered your account. Please check your email.", 'bottom', true, 2000);
         console.log(result);
     }
 
