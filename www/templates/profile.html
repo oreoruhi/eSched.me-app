@@ -1,5 +1,24 @@
 <ion-view view-title="{{dataCtrl.user[0].first_name}} {{dataCtrl.user[0].last_name}}"> 
   <ion-content>
+  	
     <h1>Soon to be your Profile, {{dataCtrl.user[0].first_name}}</h1>
   </ion-content>
+
+	<ion-tabs class="tabs-calm tabs-icon-top">
+
+		  <ion-tab title="Profile" icon-on="ion-person" icon-off="ion-person">
+
+	  	  </ion-tab>
+
+	      <ion-tab title="About" icon-on="ion-ios-world" icon-off="ion-ios-world">
+	      	<br>
+	    	<h1>About information for {{dataCtrl.user[0].first_name}} goes here</h1>
+	      </ion-tab>
+
+	      <ion-tab title="Personal Tasks" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
+	      	<br>
+	    	<h1>{{dataCtrl.user[0].first_name}}'s personal tasks go here</h1>
+		  </ion-tab>
+
+	</ion-tabs> 
 </ion-view>
