@@ -5,17 +5,23 @@
                <img src="./img/esched-eclock.png" class = "logo" />
             </div>
             <div class = "col signUp">
-            	<div class="text-center">Sign in to eSched.me to start your day.</div>
+            	<div class="text-center" style="color: #fff;text-decoration:none;">Sign in to eSched.me to start your day.</div>
+            	<br>
             	<form ng-submit="login.signin()">
 			         <div class="list marginPut">
-			          <label class="item item-input">
-			            <span class="input-label">Email:</span>
-			            <input type="email" name="email" ng-model="login.email" autocomplete="off">
-			          </label>
-			          <label class="item item-input">
-			            <span class="input-label">Password:</span>
-			            <input type="password" name="password" ng-model="login.password" autocomplete="off">
-			          </label>
+					  <div class="group">      
+					    <input type="text" id="email" name="email" ng-model="login.email" required>
+					    <span class="highlight"></span>
+					    <span class="bar-input"></span>
+					    <label>Email</label>
+					  </div>
+					    
+					  <div class="group">      
+					    <input type="password" id="email" name="email" ng-model="login.password" required>
+					    <span class="highlight"></span>
+					    <span class="bar-input"></span>
+					    <label>Password</label>
+					  </div>
 			        </div>
 			        <div class="marginPut">
 			          <button class="button button-full button-calm marginButton">
@@ -25,7 +31,7 @@
             	</form>
 
 	            <div class = "text-center">
-	                Don't have an account yet? <strong><a href = "#/signup">Sign up now!</a></strong>
+	                Don't have an account yet? <strong><a href = "#/signup" style="color: #fff;text-decoration:none;">Sign up now!</a></strong>
 	            </div>
             </div>
         </section>

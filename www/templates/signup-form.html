@@ -15,45 +15,52 @@
                 <div class="list">
                     <div class="row">
                         <div class="col">
-                            <label class="item item-input">
-                                <input id="email" name="email" type="email" placeholder="Your email"
-                                       ng-model="vm.email" autocomplete="off">
-                            </label>
+                          <div class="group">      
+                            <input type="text" id="email" name="email" ng-model="vm.email" required>
+                            <span class="highlight"></span>
+                            <span class="bar-input"></span>
+                            <label>Email</label>
+                          </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label class="item item-input">
-                                <input id="firstname" name="firstname" type="text" placeholder="Your first name"
-                                       ng-model="vm.firstname" autocomplete="off">
-                            </label>
+                          <div class="group">      
+                            <input type="text" id="firstname" name="firstname" ng-model="vm.firstname" required>
+                            <span class="highlight"></span>
+                            <span class="bar-input"></span>
+                            <label>Firstname</label>
+                          </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label class="item item-input">
-                                <input id="username" name="lastname" type="text" placeholder="Your last name"
-                                       ng-model="vm.lastname" autocomplete="off">
-                            </label>
-
+                          <div class="group">      
+                            <input type="text" id="lastname" name="lastname" ng-model="vm.lastname" required>
+                            <span class="highlight"></span>
+                            <span class="bar-input"></span>
+                            <label>Lastname</label>
+                          </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-
-                            <label class="item item-input">
-                                <input id="password" name="password" type="password" placeholder="Your password"
-                                       ng-model="vm.password" autocomplete="off"> 
-                            </label>
+                          <div class="group">      
+                            <input type="password" id="password" name="password" ng-model="vm.password" required>
+                            <span class="highlight"></span>
+                            <span class="bar-input"></span>
+                            <label>Password</label>
+                          </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-
-                            <label class="item item-input">
-                                <input id="again" name="confirmPassword" type="password" placeholder="Confirm your password"
-                                       ng-model="vm.confirmPassword" autocomplete="off">
-                            </label>
+                          <div class="group">      
+                            <input type="password" id="confirmPassword" name="confirmPassword" ng-model="vm.confirmPassword" required>
+                            <span class="highlight"></span>
+                            <span class="bar-input"></span>
+                            <label>Confirm Password</label>
+                          </div>
                         </div>
                     </div>
                     <h4 style="color:red;" ng-bind="vm.errormessage"></h4>

@@ -4,12 +4,9 @@
     display: -webkit-flex;
     -webkit-flex-direction: column;
     height: 100%;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#11c1f3), color-stop(60%,#fff));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#11c1f3), color-stop(30%,#243547));
 }
 
-.signUp {
-	margin-top: 50px;
-}
 
 .login-container > .signUp > .header {
     -webkit-flex: 4;
@@ -56,9 +53,103 @@ and (max-device-width : 1024px)  {
     }
 
     .signUp, .item-input, .marginButton {
-        max-width: 65%;
+        max-width: 50%;
         margin: 0 auto;
     }
 
 }
 
+.content-body {
+    background: #243547;
+}
+
+.item-blue .item-complex .item {
+   background-color: #243547; 
+}
+
+/*Material-like Inputs*/
+
+input {
+  color: #fff;
+  font-size:12px;
+  padding:5px 5px 5px 3px;
+  display:block;
+  width:100%;
+  border:none;
+  background: transparent;
+  border-bottom:1px solid #757575;
+}
+
+input:focus { outline:none; }
+
+.group { 
+  position:relative; 
+  margin-bottom:20px;
+}
+
+label          {
+  color:#E3E3E3; 
+  font-size:15px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  top:10px;
+  transition:0.2s ease all; 
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label     {
+  top:-15px;
+  font-size:14px;
+  color:#fff;
+}
+
+.bar-input  { 
+ position:relative; 
+ display:block; 
+ width:100%; 
+ background-color:transparent;
+ pointer-events: none;
+}
+
+.bar-input:before, .bar-input:after   {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#fff; 
+  transition:0.2s ease all; 
+}
+.bar-input:before {
+  left:50%;
+}
+.bar-input:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar-input:before, input:focus ~ .bar-input:after {
+  width:50%;
+}
+
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@keyframes inputHighlighter {
+  from  { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
