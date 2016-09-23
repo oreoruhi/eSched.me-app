@@ -1,9 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 .login-container {
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    height: 100%;
+    min-height: 100%;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#11c1f3), color-stop(30%,#243547));
 }
 
@@ -11,7 +9,7 @@
 .login-container > .signUp > .header {
     -webkit-flex: 4;
     padding-top: 10px;
-}	
+}
 
 .login-container > .signUp > .button-row img {
     max-width: 80%;
@@ -44,8 +42,8 @@ body .button {
 }
 
 
-@media only screen 
-and (min-device-width : 768px) 
+@media only screen
+and (min-device-width : 768px)
 and (max-device-width : 1024px)  {
 
     .login-container > .signUp > .button-row img {
@@ -64,7 +62,7 @@ and (max-device-width : 1024px)  {
 }
 
 .item-blue .item-complex .item {
-   background-color: #243547; 
+   background-color: #243547;
 }
 
 /*Material-like Inputs*/
@@ -82,19 +80,19 @@ input {
 
 input:focus { outline:none; }
 
-.group { 
-  position:relative; 
+.group {
+  position:relative;
   margin-bottom:20px;
 }
 
 label          {
-  color:#E3E3E3; 
+  color:#E3E3E3;
   font-size:15px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
   top:10px;
-  transition:0.2s ease all; 
+  transition:0.2s ease all;
 }
 
 /* active state */
@@ -104,28 +102,28 @@ input:focus ~ label, input:valid ~ label     {
   color:#fff;
 }
 
-.bar-input  { 
- position:relative; 
- display:block; 
- width:100%; 
+.bar-input  {
+ position:relative;
+ display:block;
+ width:100%;
  background-color:transparent;
  pointer-events: none;
 }
 
 .bar-input:before, .bar-input:after   {
   content:'';
-  height:2px; 
+  height:2px;
   width:0;
-  bottom:1px; 
+  bottom:1px;
   position:absolute;
-  background:#fff; 
-  transition:0.2s ease all; 
+  background:#fff;
+  transition:0.2s ease all;
 }
 .bar-input:before {
   left:50%;
 }
 .bar-input:after {
-  right:50%; 
+  right:50%;
 }
 
 /* active state */
@@ -135,9 +133,9 @@ input:focus ~ .bar-input:before, input:focus ~ .bar-input:after {
 
 .highlight {
   position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
+  height:60%;
+  width:100px;
+  top:25%;
   left:0;
   pointer-events:none;
   opacity:0.5;
