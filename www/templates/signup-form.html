@@ -1,8 +1,8 @@
 <ion-view view-title="Signup" align-title="center">
-    <ion-content scroll="false">
+    <ion-content>
     <ion-nav-bar class="col bar-calm">
-    </ion-nav-bar>  
-    <section class="login-container">
+    </ion-nav-bar>
+    <div class="login-container">
             <div class="row">
                 <div class="col header">
                     <center><img src="./img/esched-clock-small.png" class = "logo top-space" /></center>
@@ -15,7 +15,7 @@
                 <div class="list signUp">
                     <div class="row">
                         <div class="col">
-                          <div class="group">      
+                          <div class="group">
                             <input type="text" id="email" name="email" ng-model="vm.email" required>
                             <span class="highlight"></span>
                             <span class="bar-input"></span>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                          <div class="group">      
+                          <div class="group">
                             <input type="text" id="firstname" name="firstname" ng-model="vm.firstname" required>
                             <span class="highlight"></span>
                             <span class="bar-input"></span>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                          <div class="group">      
+                          <div class="group">
                             <input type="text" id="lastname" name="lastname" ng-model="vm.lastname" required>
                             <span class="highlight"></span>
                             <span class="bar-input"></span>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                          <div class="group">      
+                          <div class="group">
                             <input type="password" id="password" name="password" ng-model="vm.password" required>
                             <span class="highlight"></span>
                             <span class="bar-input"></span>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                          <div class="group">      
+                          <div class="group">
                             <input type="password" id="confirmPassword" name="confirmPassword" ng-model="vm.confirmPassword" required>
                             <span class="highlight"></span>
                             <span class="bar-input"></span>
@@ -72,7 +72,7 @@
                                     Cancel
                                 </button>
                             </a> &nbsp;&nbsp;
-                            <button class="button button-medium button-calm" type="submit" 
+                            <button class="button button-medium button-calm" type="button"
                                     ng-click="vm.register(vm.firstname, vm.lastname, vm.email, vm.password, vm.confirmPassword)">
                                 Submit
                             </button>
@@ -82,7 +82,7 @@
             </form>
 
                 </div>
-            </div>        
-    </section>
+            </div>
+    </div>
     </ion-content>
 </ion-view>
