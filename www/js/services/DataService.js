@@ -33,5 +33,43 @@
             });
        }
 
+       vm.createProject = function(id, name, description) {
+          return $http ({
+            method: 'POST',
+            url: Backand.getApiUrl() + '/1/objects/activities?returnObject=true',
+            data: {
+              user_id: id,
+              title: name,
+              desc: description,
+              created: new Date().toISOString(),
+              modified: new Date().toISOString()
+            }
+          });
+       }
+
+       vm.getProjectList = function(id){
+         return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/objects/activities',
+          params: {
+            pageSize: 20,
+            pageNumber: 1,
+            filter: [{
+              "fieldName":"user_id",
+              "operator":"equals",
+              "value": id
+            }],
+            sort: ''
+          }
+        });
+       }
+
+       vm.deleteProjectById = function(id) {
+         return $http ({
+          method: 'DELETE',
+          url: Backand.getApiUrl() + '/1/objects/activities/' + id
+        });
+       }
+
     }
 })();

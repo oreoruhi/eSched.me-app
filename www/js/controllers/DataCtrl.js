@@ -5,18 +5,28 @@ DataCtrlFunction.$inject = ['$http', '$rootScope', '$state','Backand', 'DataServ
 
 function DataCtrlFunction($http, $rootScope, $state, Backand, DataService, LoginService) {
   var dataCtrl = this;
+  var userId;
+
+  function getProjectList() {
+    DataService.getProjectList(userId)
+      .then(function(result){
+        dataCtrl.projectList = result.data.data;
+      });
+  }
 
   function init() {
-    var userId;
     Backand.getUserDetails()
       .then(function(result) {
-        DataService.GetUserById(result.userId)
+        userId = result.userId;
+        DataService.GetUserById(userId)
           .then(function(result) {
             console.log(result.data);
             dataCtrl.user = result.data;
-          })
+          });
+        getProjectList();
       });
   }
+
 
   dataCtrl.signout = function() {
     LoginService.signout()
@@ -24,6 +34,25 @@ function DataCtrlFunction($http, $rootScope, $state, Backand, DataService, Login
         $rootScope.$broadcast('logout');
         $state.go('login');
     });
+  }
+
+  dataCtrl.createProject = function(name, description) {
+    DataService.createProject(userId, name, description)
+      .then(function(result) {
+        if(result.status === 200) {
+          getProjectList();
+        }
+      });
+  }
+
+  dataCtrl.deleteProjectById = function(id) {
+    DataService.deleteProjectById(id)
+      .then(function(result) {
+        console.log(result);
+        if(result.status === 200) {
+          getProjectList();
+        }
+      });
   }
 
   init();
