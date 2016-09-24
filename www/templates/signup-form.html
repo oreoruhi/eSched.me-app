@@ -2,87 +2,89 @@
     <ion-content>
     <ion-nav-bar class="col bar-calm">
     </ion-nav-bar>
-    <div class="login-container">
-            <div class="row">
-                <div class="col header">
-                    <center><img src="./img/esched-clock-small.png" class = "logo top-space" /></center>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-
-            <form>
-                <div class="list signUp">
-                    <div class="row">
-                        <div class="col">
-                          <div class="group">
-                            <input type="text" id="email" name="email" ng-model="vm.email" required>
-                            <span class="highlight"></span>
-                            <span class="bar-input"></span>
-                            <label>Email</label>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <div class="group">
-                            <input type="text" id="firstname" name="firstname" ng-model="vm.firstname" required>
-                            <span class="highlight"></span>
-                            <span class="bar-input"></span>
-                            <label>Firstname</label>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <div class="group">
-                            <input type="text" id="lastname" name="lastname" ng-model="vm.lastname" required>
-                            <span class="highlight"></span>
-                            <span class="bar-input"></span>
-                            <label>Lastname</label>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <div class="group">
-                            <input type="password" id="password" name="password" ng-model="vm.password" required>
-                            <span class="highlight"></span>
-                            <span class="bar-input"></span>
-                            <label>Password</label>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <div class="group">
-                            <input type="password" id="confirmPassword" name="confirmPassword" ng-model="vm.confirmPassword" required>
-                            <span class="highlight"></span>
-                            <span class="bar-input"></span>
-                            <label>Confirm Password</label>
-                          </div>
-                        </div>
-                    </div>
-                    <h4 style="color:red;" ng-bind="vm.errormessage"></h4>
-
-                    <div class="">
-                        <center>
-                            <a href="#/">
-                                <button class="button button-medium button-stable" type="button">
-                                    Cancel
-                                </button>
-                            </a> &nbsp;&nbsp;
-                            <button class="button button-medium button-calm" type="button"
-                                    ng-click="vm.register(vm.firstname, vm.lastname, vm.email, vm.password, vm.confirmPassword)">
-                                Submit
-                            </button>
-                        </center>
+        <section class="login-container">
+                <div class="row">
+                    <div class="col header">
+                        <center><img src="./img/esched-clock-small.png" class = "logo top-space" /></center>
                     </div>
                 </div>
-            </form>
+                <div class="row">
+                    <div class="col">
 
+                        <form>
+                            <div class="list signUp">
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="email" name="email" ng-model="vm.email" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Email</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="firstname" name="firstname" ng-model="vm.firstname" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Firstname</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.lastname" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Lastname</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="password" id="password" name="password" ng-model="vm.password" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Password</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="password" id="confirmPassword" name="confirmPassword" ng-model="vm.confirmPassword" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Confirm Password</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <h4 style="color:red;" ng-bind="vm.errormessage"></h4>
+
+                                <div class="">
+                                    <center>
+                                        <a href="#/">
+                                            <button class="button button-medium button-stable" type="button">
+                                                Cancel
+                                            </button>
+                                        </a> &nbsp;&nbsp;
+                                        <button class="button button-medium button-calm" type="button"
+                                                ng-click="vm.register(vm.firstname, vm.lastname, vm.email, vm.password, vm.confirmPassword)">
+                                            Submit
+                                        </button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
-            </div>
-    </div>
+        </section>
     </ion-content>
 </ion-view>
+
+

@@ -15,7 +15,9 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
             }
 
-            cordova.plugins.Keyboard.disableScroll(true)
+            
+            //cordova.plugins.Keyboard.disableScroll(true)
+
 
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
