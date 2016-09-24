@@ -29,16 +29,9 @@
     <ion-list> 
       <ion-item ng-repeat="project in dataCtrl.projectList">
         {{project.id}} &raquo; {{project.title}}
-        <ion-option-button class="button-calm">Check Progress</ion-option-button>
+        <ion-option-button class="button-calm" ng-click="dataCtrl.openModal()">Check Progress</ion-option-button>
         <ion-option-button class="button-assertive" ng-click="dataCtrl.deleteProjectById(project.id)">Delete</ion-option-button>
       </ion-item>
     </ion-list>
-
-    <br>
-    <ul>
-      <li ng-repeat="project in dataCtrl.projectList">{{project.id}} &raquo; {{project.desc}} <button ng-click="dataCtrl.deleteProjectById(project.id)">Delete Daw</button></li>
-    </ul>
-
-    <button ng-click="dataCtrl.openModal()">Open Modal</button>
   </ion-content>
 </ion-view>
