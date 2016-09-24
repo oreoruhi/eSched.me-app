@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'eSchedMe' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast'])
+angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast', 'ngCookies'])
 
     .run(function ($ionicPlatform, Backand) {
         $ionicPlatform.ready(function () {
@@ -14,8 +14,10 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
                 cordova.plugins.Keyboard.disableScroll(true);
 
             }
+
             
             //cordova.plugins.Keyboard.disableScroll(true)
+
 
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
@@ -117,7 +119,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       $httpProvider.interceptors.push('APIInterceptor');
     })
 
-    .run(function ($rootScope, $state, LoginService, Backand, DataService) {
+    .run(function ($rootScope, $state, $cookieStore, LoginService, Backand, DataService) {
 
         function unauthorized() {
             console.log("User is unauthorized. Sending to login page.");
@@ -134,6 +136,10 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
         $rootScope.$on(Backand.EVENTS.SIGNIN, function (event, data) {
           $rootScope.$broadcast('authorized');
+          Backand.getUserDetails()
+            .then(function(result) {
+              $cookieStore.put('userId', result.userId);
+            });
           $state.go('dashboard.newsfeed');
         });
 
