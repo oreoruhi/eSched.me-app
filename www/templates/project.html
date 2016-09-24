@@ -32,12 +32,12 @@
         <p>{{project.title}}</p>
       </div>
       <div class="item item-body">
-      
+
         {{project.desc}}
-     
+
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ng-click="dataCtrl.openModalSummaryProject()">
+        <a class="tab-item" ng-click="dataCtrl.openModalSummaryProject(project.id)">
           <i class="icon ion-android-list" style="font-size: 12;"></i>
           Summary
         </a>

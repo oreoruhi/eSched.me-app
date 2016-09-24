@@ -64,6 +64,25 @@
         });
        }
 
+       vm.getProjectById = function(id) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/objects/activities',
+          params: {
+            pageSize: 20,
+            pageNumber: 1,
+            filter: [
+              {
+                fieldName: 'id',
+                operator: 'equals',
+                value: id
+              }
+            ],
+            sort: ''
+          }
+        });
+       }
+
        vm.deleteProjectById = function(id) {
          return $http ({
           method: 'DELETE',

@@ -74,17 +74,21 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
-  dataCtrl.openModalSummaryProject = function() {
+  dataCtrl.openModalSummaryProject = function(id) {
     $ionicModal.fromTemplateUrl('templates/modals/project-summary.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
-      dataCtrl.modal = modal;
-      dataCtrl.modal.show();
+      DataService.getProjectById(id)
+        .then(function(result) {
+          modalScope.project = result.data.data[0];
+          dataCtrl.modal = modal;
+          dataCtrl.modal.show();
+        });
     });
   };
 
-  modalScope.closeModalCreateProject = function() {
+  modalScope.closeModal = function() {
     dataCtrl.modal.hide();
   };
 
