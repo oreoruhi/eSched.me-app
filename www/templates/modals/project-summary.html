@@ -1,17 +1,13 @@
 <ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">{{project.title}}</h1>
+    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <button class="button button-medium button-stable" ng-click="closeModal()" type="button">
-        Cancel
-      </button>
-      <!-- Insert Project Summary data here -->
       <div class="list-card">
-        <div class="item">
-          <h3>Title: </h3>{{project.title}}
-        </div>
-
         <div class="item item-body">
-          <h3>Description: </h3>{{project.desc}}
+          <h3>Core objective: </h3>{{project.desc}}
         </div>
       </div>
     </ion-content>

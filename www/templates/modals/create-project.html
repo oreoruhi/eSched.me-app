@@ -1,9 +1,10 @@
 <ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">New Project</h1>
+    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <button class="button button-medium button-stable" ng-click="closeModal()" type="button">
-        Cancel
-      </button>
       <form action="">
         <div class="row">
           <div class="col">
@@ -25,6 +26,7 @@
             </div>
           </div>
         </div>
+
         <button type="button" class="button button-medium button-calm" type="button"
                 ng-click="createProject(dataCtrl.project.name, dataCtrl.project.description)">
           Create Project
