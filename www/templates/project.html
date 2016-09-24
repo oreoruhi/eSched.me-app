@@ -26,12 +26,32 @@
     </form>
     <br>
 
-    <ion-list> 
-      <ion-item ng-repeat="project in dataCtrl.projectList">
-        {{project.id}} &raquo; {{project.title}}
-        <ion-option-button class="button-calm" ng-click="dataCtrl.openModal()">Check Progress</ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="dataCtrl.deleteProjectById(project.id)">Delete</ion-option-button>
-      </ion-item>
-    </ion-list>
+
+    <div class="list card" ng-repeat="project in dataCtrl.projectList">
+      <div class="item">
+        <p>{{project.title}}</p>
+      </div>
+      <div class="item item-body">
+      
+        {{project.desc}}
+     
+      </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ng-click="dataCtrl.openModalSummaryProject()">
+          <i class="icon ion-android-list" style="font-size: 12;"></i>
+          Summary
+        </a>
+        <p>|</p>
+        <a class="tab-item" href="#">
+          <i class="icon ion-android-clipboard"></i>
+          Modules
+        </a>
+        <p>|</p>
+        <a class="tab-item" ng-click="dataCtrl.deleteProjectById(project.id)">
+          <i class="icon ion-android-cancel"></i>
+          Delete
+        </a>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

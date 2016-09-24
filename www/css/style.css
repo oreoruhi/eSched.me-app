@@ -154,3 +154,6 @@ input:focus ~ .highlight {
   to    { width:0; background:transparent; }
 }
 
+.card, .item, .tabs, .tab-item {
+  border-radius: 0px;
+}

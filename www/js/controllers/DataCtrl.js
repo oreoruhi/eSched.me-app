@@ -48,7 +48,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     DataService.createProject(userId, name, description)
       .then(function(result) {
         if(result.status === 200) {
-          modalScope.closeModal();
+          modalScope.closeModalCreateProject();
           getProjectList();
         }
       });
@@ -64,7 +64,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       });
   };
 
-  dataCtrl.openModal = function() {
+  dataCtrl.openModalCreateProject = function() {
     $ionicModal.fromTemplateUrl('templates/modals/create-project.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
@@ -74,7 +74,21 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
-  modalScope.closeModal = function() {
+  dataCtrl.openModalSummaryProject = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/project-summary.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      dataCtrl.modal = modal;
+      dataCtrl.modal.show();
+    });
+  };
+
+  modalScope.closeModalCreateProject = function() {
+    dataCtrl.modal.hide();
+  };
+
+  modalScope.closeModalSummaryProject = function() {
     dataCtrl.modal.hide();
   };
 

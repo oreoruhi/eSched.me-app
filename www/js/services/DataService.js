@@ -9,9 +9,9 @@
         var vm = this;
 
 
-        vm.baseUrl          = Backand.getApiUrl();
+        vm.baseUrl = Backand.getApiUrl();
 
-        vm.GetUsers    = function(){
+        vm.GetUsers = function(){
             return $http ({
               method: 'GET',
               url: Backand.getApiUrl() + '/1/query/data/getUsers',
