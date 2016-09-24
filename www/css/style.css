@@ -2,6 +2,7 @@
 
 .login-container {
     min-height: 100%;
+    /*Change height to webkit flex in case of issues*/
     background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#11c1f3), color-stop(30%,#243547));
 }
 
@@ -59,6 +60,7 @@ and (max-device-width : 1024px)  {
 
 .content-body {
     background: #243547;
+    min-height: 100%;
 }
 
 .item-blue .item-complex .item {
@@ -69,7 +71,7 @@ and (max-device-width : 1024px)  {
 
 input {
   color: #fff;
-  font-size:12px;
+  font-size:15px;
   padding:5px 5px 5px 3px;
   display:block;
   width:100%;
@@ -98,7 +100,7 @@ label          {
 /* active state */
 input:focus ~ label, input:valid ~ label     {
   top:-15px;
-  font-size:14px;
+  font-size:12px;
   color:#fff;
 }
 
@@ -151,3 +153,4 @@ input:focus ~ .highlight {
   from  { background:#5264AE; }
   to    { width:0; background:transparent; }
 }
+

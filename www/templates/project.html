@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col">
           <div class="group">
-            <input type="text" id="name" name="name" ng-model="dataCtrl.project.name" required>
+            <input type="text" id="name" name="name" ng-model="dataCtrl.project.name" style="color:#fff;" required autocomplete="off">
             <span class="highlight"></span>
             <span class="bar-input"></span>
             <label>Project Name</label>
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
           <div class="group">
-            <input type="text" id="description" name="description" ng-model="dataCtrl.project.description" required>
+            <input type="text" id="description" name="description" ng-model="dataCtrl.project.description" style="color:#fff;" required autocomplete="off">
             <span class="highlight"></span>
             <span class="bar-input"></span>
             <label>Core Objective</label>
@@ -25,8 +25,13 @@
     <button type="button" ng-click="dataCtrl.createProject(dataCtrl.project.name, dataCtrl.project.description)">submit daw</button>
     </form>
     <br>
-    <ul>
-      <li ng-repeat="project in dataCtrl.projectList">{{project.id}} &raquo; {{project.desc}} <button ng-click="dataCtrl.deleteProjectById(project.id)">Delete Daw</button></li>
-    </ul>
+
+    <ion-list> 
+      <ion-item ng-repeat="project in dataCtrl.projectList">
+        {{project.id}} &raquo; {{project.title}}
+        <ion-option-button class="button-calm">Check Progress</ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="dataCtrl.deleteProjectById(project.id)">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
