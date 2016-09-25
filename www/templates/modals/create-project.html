@@ -26,9 +26,31 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="description" name="description" ng-model="startDate" required>
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Start Date</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="description" name="description" ng-model="endDate" required>
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>End Date</label>
+            </div>
+          </div>
+        </div>
+
 
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="createProject(dataCtrl.project.name, dataCtrl.project.description)">
+                ng-click="createProject(project.data.title, project.data.desc, startDate, endDate)">
           Create Project
         </button>
       </form>

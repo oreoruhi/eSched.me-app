@@ -33,7 +33,7 @@
             });
        }
 
-       vm.createProject = function(id, name, description) {
+       vm.createProject = function(id, name, description, start, end) {
           return $http ({
             method: 'POST',
             url: Backand.getApiUrl() + '/1/objects/activities?returnObject=true',
@@ -41,6 +41,9 @@
               user_id: id,
               title: name,
               desc: description,
+              start: start,
+              end: end,
+              status: 'Pending',
               created: new Date().toISOString(),
               modified: new Date().toISOString()
             }

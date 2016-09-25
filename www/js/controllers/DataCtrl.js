@@ -31,6 +31,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       .then(function(result) {
         console.log(result.data);
         dataCtrl.user = result.data;
+        dataCtrl.user_photo = 'http://graph.facebook.com/' + dataCtrl.user[0].fuid + '/picture?height=300';
       });
     getProjectList();
   }
@@ -44,11 +45,13 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
-  dataCtrl.createProject = function(name, description) {
-    DataService.createProject(userId, name, description)
+  dataCtrl.createProject = function(name, description, start, end) {
+    var startDate = new Date(start).toISOString();
+    var endDate = new Date(end).toISOString();
+    DataService.createProject(userId, name, description, startDate, endDate)
       .then(function(result) {
         if(result.status === 200) {
-          modalScope.closeModalCreateProject();
+          dataCtrl.modal.hide();
           getProjectList();
         }
       });

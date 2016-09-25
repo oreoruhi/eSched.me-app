@@ -18,13 +18,15 @@
     };
 
 
-    function onLogin() {
+    function onLogin(result) {
+        console.log(result);
         $rootScope.$broadcast('authorized');
         $state.go('dashboard.newsfeed');
     }
 
     function errorHandler(error) {
       // to-do: notifier
+      console.log(error);
       if(error) {
         ionicToast.show("You have entered invalid login credentials.", 'bottom', false, 2000);
       }
