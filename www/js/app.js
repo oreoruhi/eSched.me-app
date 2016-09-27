@@ -31,10 +31,9 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
     })
 
   .config(function (BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-      BackandProvider.setAppName('dodongx');
-      BackandProvider.setSignUpToken('a7a341b4-d4b3-46b1-a786-c7c4c1776719');
-      BackandProvider.setAnonymousToken('047a5ffa-e1ee-457e-8141-a6f3ab54d8ca');
-      BackandProvider.runSigninAfterSignup(true);
+      BackandProvider.setAppName('esched2');
+      BackandProvider.setSignUpToken('181cb880-fddc-407f-9b18-4b45cb3cc4c1');
+      BackandProvider.setAnonymousToken('effec4bb-b29d-4532-a852-7d0052523c80');
 
       $ionicConfigProvider.tabs.position('bottom');
       $ionicConfigProvider.navBar.alignTitle('center');
@@ -138,6 +137,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
           $rootScope.$broadcast('authorized');
           Backand.getUserDetails()
             .then(function(result) {
+              console.log(result);
               $cookieStore.put('userId', result.userId);
             });
           $state.go('dashboard.newsfeed');

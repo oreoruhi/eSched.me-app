@@ -8,10 +8,11 @@ DataCtrlFunction.$inject = [
   '$cookieStore',
   'DataService',
   'LoginService',
+  'ProjectService',
   '$ionicModal'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, $ionicModal, $scope) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $scope) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -22,7 +23,11 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       .then(function(result){
         dataCtrl.projectList = result.data.data;
       });
-  }
+  };
+
+  dataCtrl.openProjectModules = function(project) {
+    ProjectService.openProjectModules(project);
+  };
 
   function init() {
     console.log($cookieStore.get('userId'));
@@ -56,6 +61,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
         }
       });
   };
+
 
   dataCtrl.deleteProjectById = function(id) {
     DataService.deleteProjectById(id)
