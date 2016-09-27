@@ -98,7 +98,7 @@ label          {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label     {
+input:focus ~ label, input:valid ~ label,  .label-date  {
   top:-15px;
   font-size:12px;
   color:#fff;
@@ -156,4 +156,8 @@ input:focus ~ .highlight {
 
 .card, .item, .tabs, .tab-item {
   border-radius: 0px;
+}
+
+.search-input {
+  margin-left: 10px;
 }

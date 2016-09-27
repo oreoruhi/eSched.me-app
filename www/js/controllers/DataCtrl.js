@@ -91,13 +91,20 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
+  dataCtrl.openModalCreateModule = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/create-module.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      dataCtrl.modal = modal;
+      dataCtrl.modal.show();
+    });
+  };
+
   modalScope.closeModal = function() {
     dataCtrl.modal.hide();
   };
 
-  modalScope.closeModalSummaryProject = function() {
-    dataCtrl.modal.hide();
-  };
 
   init();
   angular.extend(modalScope, dataCtrl);

@@ -62,10 +62,10 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         url: '/dashboard',
         abstract: true,
         templateUrl: 'templates/dashboard.html',
-        controller: 'DataCtrl as dataCtrl',
-        data: {
-          role: 'User'
-        }
+        controller: 'DataCtrl as dataCtrl'//,
+        //data: {
+        //  role: 'User'
+        //}
       })
 
       .state('dashboard.newsfeed', {
@@ -109,6 +109,15 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         views: {
           'menuContent': {
             templateUrl: 'templates/timeline.html'
+          }
+        }
+      })
+
+      .state('dashboard.module', {
+        url: '/module',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/module.html'
           }
         }
       })
