@@ -27,7 +27,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
   dataCtrl.openProjectModules = function(project) {
     console.log(project);
-    $state.go('dashboard.module');
+    $state.go('dashboard.module', {project: project});
   };
 
   function init() {

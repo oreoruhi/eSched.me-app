@@ -14,12 +14,12 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   //var userId;
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
-  $cookieStore.put('project', $state.params.project);
+  modalScope.project = project;
 
   function init() {
  //   console.log($cookieStore.get('userId'));
  //   userId = $cookieStore.get('userId');
-    console.log("Hello!!");
+    console.log(modalScope.project.start);
   }
 
 

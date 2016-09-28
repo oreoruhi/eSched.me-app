@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="name" name="name" ng-model="" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="name" name="name" ng-model="name" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Module Name</label>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" ng-model="" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" ng-model="objective" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Core Objective</label>
@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="number" id="percentage" name="percentage" ng-model="" style="color:#fff;" required autocomplete="off">
+              <input type="number" id="percentage" name="percentage" ng-model="percentage" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Percentage</label>
@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="start-date" name="start-date" ng-model="" style="color:#fff;" required autocomplete="off">
+              <input type="date" id="start-date" name="start-date" ng-model="start" min="{{project.start}}" max="{{project.end}}" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Start Date</label>
@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-model="" style="color:#fff;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-model="end" min="{{project.start}}" max="{{project.end}}" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
