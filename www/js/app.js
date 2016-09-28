@@ -31,9 +31,9 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
     })
 
   .config(function (BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-      BackandProvider.setAppName('esched2');
-      BackandProvider.setSignUpToken('181cb880-fddc-407f-9b18-4b45cb3cc4c1');
-      BackandProvider.setAnonymousToken('effec4bb-b29d-4532-a852-7d0052523c80');
+      BackandProvider.setAppName('esckedme');
+      BackandProvider.setSignUpToken('285fc2ca-7fee-4626-9ad2-d0659ec9c18a');
+      BackandProvider.setAnonymousToken('5c9e5dfc-4cea-40a2-8842-d3338432e7fa');
 
       $ionicConfigProvider.tabs.position('bottom');
       $ionicConfigProvider.navBar.alignTitle('center');

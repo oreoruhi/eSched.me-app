@@ -19,7 +19,11 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   function init() {
  //   console.log($cookieStore.get('userId'));
  //   userId = $cookieStore.get('userId');
-    console.log(modalScope.project.start);
+    ModuleService.getProjectModules(project.id)
+      .then(function(result) {
+        moduleCtrl.
+      });
+
   }
 
 
@@ -37,6 +41,12 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     moduleCtrl.modal.hide();
   };
 
+  modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
+    ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
+      .then(function(result) {
+        console.log(result.data);
+      });
+  }
 
   init();
   angular.extend(modalScope, moduleCtrl);
