@@ -9,10 +9,11 @@ DataCtrlFunction.$inject = [
   'DataService',
   'LoginService',
   'ProjectService',
-  '$ionicModal'
+  '$ionicModal',
+  '$ionicHistory',
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $scope) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -27,6 +28,9 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
   dataCtrl.openProjectModules = function(project) {
     console.log(project);
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
     $state.go('dashboard.module', {project: project});
   };
 

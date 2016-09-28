@@ -1,12 +1,12 @@
 <ion-view view-title="Modules" ng-controller="ModuleCtrl as moduleCtrl">
   <ion-content class="content-body">
-    <div class="list card" ng-repeat="moduleCtrl.modules">
+    <div class="list card" ng-if="moduleCtrl.modules" ng-repeat="module in moduleCtrl.modules">
       <div class="item">
-        <p>Sample Module</p>
+        <p>{{module.name}}</p>
       </div>
       <div class="item item-body">
 
-        Module objective
+        {{module.desc}}
 
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">

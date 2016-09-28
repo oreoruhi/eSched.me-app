@@ -21,7 +21,8 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
  //   userId = $cookieStore.get('userId');
     ModuleService.getProjectModules(project.id)
       .then(function(result) {
-        moduleCtrl.modules = result.data;
+        moduleCtrl.modules = result.data.data;
+        console.log(result);
       });
 
   }
@@ -44,7 +45,8 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
     ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
       .then(function(result) {
-        console.log(result.data);
+        moduleCtrl.modules.push(result);
+        moduleCtrl.modal.hide();
       });
   }
 
