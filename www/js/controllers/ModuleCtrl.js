@@ -1,25 +1,29 @@
-angular.module('eSchedMe.controllers')
+angular.module('eSchedMe')
 .controller('ModuleCtrl', ModuleCtrlFunction);
 
 ModuleCtrlFunction.$inject = [
-  '$http',
   '$rootScope',
   '$state',
   '$cookieStore',
   'ModuleService',
-  '$ionicModal',
-  '$scope'
+  '$ionicModal'
 ];
 
-function ModuleCtrlFunction($http, $rootScope, $state, $cookieStore, ModuleService, $ionicModal, $scope) {
+function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal) {
   var moduleCtrl = this;
   //var userId;
   var modalScope = $rootScope.$new(true);
-
+  var project = $state.params.project;
+  modalScope.project = project;
 
   function init() {
  //   console.log($cookieStore.get('userId'));
  //   userId = $cookieStore.get('userId');
+    ModuleService.getProjectModules(project.id)
+      .then(function(result) {
+        moduleCtrl.
+      });
+
   }
 
 
@@ -37,6 +41,12 @@ function ModuleCtrlFunction($http, $rootScope, $state, $cookieStore, ModuleServi
     moduleCtrl.modal.hide();
   };
 
+  modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
+    ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
+      .then(function(result) {
+        console.log(result.data);
+      });
+  }
 
   init();
   angular.extend(modalScope, moduleCtrl);
