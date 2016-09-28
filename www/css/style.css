@@ -161,3 +161,7 @@ input:focus ~ .highlight {
 .search-input {
   margin-left: 10px;
 }
+
+.search-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+}
