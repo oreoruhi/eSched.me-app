@@ -114,7 +114,8 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
       .state('dashboard.module', {
         url: '/module',
-        controller: 'ModuleCtrl as moduleCtrl',
+        controller: 'ModuleCtrl',
+        controllerAs: 'moduleCtrl',
         views: {
           'menuContent': {
             templateUrl: 'templates/module.html'

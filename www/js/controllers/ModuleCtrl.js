@@ -1,25 +1,25 @@
-angular.module('eSchedMe.controllers')
+angular.module('eSchedMe')
 .controller('ModuleCtrl', ModuleCtrlFunction);
 
 ModuleCtrlFunction.$inject = [
-  '$http',
   '$rootScope',
   '$state',
   '$cookieStore',
   'ModuleService',
-  '$ionicModal',
-  '$scope'
+  '$ionicModal'
 ];
 
-function ModuleCtrlFunction($http, $rootScope, $state, $cookieStore, ModuleService, $ionicModal, $scope) {
+function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal) {
   var moduleCtrl = this;
   //var userId;
   var modalScope = $rootScope.$new(true);
-
+  var project = $state.params.project;
+  $cookieStore.put('project', $state.params.project);
 
   function init() {
  //   console.log($cookieStore.get('userId'));
  //   userId = $cookieStore.get('userId');
+    console.log("Hello!!");
   }
 
 
