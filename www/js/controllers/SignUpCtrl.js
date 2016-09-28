@@ -28,7 +28,8 @@
       // to-do: notifier
       console.log(error);
       if(error) {
-        ionicToast.show("You have entered invalid login credentials.", 'bottom', false, 2000);
+        // WAG PAPALITAN YUNG MESSAGE! PAG PRODUCTION NALANG
+        ionicToast.show("error.data.error_description", 'bottom', false, 2000);
       }
     }
 
@@ -36,7 +37,8 @@
     self.register = function(firstname, lastname, email, password, confirmPassword) {
         AuthService.signup(firstname, lastname, email, password, confirmPassword)
         .then(onSignupSuccess)
-        .catch(ionicToast.show("Something went wrong while processing your request. Please try again.", 'bottom', false, 2000));
+        .catch(errorHandler);
+        // .catch(ionicToast.show("Something went wrong while processing your request. Please try again.", 'bottom', false, 2000));
     };
 
     function onSignupSuccess(result) {
