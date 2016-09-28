@@ -21,7 +21,7 @@ angular.module('eSchedMe.services', [])
         };
 
         service.socialSignIn = function(provider) {
-          return Backand.socialSignIn(provider);
+          return Backand.socialSignUp (provider);
         }
 
         service.signout = function () {

@@ -21,7 +21,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
  //   userId = $cookieStore.get('userId');
     ModuleService.getProjectModules(project.id)
       .then(function(result) {
-        moduleCtrl.
+        moduleCtrl.modules = result.data;
       });
 
   }
