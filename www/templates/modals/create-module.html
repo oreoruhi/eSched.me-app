@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input id="start-date" name="start-date" ng-model="start" ng-click="openDatePicker(project)" style="color:#fff;" required autocomplete="off">
+              <input id="start-date" type="date" name="start-date" ng-model="start" ng-click="openDatePicker(project, 'start')" ng-readonly="true" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Start Date</label>
@@ -59,7 +59,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-model="end" min="{{project.start}}" max="{{project.end}}" style="color:#fff;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-model="end" ng-click="openDatePicker(project, 'end')"  ng-readonly="true" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
@@ -74,10 +74,10 @@
         </button>
       </center>
 
-        <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="openDatePicker(project)">
-          Open Date Picker
-        </button>
+        <!--<button type="button" class="button button-medium button-calm" type="button"-->
+                <!--ng-click="openDatePicker(project)">-->
+          <!--Open Date Picker-->
+        <!--</button>-->
       </form>
     </ion-content>
   </div>

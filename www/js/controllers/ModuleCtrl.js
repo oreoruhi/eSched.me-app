@@ -44,7 +44,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     moduleCtrl.modal.hide();
   };
 
-  modalScope.openDatePicker = function (project) {
+  modalScope.openDatePicker = function (project, provider) {
     console.log(project.start);
     console.log(project.end);
     $ionicPlatform.ready(function() {
@@ -56,7 +56,11 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
       };
       $cordovaDatePicker.show(options)
         .then(function (result) {
-          console.log(result);
+          if(provider === 'start') {
+            modalScope.start = result;
+          } else if (provider ==='end') {
+            modalScope.end = result;
+          }
         });
     });
   };
