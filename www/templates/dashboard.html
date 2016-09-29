@@ -46,21 +46,15 @@
 
   <ion-side-menu side="right">
     <ion-header-bar class="bar-calm">
-      <input type="text" class="search-input" placeholder="Search people..." style="color:#fff;">
+      <input type="text" class="search-input" ng-model="dataCtrl.searchInput" ng-change="dataCtrl.filterUsers(dataCtrl.searchInput)" placeholder="Search people..." style="color:#fff;">
     </ion-header-bar>
     <ion-content>
       <div class="search-result">
         <ion-list>
-          <ion-item menu-close href="">
-            Sample Search Result
+          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult" href="">
+            {{result.first_name}} {{result.last_name}}
           </ion-item>
-          <ion-item menu-close href="">
-            Sample Search Result
-          </ion-item>
-          <ion-item menu-close href="">
-            Sample Search Result
-          </ion-item>
-        </ion-list>      
+        </ion-list>
       </div>
     </ion-content>
   </ion-side-menu>

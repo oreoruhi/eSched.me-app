@@ -11,6 +11,18 @@
 
         vm.baseUrl = Backand.getApiUrl();
 
+        vm.filterUsers = function(name) {
+          return $http ({
+            method: 'GET',
+            url: Backand.getApiUrl() + '/1/query/data/filterUsers',
+            params: {
+              parameters: {
+                query: name
+              }
+            }
+          });
+        };
+
         vm.GetUsers = function(){
             return $http ({
               method: 'GET',

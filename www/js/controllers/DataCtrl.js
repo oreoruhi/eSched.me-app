@@ -26,6 +26,14 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       });
   };
 
+  dataCtrl.filterUsers = function (name) {
+    DataService.filterUsers(name)
+      .then(function (result) {
+        console.log(result);
+        dataCtrl.searchResult = result.data;
+      });
+  };
+
   dataCtrl.openProjectModules = function(project) {
     console.log(project);
     $ionicHistory.nextViewOptions({
