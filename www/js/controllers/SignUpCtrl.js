@@ -29,7 +29,7 @@
       console.log(error);
       if(error) {
         // WAG PAPALITAN YUNG MESSAGE! PAG PRODUCTION NALANG
-        ionicToast.show("error.error_description", 'bottom', false, 2000);
+        ionicToast.show(error.error_description, 'bottom', false, 2000);
       }
     }
 

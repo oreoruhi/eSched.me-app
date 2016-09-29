@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'eSchedMe' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast', 'ngCookies', 'ion-floating-menu'])
+angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast', 'ngCookies', 'ion-floating-menu', 'ngCordova'])
 
     .run(function ($ionicPlatform, Backand) {
         $ionicPlatform.ready(function () {
@@ -114,6 +114,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
       .state('dashboard.module', {
         url: '/module',
+        controller: 'ModuleCtrl as moduleCtrl',
         params: {
           project: null
         },
@@ -122,7 +123,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             templateUrl: 'templates/module.html'
           }
         }
-      })
+      });
 
 
       $urlRouterProvider.otherwise('/');

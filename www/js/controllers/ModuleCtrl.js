@@ -6,10 +6,12 @@ ModuleCtrlFunction.$inject = [
   '$state',
   '$cookieStore',
   'ModuleService',
-  '$ionicModal'
+  '$ionicModal',
+  '$cordovaDatePicker',
+  '$ionicPlatform'
 ];
 
-function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal) {
+function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal, $cordovaDatePicker, $ionicPlatform) {
   var moduleCtrl = this;
   //var userId;
   var modalScope = $rootScope.$new(true);
@@ -42,13 +44,30 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     moduleCtrl.modal.hide();
   };
 
+  modalScope.openDatePicker = function (project) {
+    console.log(project.start);
+    console.log(project.end);
+    $ionicPlatform.ready(function() {
+      var options = {
+        date: new Date(),
+        mode: 'date', // or 'time'
+        minDate: new Date(project.start).valueOf(),
+        maxDate: new Date(project.end).valueOf()
+      };
+      $cordovaDatePicker.show(options)
+        .then(function (result) {
+          console.log(result);
+        });
+    });
+  };
+
   modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
     ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
       .then(function(result) {
         moduleCtrl.modules.push(result);
         moduleCtrl.modal.hide();
       });
-  }
+  };
 
   init();
   angular.extend(modalScope, moduleCtrl);

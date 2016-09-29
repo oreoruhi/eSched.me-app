@@ -36,10 +36,10 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
   dataCtrl.openProjectModules = function(project) {
     console.log(project);
-    $ionicHistory.nextViewOptions({
-      disableBack: true
-    });
-    $state.go('dashboard.module', {project: project});
+    // $ionicHistory.nextViewOptions({
+    //   disableBack: true
+    // });
+    $state.go('dashboard.module', {project: project}, {reload: true});
   };
 
   function init() {

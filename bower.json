@@ -12,6 +12,7 @@
   "dependencies": {
     "ionic-toast": "^0.4.1",
     "ionic-nifty-modal": "*",
-    "angular-cookies": "^1.5.8"
+    "angular-cookies": "^1.5.8",
+    "ngCordova": "^0.1.27-alpha"
   }
 }
