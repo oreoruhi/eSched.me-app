@@ -17,6 +17,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
   modalScope.project = project;
+  moduleCtrl.totalPercentage = 0;
 
   function init() {
  //   console.log($cookieStore.get('userId'));
@@ -25,6 +26,11 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
       .then(function(result) {
         moduleCtrl.modules = result.data.data;
         console.log(result);
+        moduleCtrl.modules.forEach(function (module) {
+          moduleCtrl.totalPercentage += module.percentage;
+          modalScope.remainingPercentage = 100 - moduleCtrl.totalPercentage;
+          console.log(modalScope.remainingPercentage);
+        });
       });
 
   }
