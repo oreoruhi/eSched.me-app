@@ -25,7 +25,11 @@
             sort: ''
           }
         });
-      }
+      };
+
+      vm.deleteModule = function (id) {
+        return $http.delete('https://api.backand.com/1/objects/modules/' + id);
+      };
 
       vm.newModule = function(id, name, desc, percentage, difficulty, start, end) {
         var today = new Date().toISOString();
