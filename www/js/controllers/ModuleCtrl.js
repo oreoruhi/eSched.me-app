@@ -29,7 +29,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
         moduleCtrl.modules.forEach(function (module) {
           moduleCtrl.totalPercentage += module.percentage;
           modalScope.remainingPercentage = 100 - moduleCtrl.totalPercentage;
-          console.log(modalScope.remainingPercentage);
+          moduleCtrl.remainingPercentage = modalScope.remainingPercentage;
         });
       });
   }

@@ -24,6 +24,8 @@
       </div>
     </div>
   </ion-content>
-  <ion-floating-button ng-click="moduleCtrl.openModalCreateModule()" button-color="#11c1f3" icon="ion-plus" icon-color="#fff">
+  <ion-floating-button
+    ng-show="moduleCtrl.remainingPercentage"
+    ng-click="moduleCtrl.openModalCreateModule()" button-color="#11c1f3" icon="ion-plus" icon-color="#fff">
   </ion-floating-button>
 </ion-view>
