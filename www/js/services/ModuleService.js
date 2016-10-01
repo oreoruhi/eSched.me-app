@@ -31,7 +31,7 @@
         return $http.delete('https://api.backand.com/1/objects/modules/' + id);
       };
 
-      vm.newModule = function(id, name, desc, percentage, difficulty, start, end) {
+      vm.newModule = function(id, name, desc, percentage, priority, start, end) {
         var today = new Date().toISOString();
         return $http ({
           method: 'POST',
@@ -39,9 +39,9 @@
           data: {
             activity_id: id,
             name: name,
-            desc: desc,
+            description: desc,
             percentage: percentage,
-            difficulty: difficulty,
+            priority: priority,
             status: 'Pending',
             start: start,
             end: end,
