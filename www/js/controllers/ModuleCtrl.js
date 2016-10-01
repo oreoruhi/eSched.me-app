@@ -17,13 +17,13 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
   modalScope.project = project;
-  moduleCtrl.totalPercentage = 0;
 
   function init() {
  //   console.log($cookieStore.get('userId'));
  //   userId = $cookieStore.get('userId');
     ModuleService.getProjectModules(project.id)
       .then(function(result) {
+        moduleCtrl.totalPercentage = 0;
         moduleCtrl.modules = result.data.data;
         console.log(result);
         moduleCtrl.modules.forEach(function (module) {
@@ -92,7 +92,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
     ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
       .then(function(result) {
-        moduleCtrl.modules.push(result);
+        init();
         moduleCtrl.modal.hide();
       });
   };
