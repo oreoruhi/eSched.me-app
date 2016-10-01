@@ -7,15 +7,17 @@
       <div class="item item-body">
 
         {{module.desc}}
-
+        <br><br>
+        <span>Start: {{module.start | date: 'MMMM dd, y'}}</span> <br>
+        <span>End: {{module.end | date: 'MMMM dd, y'}}</span>
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item">
+        <a class="tab-item" ng-click="moduleCtrl.openModalSummaryModule(module)">
           <i class="icon ion-android-list" style="font-size: 12;"></i>
           Summary
         </a>
         <p>|</p>
-        <a class="tab-item">
+        <a class="tab-item" ng-click="moduleCtrl.deleteModule(module.id)">
           <i class="icon ion-android-cancel"></i>
           Delete
         </a>

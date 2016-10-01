@@ -32,9 +32,19 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
           console.log(modalScope.remainingPercentage);
         });
       });
-
   }
 
+
+  moduleCtrl.openModalSummaryModule = function (module) {
+    modalScope.module = module;
+    $ionicModal.fromTemplateUrl('templates/modals/module-summary.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function (modal) {
+      moduleCtrl.modal = modal;
+      moduleCtrl.modal.show();
+    });
+  };
 
   moduleCtrl.openModalCreateModule = function() {
     $ionicModal.fromTemplateUrl('templates/modals/create-module.html', {
@@ -44,6 +54,14 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
       moduleCtrl.modal = modal;
       moduleCtrl.modal.show();
     });
+  };
+
+  moduleCtrl.deleteModule = function (id) {
+    console.log('Deleting Module: ' + id);
+    ModuleService.deleteModule(id)
+      .then(function (result) {
+        init();
+      });
   };
 
   modalScope.closeModal = function() {
