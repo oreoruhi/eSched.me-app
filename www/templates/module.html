@@ -8,8 +8,18 @@
 
         {{module.description}}
         <br><br>
-        <span>Start: {{module.start | date: 'MMMM dd, y'}}</span> <br>
-        <span>End: {{module.end | date: 'MMMM dd, y'}}</span>
+        <div class="">
+          <span>Start: {{module.start | date: 'MMMM dd, y'}}</span> <br>
+          <span>End: {{module.end | date: 'MMMM dd, y'}}</span>
+        </div>
+
+        <div class="add-submodule">
+          <button class="button button-small button-positive">Add Submodule</button>
+        </div>
+
+        <div class="list list-inset">
+          List Of Submodules
+        </div>
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item" ng-click="moduleCtrl.openModalSummaryModule(module)">
