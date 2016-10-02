@@ -8,10 +8,9 @@
       </div>
       <div class="item item-body" style="border-bottom: 1px solid #ddd;">
         <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{project.first_name}} {{project.last_name}}</span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Duration: {{project.start | date: 'MMMM dd, y'}} to {{project.end | date: 'MMMM dd, y'}}</span> <br><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Duration: {{project.start | date: 'MMMM dd, y'}} to {{project.end | date: 'MMMM dd, y'}}</span><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status}}</span><br><br>
         {{project.desc}}
-        {{project.friend_id}}
-        {{project.activity_id}}
       </div>
       <div class="item tabs tabs-icon-left" style="background: #fff;">
         <a class="tab-item" ng-click="dataCtrl.openModalSummaryProject(project.id)" style="background: #fff; color: #000;">
@@ -55,7 +54,7 @@
               </div>
               <div class="item tabs tabs-icon-left" style="background: #fff;">
                 <a class="tab-item" ng-click="dataCtrl.openModalSummaryProject(project.id)" style="background: #fff; color: #3f3f3f;">
-                  <i class="icon ion-android-list" style="font-size: 12;"></i>
+                  <i class="icon ion-android-list"></i>
                   Summary
                 </a>
                 <p>|</p>

@@ -38,7 +38,7 @@
           url: Backand.getApiUrl() + '/1/objects/modules?returnObject=true',
           data: {
             activity_id: id,
-            name: name,
+            title: name,
             description: desc,
             percentage: percentage,
             priority: priority,
