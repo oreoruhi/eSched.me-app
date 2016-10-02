@@ -1,8 +1,9 @@
 <ion-view view-title="Modules" ng-controller="ModuleCtrl as moduleCtrl">
   <ion-content class="content-body">
     <div class="list card" ng-if="moduleCtrl.modules" ng-repeat="module in moduleCtrl.modules">
-      <div class="item">
-        <p>{{module.name}}</p>
+      <div class="item item-button-right">
+        <p>{{module.title}}</p>
+        <div class="buttons" ng-if="moduleCtrl.project.user_id == moduleCtrl.userId" ng-click="moduleCtrl.showPopoverModule($event)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
       </div>
       <div class="item item-body">
 
@@ -35,7 +36,8 @@
     </div>
   </ion-content>
   <ion-floating-button
-    ng-show="moduleCtrl.remainingPercentage"
+    ng-show="moduleCtrl.remainingPercentage" ng-if= "moduleCtrl.project.user_id == moduleCtrl.userId"
     ng-click="moduleCtrl.openModalCreateModule()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
 </ion-view>
+

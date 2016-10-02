@@ -8,17 +8,20 @@ ModuleCtrlFunction.$inject = [
   'ModuleService',
   '$ionicModal',
   '$cordovaDatePicker',
-  '$ionicPlatform'
+  '$ionicPlatform',
+  '$ionicPopover'
 ];
 
-function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal, $cordovaDatePicker, $ionicPlatform) {
+function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal, $cordovaDatePicker, $ionicPlatform, $ionicPopover) {
   var moduleCtrl = this;
   //var userId;
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
   modalScope.project = project;
+  moduleCtrl.project = project;
   modalScope.remainingPercentage = 100;
   moduleCtrl.remainingPercentage = 100;
+  moduleCtrl.userId = $cookieStore.get('userId');
 
   function init() {
  //   console.log($cookieStore.get('userId'));
@@ -98,6 +101,15 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
         moduleCtrl.modal.hide();
       });
   };
+
+  moduleCtrl.showPopoverModule = function($event){
+    $ionicPopover.fromTemplateUrl('templates/events/module-popover.html', {
+      scope: modalScope,
+    }).then(function(popover) {
+      modalScope.popover = popover; //???????
+      modalScope.popover.show($event);
+    });
+  }
 
   init();
   angular.extend(modalScope, moduleCtrl);
