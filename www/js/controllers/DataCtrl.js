@@ -11,9 +11,10 @@ DataCtrlFunction.$inject = [
   'ProjectService',
   '$ionicModal',
   '$ionicHistory',
+  '$ionicPopover'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -22,7 +23,8 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   function getProjectList() {
     DataService.getProjectList(userId)
       .then(function(result){
-        dataCtrl.projectList = result.data.data;
+        console.log(result);
+        dataCtrl.projectList = result.data;
       });
   };
 
@@ -50,6 +52,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
         console.log(result.data);
         dataCtrl.user = result.data;
         dataCtrl.user_photo = 'http://graph.facebook.com/' + dataCtrl.user[0].fuid + '/picture?height=300';
+        console.log(dataCtrl.user);
       });
     getProjectList();
   }
@@ -81,6 +84,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       .then(function(result) {
         console.log(result);
         if(result.status === 200) {
+          modalScope.popover.hide();
           getProjectList();
         }
       });
@@ -123,6 +127,16 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   modalScope.closeModal = function() {
     dataCtrl.modal.hide();
   };
+
+  dataCtrl.showPopoverProject = function($event, project){
+    $ionicPopover.fromTemplateUrl('templates/events/project-popover.html', {
+      scope: modalScope,
+    }).then(function(popover) {
+      modalScope.popover = popover; //???????
+      modalScope.project = project;
+      modalScope.popover.show($event);
+    });
+  }
 
 
   init();

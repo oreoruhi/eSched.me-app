@@ -17,6 +17,8 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
   modalScope.project = project;
+  modalScope.remainingPercentage = 100;
+  moduleCtrl.remainingPercentage = 100;
 
   function init() {
  //   console.log($cookieStore.get('userId'));

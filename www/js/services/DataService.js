@@ -63,18 +63,13 @@
        }
 
        vm.getProjectList = function(id){
-         return $http ({
+        return $http ({
           method: 'GET',
-          url: Backand.getApiUrl() + '/1/objects/activities',
+          url: Backand.getApiUrl() + '/1/query/data/getAllProjects',
           params: {
-            pageSize: 20,
-            pageNumber: 1,
-            filter: [{
-              "fieldName":"user_id",
-              "operator":"equals",
-              "value": id
-            }],
-            sort: ''
+            parameters: {
+              id: id
+            }
           }
         });
        }
