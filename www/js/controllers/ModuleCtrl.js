@@ -111,7 +111,11 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
       modalScope.module = module;
       modalScope.popover.show($event);
     });
-  }
+  };
+
+  moduleCtrl.showSubModules = function(module) {
+    $state.go('dashboard.module', {module: module}, {reload: true});
+  };
 
   init();
   angular.extend(modalScope, moduleCtrl);
