@@ -27,7 +27,7 @@
     text-align: center;
     color: #000;
     cursor: pointer;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 10px 10px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     padding: 0;

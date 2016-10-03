@@ -1,7 +1,40 @@
 
 <ion-view view-title="{{dataCtrl.user[0].first_name}} {{dataCtrl.user[0].last_name}}">
    <ion-content class="content-body">
-   		<h1>Soon to be your Profile, {{dataCtrl.user[0].first_name}}</h1>
+
+      <div id="profile-bg"></div>
+      <div id="content">
+        <div id="profile-info">
+          <img id="profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+          <!-- Replace image of user here -->
+          <h3 id="profile-name">{{dataCtrl.user[0].first_name}} {{dataCtrl.user[0].last_name}}</h3>
+          <span id="profile-description" class="padding">Secretary</span>
+        </div>
+        <ion-list>
+          <ion-item>
+            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+            Sample
+    		<ion-option-button class="button-assertive">Delete</ion-option-button>
+          </ion-item>
+          <ion-item>
+            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+            Sample
+    		<ion-option-button class="button-assertive">Delete</ion-option-button>
+          </ion-item>
+          <ion-item>
+            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+            Sample
+    		<ion-option-button class="button-assertive">Delete</ion-option-button>
+          </ion-item>
+          <ion-item>
+            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+            Sample
+    		<ion-option-button class="button-assertive">Delete</ion-option-button>
+          </ion-item>
+        </ion-list>
+      </div>
+
+
    </ion-content>
 
 	<ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-stable">

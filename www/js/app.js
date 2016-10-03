@@ -116,6 +116,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
       .state('dashboard.timeline', {
         url: '/timeline',
+        controller: 'MapCtrl',
         views: {
           'menuContent': {
             templateUrl: 'templates/timeline.html'
@@ -183,5 +184,6 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             }
         });
     })
+
 
 
