@@ -5,15 +5,20 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
   var self = this;
   var modalScope = $rootScope.$new(true);
 
+
   function _init() {
     $log.info('Initializing Submodule Controller');
     ModuleService.getModuleById($stateParams.id)
       .then(function (result) {
         self.module = result.data;
+        modalScope.remainingPercentage = self.module.percentage;
         SubmoduleService.getSubmodules(self.module.id)
           .then(function(result) {
             $log.info(result);
             self.module.submodules = result.data.data;
+            self.module.submodules.forEach(function(submodule) {
+              modalScope.remainingPercentage -= submodule.percentage;
+            });
           });
       });
     angular.extend(modalScope, self);
@@ -37,6 +42,8 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
     SubmoduleService.newSubmodule($stateParams.id, name, description, percentage)
       .then(function (result) {
         $log.info(result);
+        _init();
+        self.modal.hide();
       });
   };
 
