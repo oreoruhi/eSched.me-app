@@ -33,6 +33,13 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
     self.modal.hide();
   };
 
+  self.createNewSubmodule = function(name, description, percentage) {
+    SubmoduleService.newSubmodule($stateParams.id, name, description, percentage)
+      .then(function (result) {
+        $log.info(result);
+      });
+  };
+
 
 
   _init();

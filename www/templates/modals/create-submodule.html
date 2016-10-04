@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" ng-model="desc" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" ng-model="description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Core Objective</label>
@@ -40,40 +40,10 @@
             </div>
           </div>
         </div>
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-            <!--<div class="group">-->
-              <!--<input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">-->
-              <!--<span class="highlight"></span>-->
-              <!--<span class="bar-input"></span>-->
-              <!--<label>Priority</label>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-            <!--<div class="group">-->
-              <!--<input id="start-date" type="date" name="start-date" ng-model="start" ng-click="openDatePicker(project, 'start')" style="color:#000;" required autocomplete="off">-->
-              <!--<span class="highlight"></span>-->
-              <!--<span class="bar-input"></span>-->
-              <!--<label class="label-date">Start Date</label>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col">-->
-            <!--<div class="group">-->
-              <!--<input type="date" id="end-date" name="end-date" ng-model="end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">-->
-              <!--<span class="highlight"></span>-->
-              <!--<span class="bar-input"></span>-->
-              <!--<label class="label-date">End Date</label>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
 
         <center>
           <button type="button" class="button button-medium button-calm" type="button"
-                  ng-click="newModule(project.id, name, desc, percentage, difficulty, start, end)">
+                  ng-click="createNewSubmodule(name, description, percentage)">
             Create Sub Module
           </button>
         </center>
