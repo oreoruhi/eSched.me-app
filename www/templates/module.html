@@ -3,34 +3,23 @@
     <div class="list card" ng-if="moduleCtrl.modules" ng-repeat="module in moduleCtrl.modules">
       <div class="item item-button-right">
         <p>{{module.title}}</p>
-        <div class="buttons" ng-if="moduleCtrl.project.user_id == moduleCtrl.userId" ng-click="moduleCtrl.showPopoverModule($event)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
+        <div class="buttons" ng-if="moduleCtrl.project.user_id == moduleCtrl.userId" ng-click="moduleCtrl.showPopoverModule($event, module)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
       </div>
       <div class="item item-body">
-
+        <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{moduleCtrl.project.first_name}} {{moduleCtrl.project.last_name}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Assigned to:</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Duration: {{module.start | date: 'MMMM dd, y'}} to {{module.end | date: 'MMMM dd, y'}}</span> <br><br>
         {{module.description}}
-        <br><br>
-        <div class="">
-          <span>Start: {{module.start | date: 'MMMM dd, y'}}</span> <br>
-          <span>End: {{module.end | date: 'MMMM dd, y'}}</span>
-        </div>
-
-        <div class="add-submodule">
-          <button class="button button-small button-positive">Add Submodule</button>
-        </div>
-
-        <div class="list list-inset">
-          List Of Submodules
-        </div>
       </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ng-click="moduleCtrl.openModalSummaryModule(module)">
-          <i class="icon ion-android-list" style="font-size: 12;"></i>
+      <div class="item tabs tabs-icon-left" style="background: #fff;">
+        <a class="tab-item" ng-click="moduleCtrl.openModalSummaryModule(module)" style="background: #fff; color: #000;">
+          <i class="icon ion-android-list"></i>
           Summary
         </a>
         <p>|</p>
-        <a class="tab-item" ng-click="moduleCtrl.deleteModule(module.id)">
-          <i class="icon ion-android-cancel"></i>
-          Delete
+        <a href="#/dashboard/submodule/{{module.id}}" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+          <i class="icon ion-clipboard"></i>
+          Submodules
         </a>
       </div>
     </div>

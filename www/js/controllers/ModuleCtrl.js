@@ -65,6 +65,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     console.log('Deleting Module: ' + id);
     ModuleService.deleteModule(id)
       .then(function (result) {
+        modalScope.popover.hide();
         init();
       });
   };
@@ -102,14 +103,19 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
       });
   };
 
-  moduleCtrl.showPopoverModule = function($event){
+  moduleCtrl.showPopoverModule = function($event, module){
     $ionicPopover.fromTemplateUrl('templates/events/module-popover.html', {
       scope: modalScope,
     }).then(function(popover) {
       modalScope.popover = popover; //???????
+      modalScope.module = module;
       modalScope.popover.show($event);
     });
-  }
+  };
+
+  moduleCtrl.showSubModules = function(module) {
+    $state.go('dashboard.module', {module: module}, {reload: true});
+  };
 
   init();
   angular.extend(modalScope, moduleCtrl);

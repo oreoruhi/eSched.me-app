@@ -103,6 +103,17 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
+      .state('dashboard.submodule', {
+        url: '/submodule/:id',
+        controller: 'SubmoduleCtrl',
+        controlerAs: 'ctrl',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/submodule.html'
+          }
+        }
+      })
+
       .state('dashboard.timeline', {
         url: '/timeline',
         views: {
@@ -123,7 +134,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             templateUrl: 'templates/module.html'
           }
         }
-      });
+      })
 
 
       $urlRouterProvider.otherwise('/');

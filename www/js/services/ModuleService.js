@@ -7,6 +7,7 @@
 
     function ModuleServiceFunction(Backand, $http) {
       var vm = this;
+      var apiUrl = Backand.getApiUrl();
 
       vm.getProjectModules = function(id) {
         return $http ({
@@ -38,7 +39,7 @@
           url: Backand.getApiUrl() + '/1/objects/modules?returnObject=true',
           data: {
             activity_id: id,
-            name: name,
+            title: name,
             description: desc,
             percentage: percentage,
             priority: priority,
@@ -51,6 +52,8 @@
         });
       };
 
-
-    };
+      vm.getModuleById = function(id) {
+        return $http.get(apiUrl + '/1/objects/modules/' + id);
+      }
+    }
 })();
