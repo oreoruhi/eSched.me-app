@@ -44,11 +44,32 @@
 	  	  </ion-tab>
 
 	      <ion-tab title="Personal Tasks" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
-			  <ion-content class="content-body">
-			  	<br>
-		    	<h1>{{dataCtrl.user[0].first_name}}'s personal tasks</h1>
-			  </ion-content>
-		  </ion-tab>
+        <ion-content class="content-body">
+            <div style="margin-top: 64px;"></div>
+            <div class="list card">
+              <div class="item item-button-right">
+                <p>Task Example</p>
+              </div>
+              <div class="item item-body" style="border-bottom: 1px solid #ddd;">
 
+                Task Description
+                
+              </div>
+              <div class="item tabs tabs-icon-left" style="background: #fff;">
+                <a class="tab-item" style="background: #fff; color: #3f3f3f;">
+                  <i class="icon ion-android-list"></i>
+                  Summary
+                </a>
+                <p>|</p>
+                <a class="tab-item" style="background: #fff; color: #3f3f3f;">
+                  <i class="icon ion-android-cancel"></i>
+                  Delete
+                </a>
+              </div>
+            </div>
+        </ion-content>
+		  </ion-tab>
+          <ion-floating-button ng-click="dataCtrl.openModalCreateProject()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3" >
+          </ion-floating-button>
 	</ion-tabs>
 </ion-view>
