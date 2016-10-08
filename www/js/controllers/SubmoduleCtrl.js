@@ -18,6 +18,7 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
             self.module.submodules = result.data.data;
             self.module.submodules.forEach(function(submodule) {
               modalScope.remainingPercentage -= submodule.percentage;
+              self.remainingPercentage = modalScope.remainingPercentage;
             });
           });
       });

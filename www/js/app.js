@@ -46,6 +46,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       })
 
       .state('login', {
+        cache: false,
         url: '/',
         templateUrl: 'templates/signin.html',
         controller: 'LoginCtrl as login'
@@ -58,6 +59,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       })
 
       .state('dashboard', {
+        cache: false,
         url: '/dashboard',
         abstract: true,
         templateUrl: 'templates/dashboard.html',
@@ -104,6 +106,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       })
 
       .state('dashboard.submodule', {
+        cache: false,
         url: '/submodule/:id',
         controller: 'SubmoduleCtrl',
         controlerAs: 'ctrl',
@@ -125,6 +128,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       })
 
       .state('dashboard.module', {
+        cache: false,
         url: '/module',
         controller: 'ModuleCtrl as moduleCtrl',
         params: {
@@ -168,10 +172,14 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
           $state.go('dashboard.newsfeed');
         });
 
+        $rootScope.$on(Backand.EVENTS.SIGNOUT, function(event, data) {
+          //window.location.reload();
+        });
+
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
             if (toState.name === 'login') {
-                signout();
+                //signout();
             }
             if(toState.name === 'dashboard.newsfeed') {
               if(toState.data.role !== Backand.getUserRole()) {

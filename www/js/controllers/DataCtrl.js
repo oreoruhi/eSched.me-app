@@ -12,13 +12,15 @@ DataCtrlFunction.$inject = [
   '$ionicModal',
   '$ionicHistory',
   '$ionicPopover',
-  'CordovaPlugins'
+  '$ionicPlatform',
+  '$cordovaDatePicker'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, CordovaPlugins) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, $ionicPlatform, $cordovaDatePicker) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
+  init();
 
 
   function getProjectList() {
@@ -42,7 +44,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     // $ionicHistory.nextViewOptions({
     //   disableBack: true
     // });
-    $state.go('dashboard.module', {project: project}, {reload: true});
+    $state.go('dashboard.module', {project: project});
   };
 
   function init() {
@@ -52,8 +54,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       .then(function(result) {
         console.log(result.data);
         dataCtrl.user = result.data;
-        dataCtrl.user_photo = 'http://graph.facebook.com/' + dataCtrl.user[0].fuid + '/picture?height=300';
-        console.log(dataCtrl.user);
+        console.log(JSON.stringify(dataCtrl.user[0]));
       });
     getProjectList();
   }
@@ -139,20 +140,21 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
-  modalScope.openDatePicker = function (type, project, provider) {
-    CordovaPlugins.openDatePicker(project, provider)
-      .then(function(result) {
-        if(type === 'start') {
-          modalScope.startDate = result;
-        }
-        if(type === 'end') {
-          modalScope.endDate = result;
-        }
-      });
+  modalScope.openDatePicker = function (provider) {
+    $ionicPlatform.ready(function() {
+        var projectOptions = {
+          date: new Date(),
+          mode: 'date',
+          minDate: new Date().valueOf()
+        };
+        $cordovaDatePicker.show(projectOptions)
+          .then(function(result) {
+            if(provider == 'start') modalScope.startDate = result;
+            if(provider == 'end' ) modalScope.endDate = result;
+          });
+    });
   };
 
-
-  init();
   angular.extend(modalScope, dataCtrl);
   modalScope.userId = userId;
 }
