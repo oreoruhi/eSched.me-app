@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input id="start-date" type="date" name="start-date" ng-model="start" ng-click="openDatePicker(project, 'start')" style="color:#000;" required autocomplete="off">
+              <input id="start-date" type="date" name="start-date" ng-readonly="true" ng-model="start" ng-click="openDatePicker(project, 'start')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Start Date</label>
@@ -63,7 +63,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-model="end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>

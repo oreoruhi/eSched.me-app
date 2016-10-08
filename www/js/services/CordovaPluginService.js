@@ -8,7 +8,7 @@
 
   function cordovaServiceFunction($ionicPlatform, $cordovaDatePicker) {
     return {
-
+      openDatePicker: openDatePicker
     };
 
     function openDatePicker (project, provider) {
