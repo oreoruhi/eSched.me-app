@@ -12,14 +12,17 @@
           <h3 id="profile-name">{{profile.user[0].first_name}} {{profile.user[0].last_name}}</h3>
           <span id="profile-description" class="padding">Secretary</span><br><br>
         </div>
-        <button class="button button-block button-calm icon ion-android-person-add" ng-if="profile.id !== profile.userId">
+        <button class="button button-block button-calm icon ion-android-person-add" ng-click="profile.associateWithUser(profile.user[0].id)" ng-if="profile.id !== profile.userId" ng-hide="profile.isAssociate">
           Follow
         </button>
+        <button class="button button-block button-stable icon ion-android-cancel" ng-click="profile.removeAssociate(profile.associateRequestId)" ng-if="profile.id !== profile.userId" ng-show="profile.isPending">
+          Cancel Request
+        </button>
         <!-- if already an associate -->
-        <!-- <div class="button-bar">
-            <button class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
+        <div class="button-bar" ng-show="profile.associateAccepted">
+            <button ng-click="profile.removeAssociate(profile.associateRequestId)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
             <button class="button button-block button-border ion-chatboxes icon-left button-calm">Message</button>
-        </div> -->
+        </div>
       </div>
 
 

@@ -45,6 +45,44 @@
             });
        }
 
+       vm.associateWithUser = function(userId, friendId) {
+          return $http ({
+            method: 'POST',
+            url: vm.baseUrl + '/1/objects/relationship',
+            data: {
+              user_id: userId,
+              friend_id: friendId,
+              status: 'Pending',
+              created: new Date().toISOString(),
+              modified: new Date().toISOString()
+            }
+          });
+       }
+
+       vm.getAllAssociates = function(userId) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/objects/relationship',
+          params: {
+            filter: [
+              {
+                fieldName: 'user_id',
+                operator: 'equals',
+                value: userId
+              }
+            ],
+          }
+        });
+       }
+
+
+       vm.removeAssociate = function(id) {
+        return $http ({
+          method: 'DELETE',
+          url: vm.baseUrl + '/1/objects/relationship/' + id
+        });
+       }
+
        vm.createProject = function(id, name, description, start, end) {
           return $http ({
             method: 'POST',
