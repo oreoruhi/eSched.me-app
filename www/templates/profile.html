@@ -1,38 +1,25 @@
 
 <ion-view view-title="{{profile.user[0].first_name}} {{profile.user[0].last_name}}" ng-controller="ProfileCtrl as profile">
    <ion-content class="content-body">
-
+      <div class="profile-bg-img">
+        <img src="./img/def.png" alt="Default Background">
+      </div>
       <div id="profile-bg"></div>
       <div id="content">
         <div id="profile-info">
-          <img id="profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
+          <img id="profile-image" src="./img/no-image.jpg">
           <!-- Replace image of user here -->
           <h3 id="profile-name">{{profile.user[0].first_name}} {{profile.user[0].last_name}}</h3>
-          <span id="profile-description" class="padding">Secretary</span><br>
-          <button ng-if="profile.id !== profile.userId">Follow!</button>
+          <span id="profile-description" class="padding">Secretary</span><br><br>
         </div>
-        <ion-list>
-          <ion-item>
-            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
-            Sample
-    		<ion-option-button class="button-assertive">Delete</ion-option-button>
-          </ion-item>
-          <ion-item>
-            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
-            Sample
-    		<ion-option-button class="button-assertive">Delete</ion-option-button>
-          </ion-item>
-          <ion-item>
-            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
-            Sample
-    		<ion-option-button class="button-assertive">Delete</ion-option-button>
-          </ion-item>
-          <ion-item>
-            <img class="post-profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
-            Sample
-    		<ion-option-button class="button-assertive">Delete</ion-option-button>
-          </ion-item>
-        </ion-list>
+        <button class="button button-block button-calm icon ion-android-person-add" ng-if="profile.id !== profile.userId">
+          Follow
+        </button>
+        <!-- if already an associate -->
+        <!-- <div class="button-bar">
+            <button class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
+            <button class="button button-block button-border ion-chatboxes icon-left button-calm">Message</button>
+        </div> -->
       </div>
 
 
