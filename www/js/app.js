@@ -79,7 +79,8 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
       })
 
       .state('dashboard.profile', {
-        url: '/profile',
+        cache: false,
+        url: '/profile/:id',
         views: {
           'menuContent': {
             templateUrl: 'templates/profile.html'

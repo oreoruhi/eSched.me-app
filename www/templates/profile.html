@@ -1,5 +1,5 @@
 
-<ion-view view-title="{{dataCtrl.user[0].first_name}} {{dataCtrl.user[0].last_name}}">
+<ion-view view-title="{{profile.user[0].first_name}} {{profile.user[0].last_name}}" ng-controller="ProfileCtrl as profile">
    <ion-content class="content-body">
 
       <div id="profile-bg"></div>
@@ -7,8 +7,9 @@
         <div id="profile-info">
           <img id="profile-image" src="http://i1.kym-cdn.com/photos/images/newsfeed/000/928/382/397.jpg">
           <!-- Replace image of user here -->
-          <h3 id="profile-name">{{dataCtrl.user[0].first_name}} {{dataCtrl.user[0].last_name}}</h3>
-          <span id="profile-description" class="padding">Secretary</span>
+          <h3 id="profile-name">{{profile.user[0].first_name}} {{profile.user[0].last_name}}</h3>
+          <span id="profile-description" class="padding">Secretary</span><br>
+          <button ng-if="profile.id !== profile.userId">Follow!</button>
         </div>
         <ion-list>
           <ion-item>
@@ -37,7 +38,7 @@
 
    </ion-content>
 
-	<ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-stable">
+	<ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-stable" ng-if="profile.userId === profile.id">
 
 		  <ion-tab title="Profile" icon-on="ion-person" icon-off="ion-person">
 
@@ -53,7 +54,7 @@
               <div class="item item-body" style="border-bottom: 1px solid #ddd;">
 
                 Task Description
-                
+
               </div>
               <div class="item tabs tabs-icon-left" style="background: #fff;">
                 <a class="tab-item" style="background: #fff; color: #3f3f3f;">

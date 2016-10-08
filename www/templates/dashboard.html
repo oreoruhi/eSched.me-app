@@ -22,7 +22,7 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/dashboard/profile">
+        <ion-item menu-close href="#/dashboard/profile/{{dataCtrl.user[0].id}}">
           Profile
         </ion-item>
         <ion-item menu-close href="#/dashboard/newsfeed">
@@ -51,7 +51,7 @@
     <ion-content>
       <div class="search-result">
         <ion-list>
-          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult" href="">
+          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult" href="#/dashboard/profile/{{result.id}}">
             {{result.first_name}} {{result.last_name}}
           </ion-item>
         </ion-list>
