@@ -11,10 +11,11 @@ DataCtrlFunction.$inject = [
   'ProjectService',
   '$ionicModal',
   '$ionicHistory',
-  '$ionicPopover'
+  '$ionicPopover',
+  'CordovaPlugins'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, CordovaPlugins) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -130,13 +131,25 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
   dataCtrl.showPopoverProject = function($event, project){
     $ionicPopover.fromTemplateUrl('templates/events/project-popover.html', {
-      scope: modalScope,
+      scope: modalScope
     }).then(function(popover) {
       modalScope.popover = popover; //???????
       modalScope.project = project;
       modalScope.popover.show($event);
     });
-  }
+  };
+
+  modalScope.openDatePicker = function (type, project, provider) {
+    CordovaPlugins.openDatePicker(project, provider)
+      .then(function(result) {
+        if(type === 'start') {
+          modalScope.startDate = result;
+        }
+        if(type === 'end') {
+          modalScope.endDate = result;
+        }
+      });
+  };
 
 
   init();
