@@ -28,6 +28,8 @@
         .then(function(result) {
           self.user = result.data;
           $log.info(self.userId + '     ' + self.id);
+
+          // Start of HIGHLY UNOPTIMIZED CODE
           DataService.getAllAssociates(self.userId)
             .then(function(result) {
               self.associates = result.data.data
@@ -44,6 +46,7 @@
                 }
               });
             });
+          // End of HIGHLY UNOPTIMIZED CODE
         });
     }
 
