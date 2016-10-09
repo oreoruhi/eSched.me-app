@@ -15,7 +15,7 @@
         <button class="button button-block button-calm icon ion-android-person-add" ng-click="profile.associateWithUser(profile.user[0].id)" ng-if="profile.id !== profile.userId" ng-hide="profile.isRequest">
           Follow
         </button>
-        <button class="button button-block button-stable icon ion-android-cancel" ng-click="profile.removeAssociate(profile.associateRequestId)" ng-if="profile.id !== profile.userId" ng-show="profile.isPending">
+        <button class="button button-block button-assertive icon ion-android-cancel" ng-click="profile.removeAssociate(profile.associateRequestId)" ng-if="profile.id !== profile.userId" ng-show="profile.isPending">
           Cancel Request
         </button>
         <button class="button button-block button-balanced icon ion-android-checkbox-outline" ng-click="profile.acceptAssociateRequest(profile.associateRequestId)" ng-if="profile.id !== profile.userId" ng-show="profile.acceptRequest">
