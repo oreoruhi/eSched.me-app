@@ -51,7 +51,7 @@
             .then(function(result) {
               self.requests = result.data;
               self.requests.forEach(function(res) {
-                self.associateRequestId = result.id;
+                self.associateRequestId = res.id;
                 if(res.status == "Pending") {
                   self.acceptRequest = true;
                 }
@@ -80,6 +80,7 @@
           $log.info(result);
           self.isRequest = false;
           self.isPending = false;
+          self.associateAccepted = false;
         });
     }
 
