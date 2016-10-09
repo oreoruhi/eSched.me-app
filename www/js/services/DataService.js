@@ -75,11 +75,33 @@
         });
        }
 
+       vm.checkAssociateRequest = function(friendId) {
+        return $http ({
+          method: 'GET',
+          url: vm.baseUrl + '/1/query/data/checkAssociateRequest',
+          params: {
+            parameters: {
+              friend_id: friendId,
+            }
+          }
+        })
+       }
+
 
        vm.removeAssociate = function(id) {
         return $http ({
           method: 'DELETE',
           url: vm.baseUrl + '/1/objects/relationship/' + id
+        });
+       }
+
+       vm.acceptAssociateRequest = function(id) {
+        return $http ({
+          method: 'PUT',
+          url: Backand.getApiUrl() + '/1/objects/relationship/'+ id,
+          data: {
+            status: 'Accepted'
+          }
         });
        }
 
