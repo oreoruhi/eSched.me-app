@@ -57,6 +57,7 @@
                 console.log(res.user_id +'    ' + self.id);
                 if(res.user_id == self.id) {
                   if(res.status == "Pending") {
+                    self.isRequest = true;
                     self.acceptRequest = true;
                   }
                   if(res.status == "Accepted") {
