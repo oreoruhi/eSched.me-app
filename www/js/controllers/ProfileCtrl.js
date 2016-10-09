@@ -54,12 +54,15 @@
               self.requests = result.data;
               self.requests.forEach(function(res) {
                 self.associateRequestId = res.id;
-                if(res.status == "Pending") {
-                  self.acceptRequest = true;
-                }
-                if(res.status == "Accepted") {
-                  self.isRequest = true;
-                  self.associateAccepted = true;
+                console.log(res.user_id +'    ' + self.id);
+                if(res.user_id == self.id) {
+                  if(res.status == "Pending") {
+                    self.acceptRequest = true;
+                  }
+                  if(res.status == "Accepted") {
+                    self.isRequest = true;
+                    self.associateAccepted = true;
+                  }
                 }
               });
             });
