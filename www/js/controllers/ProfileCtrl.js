@@ -42,6 +42,8 @@
                     self.isPending = true;
                   } else if (result.status === "Accepted"){
                     self.associateAccepted = true;
+                  } else if (result.status === "Seen") {
+                    self.ignored = true;
                   }
                 }
               });
