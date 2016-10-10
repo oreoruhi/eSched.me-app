@@ -173,5 +173,17 @@
         });
       }
 
+
+      vm.getFriendsList = function(id) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/query/data/getAssociateList',
+          params: {
+            parameters: {
+              id: id
+            }
+          }
+        });
+      }
     }
 })();
