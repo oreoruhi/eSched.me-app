@@ -105,7 +105,7 @@
         });
        }
 
-       vm.createProject = function(id, name, description, start, end) {
+       vm.createProject = function(id, name, description, priority, start, end) {
           return $http ({
             method: 'POST',
             url: Backand.getApiUrl() + '/1/objects/activities?returnObject=true',
@@ -113,6 +113,7 @@
               user_id: id,
               title: name,
               desc: description,
+              priority: priority,
               start: start,
               end: end,
               status: 'Pending',

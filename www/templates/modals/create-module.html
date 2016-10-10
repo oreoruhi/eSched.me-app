@@ -46,7 +46,7 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;">
+              <select class="item item-input item-select" style="width:100%;" ng-model="priority">
                 <option value="1">Low</option>
                 <option value="2">Moderate</option>
                 <option value="3">High</option>
@@ -77,7 +77,7 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="newModule(project.id, name, desc, percentage, difficulty, start, end)">
+                ng-click="newModule(project.id, name, desc, percentage, priority, start, end)">
           Create Module
         </button>
       </center>

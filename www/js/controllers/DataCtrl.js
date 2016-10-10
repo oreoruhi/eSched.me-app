@@ -68,10 +68,10 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
-  dataCtrl.createProject = function(name, description, start, end) {
+  dataCtrl.createProject = function(name, description, priority, start, end) {
     var startDate = new Date(start).toISOString();
     var endDate = new Date(end).toISOString();
-    DataService.createProject(userId, name, description, startDate, endDate)
+    DataService.createProject(userId, name, description, priority, startDate, endDate)
       .then(function(result) {
         if(result.status === 200) {
           dataCtrl.modal.hide();

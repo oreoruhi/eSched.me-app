@@ -95,8 +95,8 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     });
   };
 
-  modalScope.newModule = function(id, name, desc, percentage, difficulty, start, end) {
-    ModuleService.newModule(id, name, desc, percentage, difficulty, start, end)
+  modalScope.newModule = function(id, name, desc, percentage, priority, start, end) {
+    ModuleService.newModule(id, name, desc, percentage, priority, start, end)
       .then(function(result) {
         init();
         moduleCtrl.modal.hide();
