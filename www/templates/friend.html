@@ -1,7 +1,13 @@
-<ion-view view-title="Friends">
+<ion-view view-title="Friends" ng-controller="FriendCtrl as friend">
   <ion-content class="content-body">
     <ion-list>
-      <ion-item>
+      <ion-item ng-repeat="request in friend.followRequest">
+        <img class="post-profile-image" src="./img/no-image.jpg">
+        {{request.first_name}} {{request.last_name}}
+	    <ion-option-button class="button-calm" ng-click="friend.acceptRequest(request.id)">Accept</ion-option-button>
+	    <ion-option-button class="button-assertive" ng-click="friend.deleteRequest(request.id)">Ignore</ion-option-button>
+      </ion-item>
+     <!--  <ion-item>
         <img class="post-profile-image" src="./img/no-image.jpg">
         Name of Person
 	    <ion-option-button class="button-calm">Accept</ion-option-button>
@@ -12,13 +18,7 @@
         Name of Person
 	    <ion-option-button class="button-calm">Accept</ion-option-button>
 	    <ion-option-button class="button-assertive">Ignore</ion-option-button>
-      </ion-item>
-      <ion-item>
-        <img class="post-profile-image" src="./img/no-image.jpg">
-        Name of Person
-	    <ion-option-button class="button-calm">Accept</ion-option-button>
-	    <ion-option-button class="button-assertive">Ignore</ion-option-button>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </ion-content>
 

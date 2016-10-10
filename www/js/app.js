@@ -144,10 +144,6 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
       .state('dashboard.friend', {
         url: '/friend',
-        controller: 'FriendCtrl as friendCtrl',
-        params: {
-          project: null
-        },
         views: {
           'menuContent': {
             templateUrl: 'templates/friend.html'

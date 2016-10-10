@@ -161,5 +161,17 @@
         });
        }
 
+      vm.getRequestsInfo = function(id) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/query/data/getFriends',
+          params: {
+            parameters: {
+              friend_id: id
+            }
+          }
+        });
+      }
+
     }
 })();
