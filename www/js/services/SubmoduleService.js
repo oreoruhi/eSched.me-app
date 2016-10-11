@@ -6,7 +6,9 @@ function  factoryFunction($http, Backand) {
 
   return {
     getSubmodules: getSubmodules,
-    newSubmodule: newSubmodule
+    newSubmodule: newSubmodule,
+    getSubmoduleById: getSubmoduleById,
+    editSubmodule: editSubmodule
   };
 
 
@@ -42,5 +44,20 @@ function  factoryFunction($http, Backand) {
       }
     });
 
+  }
+
+  function getSubmoduleById(id) {
+    return $http.get('https://api.backand.com/1/objects/sub_modules/' + id);
+  }
+
+  function editSubmodule(id, title, description) {
+    return $http ({
+      method: 'PUT',
+      url: Backand.getApiUrl() + '/1/objects/sub_modules/' + id,
+      data: {
+        title: title,
+        description: description,
+      }
+    });
   }
 }

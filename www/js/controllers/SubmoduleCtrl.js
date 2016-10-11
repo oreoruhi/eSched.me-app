@@ -48,6 +48,29 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
       });
   };
 
+  self.editSubmoduleModal = function(id) {
+    $ionicModal.fromTemplateUrl('templates/modals/submodule/edit.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      SubmoduleService.getSubmoduleById(id)
+        .then(function(result) {
+          modalScope.data = result.data
+          console.log(result);
+          self.modal = modal;
+          modal.show();
+        });
+    });
+  }
+
+  modalScope.editSubmodule = function(id, title, description) {
+    SubmoduleService.editSubmodule(id, title, description)
+      .then(function() {
+        self.modal.hide();
+        _init();
+      });
+  }
+
 
 
   _init();
