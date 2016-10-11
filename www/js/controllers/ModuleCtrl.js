@@ -93,12 +93,38 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
     });
   };
 
+  modalScope.editModule = function(id) {
+    $ionicModal.fromTemplateUrl('templates/modals/module/edit.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      ModuleService.getModuleById(id)
+        .then(function(result) {
+          result.data.start = new Date(result.data.start);
+          result.data.end = new Date(result.data.end);
+          modalScope.data = result.data;
+          moduleCtrl.modal = modal;
+          console.log(modalScope.data);
+          modal.show();
+        });
+    });
+  }
+
   modalScope.newModule = function(id, name, desc, percentage, priority, start, end) {
     ModuleService.newModule(id, name, desc, percentage, priority, start, end)
       .then(function(result) {
         init();
         moduleCtrl.modal.hide();
       });
+  };
+
+  modalScope.updateModule = function(id, title, priority, end, description) {
+    ModuleService.updateModule(id, title, priority, end, description)
+      .then(function() {
+        moduleCtrl.modal.hide();
+        modalScope.popover.hide();
+        init();
+      })
   };
 
   moduleCtrl.showPopoverModule = function($event, module){

@@ -52,6 +52,20 @@
         });
       };
 
+      vm.updateModule = function(id, title, priority, end, description) {
+        return $http ({
+          method: 'PUT',
+          url: apiUrl + '/1/objects/modules/' + id,
+          data: {
+            title: title,
+            priority: priority,
+            end: new Date(end),
+            description: description,
+            modified: new Date()
+          }
+        });
+      }
+
       vm.getModuleById = function(id) {
         return $http.get(apiUrl + '/1/objects/modules/' + id);
       }
