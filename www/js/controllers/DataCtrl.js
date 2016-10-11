@@ -116,6 +116,22 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
+  modalScope.openEditModal = function(id) {
+    $ionicModal.fromTemplateUrl('templates/modals/project/edit.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      DataService.getProjectById(id)
+        .then(function(result) {
+          result.data.data[0].start = new Date(result.data.data[0].start);
+          result.data.data[0].end = new Date(result.data.data[0].end);
+          modalScope.data = result.data.data[0];
+          dataCtrl.modal = modal;
+          dataCtrl.modal.show();
+        });
+    });
+  }
+
   dataCtrl.openModalCreateModule = function() {
     $ionicModal.fromTemplateUrl('templates/modals/create-module.html', {
       scope: modalScope,
@@ -136,6 +152,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     }).then(function(popover) {
       modalScope.popover = popover; //???????
       modalScope.project = project;
+      console.log(project);
       modalScope.popover.show($event);
     });
   };
@@ -153,6 +170,30 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
             if(provider == 'end' ) modalScope.endDate = result;
           });
     });
+  };
+
+  modalScope.editDatePicker = function (provider) {
+    $ionicPlatform.ready(function() {
+        var projectOptions = {
+          date: new Date(),
+          mode: 'date',
+          minDate: new Date().valueOf()
+        };
+        $cordovaDatePicker.show(projectOptions)
+          .then(function(result) {
+            modalScope.data.end = result;
+          });
+    });
+  };
+
+
+  modalScope.updateProject = function(id, title, desc, end, priority) {
+    DataService.editProject(id, title, desc, end, priority)
+      .then(function(result) {
+        dataCtrl.modal.hide();
+        modalScope.popover.hide();
+        init();
+      });
   };
 
   angular.extend(modalScope, dataCtrl);

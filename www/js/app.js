@@ -152,6 +152,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
+
       $urlRouterProvider.otherwise('/');
 
       $httpProvider.interceptors.push('APIInterceptor');
