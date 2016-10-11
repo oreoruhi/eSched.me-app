@@ -172,6 +172,21 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     });
   };
 
+  modalScope.editDatePicker = function (provider) {
+    $ionicPlatform.ready(function() {
+        var projectOptions = {
+          date: new Date(),
+          mode: 'date',
+          minDate: new Date().valueOf()
+        };
+        $cordovaDatePicker.show(projectOptions)
+          .then(function(result) {
+            modalScope.data.end = result;
+          });
+    });
+  };
+
+
   modalScope.updateProject = function(id, title, desc, end, priority) {
     DataService.editProject(id, title, desc, end, priority)
       .then(function(result) {

@@ -33,9 +33,9 @@
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
               <select class="item item-input item-select" style="width:100%;" ng-model="data.priority">
-                <option value="1">Low</option>
-                <option value="2">Moderate</option>
-                <option value="3">High</option>
+                <option value="1" ng-selected="data.priority == 1">Low</option>
+                <option value="2" ng-selected="data.priority == 2">Moderate</option>
+                <option value="3" ng-selected="data.priority == 3">High</option>
               </select>
             </div>
           </div>
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end" name="end" ng-readonly="true" ng-model="data.end"  style="color:#000;" required autocomplete="off">
+              <input type="date" id="end" name="end" ng-readonly="true" ng-model="data.end" ng-click="editDatePicker()" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
