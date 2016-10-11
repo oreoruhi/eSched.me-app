@@ -154,12 +154,26 @@
         });
        }
 
-       vm.deleteProjectById = function(id) {
-         return $http ({
+      vm.deleteProjectById = function(id) {
+        return $http ({
           method: 'DELETE',
           url: Backand.getApiUrl() + '/1/objects/activities/' + id
         });
-       }
+      }
+
+      vm.editProject = function(id, title, desc, end, priority) {
+        return $http ({
+          method: 'PUT',
+          url: vm.baseUrl + '/1/objects/activities/' + id,
+          data: {
+            title: title,
+            desc: desc,
+            end: new Date(end),
+            priority: priority,
+            modified: new Date()
+          }
+        });
+      }
 
       vm.getRequestsInfo = function(id) {
         return $http ({
