@@ -202,7 +202,7 @@ input:focus ~ .highlight {
         background-color: white;
         box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
         padding-top: 150px;
-        height: 200px;
+        height: 208px;
       }
 
       #profile-info {
@@ -268,3 +268,8 @@ input:focus ~ .highlight {
         bottom: 5px;
         color: #888;
       }
+
+.profile-detail {
+  font-size: 10px;
+  color: red;
+}
