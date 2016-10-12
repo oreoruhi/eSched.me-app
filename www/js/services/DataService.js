@@ -116,7 +116,7 @@
               priority: priority,
               start: start,
               end: end,
-              status: 'Pending',
+              status: 'ongoing',
               created: new Date().toISOString(),
               modified: new Date().toISOString()
             }

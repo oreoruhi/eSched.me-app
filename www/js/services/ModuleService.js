@@ -43,7 +43,7 @@
             description: desc,
             percentage: percentage,
             priority: priority,
-            status: 'Pending',
+            status: 'ongoing',
             start: start,
             end: end,
             created: today,
