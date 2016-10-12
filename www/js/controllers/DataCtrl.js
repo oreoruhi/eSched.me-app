@@ -96,7 +96,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   dataCtrl.openModalCreateProject = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/create-project.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/project/create-project.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
@@ -106,7 +106,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   dataCtrl.openModalSummaryProject = function(id) {
-    $ionicModal.fromTemplateUrl('templates/modals/project-summary.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/project/project-summary.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
@@ -120,7 +120,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   modalScope.openEditModal = function(id) {
-    $ionicModal.fromTemplateUrl('templates/modals/project/edit.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/project/edit-project.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
@@ -136,7 +136,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   }
 
   dataCtrl.openModalCreateModule = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/create-module.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/module/create-module.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {

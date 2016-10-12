@@ -1,6 +1,6 @@
 <ion-modal-view class="ion-nifty-modal">
   <ion-header-bar class="bar-calm">
-    <h1 class="title">New Project</h1>
+    <h1 class="title">Edit Project</h1>
     <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
   </ion-header-bar>
   <div class="ion-modal-content-custom">
@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="name" name="name" ng-model="project.data.title" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="name" name="name" ng-model="data.title" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Project Name</label>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" ng-model="project.data.desc" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" ng-model="data.desc" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Core Objective</label>
@@ -32,21 +32,12 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="project.data.priority">
-                <option value="1">Low</option>
-                <option value="2">Moderate</option>
-                <option value="3">High</option>
+              <select class="item item-input item-select" style="width:100%;" ng-model="data.priority">
+                <option value="1" ng-selected="data.priority == 1">Low</option>
+                <option value="2" ng-selected="data.priority == 2">Moderate</option>
+                <option value="3" ng-selected="data.priority == 3">High</option>
               </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="group">
-              <input type="date" id="start" name="start" ng-readonly="true" ng-model="startDate"  ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
-              <span class="highlight"></span>
-              <span class="bar-input"></span>
-              <label class="label-date">Start Date</label>
+              <label class="label-date">Priority Level</label>
             </div>
           </div>
         </div>
@@ -54,7 +45,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end" name="end" ng-readonly="true" ng-model="endDate"  ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end" name="end" ng-readonly="true" ng-model="data.end" ng-click="editDatePicker()" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
@@ -64,8 +55,8 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="createProject(project.data.title, project.data.desc, project.data.priority, startDate, endDate)">
-          Create Project
+                ng-click="updateProject(data.id, data.title, data.desc, data.end, data.priority)">
+          Update Project
         </button>
       </center>
       </form>

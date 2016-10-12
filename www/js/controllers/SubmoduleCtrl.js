@@ -26,7 +26,7 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
   }
 
   self.createSubmoduleModal = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/create-submodule.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/submodule/create-submodule.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
@@ -49,7 +49,7 @@ function controllerFunction($stateParams, $rootScope, ModuleService, $log, Submo
   };
 
   self.editSubmoduleModal = function(id) {
-    $ionicModal.fromTemplateUrl('templates/modals/submodule/edit.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/submodule/edit-submodule.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {

@@ -1,20 +1,24 @@
-  <ion-popover-view style="height: 210px;">
+  <ion-popover-view style="height: 260px;">
     <ion-header-bar>
       <h1 class="title">Modules Options</h1>
     </ion-header-bar>
     <ion-content>
        <ion-list>
         <ion-item menu-close ng-click="editModule(module.id)">
-          <i class="icon ion-edit"></i>
+          <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
         <ion-item menu-close ng-click="deleteModule(module.id)">
-          <i class="icon ion-android-cancel"></i>
+          <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
         </ion-item>
         <ion-item menu-close ng-click="">
-		    <i class="icon ion-android-map"></i>
+		    <i class="icon ion-android-map"></i>&nbsp;&nbsp;&nbsp;
           Set Meeting
+        </ion-item>
+        <ion-item menu-close ng-click="">
+        <i class="icon ion-android-person-add"></i>&nbsp;&nbsp;&nbsp;
+          Assign Associate
         </ion-item>
       </ion-list>
     </ion-content>

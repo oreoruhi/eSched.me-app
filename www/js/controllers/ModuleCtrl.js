@@ -40,7 +40,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
 
   moduleCtrl.openModalSummaryModule = function (module) {
     modalScope.module = module;
-    $ionicModal.fromTemplateUrl('templates/modals/module-summary.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/module/module-summary.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function (modal) {
@@ -50,7 +50,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   };
 
   moduleCtrl.openModalCreateModule = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/create-module.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/module/create-module.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
@@ -94,7 +94,7 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   };
 
   modalScope.editModule = function(id) {
-    $ionicModal.fromTemplateUrl('templates/modals/module/edit.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/module/edit-module.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
     }).then(function(modal) {
