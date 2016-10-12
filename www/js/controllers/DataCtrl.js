@@ -84,11 +84,14 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   dataCtrl.deleteProjectById = function(id) {
     DataService.deleteProjectById(id)
       .then(function(result) {
-        console.log(result);
-        if(result.status === 200) {
-          modalScope.popover.hide();
-          getProjectList();
-        }
+        DataService.deleteModulesOfProject(id)
+          .then(function() {
+            if(result.status === 200) {
+              console.log('Project is successfully deleted');
+              modalScope.popover.hide();
+              getProjectList();
+            }
+          })
       });
   };
 

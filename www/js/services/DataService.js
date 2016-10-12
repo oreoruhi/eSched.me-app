@@ -199,5 +199,18 @@
           }
         });
       }
+
+      vm.deleteModulesOfProject = function(id) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/objects/action/activities/?name=deleteModules',
+          params: {
+            parameters: {
+              activity_id: id
+            }
+          }
+        });
+      }
     }
+      
 })();
