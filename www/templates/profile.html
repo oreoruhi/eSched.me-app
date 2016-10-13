@@ -58,13 +58,13 @@
 	      <ion-tab title="Personal Tasks" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
         <ion-content class="content-body">
             <div style="margin-top: 64px;"></div>
-            <div class="list card">
+            <div class="list card" ng-repeat="task in profile.personalTasks">
               <div class="item item-button-right">
-                <p>Task Example</p>
+                <p>{{task.title}}</p>
               </div>
               <div class="item item-body" style="border-bottom: 1px solid #ddd;">
 
-                Task Description
+                {{task.description}}
 
               </div>
               <div class="item tabs tabs-icon-left" style="background: #fff;">
@@ -81,7 +81,7 @@
             </div>
         </ion-content>
 		  </ion-tab>
-          <ion-floating-button button-color="#fff" icon="ion-plus" icon-color="#11c1f3" >
+          <ion-floating-button ng-click="profile.showTaskModal()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3" >
           </ion-floating-button>
 	</ion-tabs>
 </ion-view>

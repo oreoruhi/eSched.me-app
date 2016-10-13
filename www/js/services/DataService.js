@@ -203,7 +203,7 @@
       vm.deleteModulesOfProject = function(id) {
         return $http ({
           method: 'GET',
-          url: Backand.getApiUrl() + '/1/objects/action/activities/?name=deleteModules',
+          url: vm.baseUrl + '/1/objects/action/activities/?name=deleteModules',
           params: {
             parameters: {
               activity_id: id
@@ -211,6 +211,52 @@
           }
         });
       }
+
+
+      vm.createPersonalTask = function(userId, title, description, reminder) {
+        return $http ({
+          method: 'POST',
+          url: vm.baseUrl + '/1/objects/personal_activities?returnObject=true',
+          data: {
+            user_id: userId,
+            title: title,
+            description: description,
+            reminder_date: reminder,
+            status: 'ongoing',
+            created: new Date().toISOString(),
+            modified: new Date().toISOString()
+          }
+        });
+      }
+
+      vm.deletePersonalTask = function(id) {
+        return $http ({
+          method: 'DELETE',
+          url: vm.baseUrl + '/1/objects/personal_activities/' + id
+        });
+      }
+
+      vm.getPersonalTasks = function(id) {
+        return $http ({
+          method: 'GET',
+          url: Backand.getApiUrl() + '/1/objects/personal_activities',
+          params: {
+            filter: [
+              {
+                fieldName: 'user_id',
+                operator: 'equals',
+                value: id
+              }
+            ],
+
+            sort: ''
+          }
+        });
+      }
+
+
+
+
     }
       
 })();

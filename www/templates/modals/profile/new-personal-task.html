@@ -1,0 +1,50 @@
+<ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">New Personal Task</h1>
+    <div class="button button-clear" ng-click="close()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
+  <div class="ion-modal-content-custom">
+    <ion-content class="padding">
+      <form action="">
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="text" id="name" name="name" ng-model="task.title" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Task Name</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="text" id="description" name="description" ng-model="task.desc" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Core Objective</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="start" name="start" ng-readonly="true" ng-model="task.reminder"  ng-click="openDatePicker()" style="color:#000;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label class="label-date">Reminder Date</label>
+            </div>
+          </div>
+        </div>
+
+        <center>
+        <button type="button" class="button button-medium button-calm" type="button"
+          ng-click="createPersonalTask(task.title, task.desc, task.reminder)">
+          Create Task
+        </button>
+      </center>
+      </form>
+    </ion-content>
+  </div>
+</ion-modal-view>

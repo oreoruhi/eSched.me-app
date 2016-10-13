@@ -13,11 +13,16 @@
     DataService,
     $cookieStore,
     $ionicModal,
-    $rootScope
+    $rootScope,
+    $ionicPlatform,
+    $cordovaDatePicker
   ) {
 
     var self = this;
     var modalScope = $rootScope.$new(true);
+
+    var modalScope = $rootScope.$new();
+    angular.extend(modalScope, self);
 
     self.userId = $cookieStore.get('userId');
     self.isRequest = false;
@@ -27,6 +32,11 @@
     self.id = $state.params.id;
 
     function init() {
+      DataService.getPersonalTasks(self.userId)
+        .then(function(result) {
+          self.personalTasks = result.data.data;
+        });
+
       DataService.GetUserById(self.id)
         .then(function(result) {
           self.user = result.data;
@@ -101,31 +111,6 @@
           self.associateAccepted = true;
         });
     }
-
-  self.openModalEditProfile = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/profile-edit.html', {
-      scope: modalScope,
-      animation: 'fade-in-scale'
-    }).then(function(modal) {
-      self.modal = modal;
-      self.modal.show();
-    });
-  };
-
-  self.openModalMessageAssociate = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/message-associate.html', {
-      scope: modalScope,
-      animation: 'fade-in-scale'
-    }).then(function(modal) {
-      self.modal = modal;
-      self.modal.show();
-    });
-  };
-
-  modalScope.closeModal = function() {
-    self.modal.hide();
-  };
-
 
     init();
     angular.extend(modalScope, profileCtrl);
