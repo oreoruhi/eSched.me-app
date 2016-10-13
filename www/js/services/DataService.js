@@ -271,6 +271,18 @@
         });
       }
 
+      vm.getAllTaggedToProject = function(project_id) {
+        return $http ({
+          method: 'GET',
+          url: vm.baseUrl + '/1/query/data/getTaggedPeople',
+          params: {
+            parameters: {
+              project_id: project_id
+            }
+          }
+        });
+      }
+
     }
       
 })();

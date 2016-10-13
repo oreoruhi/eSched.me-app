@@ -1,0 +1,29 @@
+<ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">Tag People</h1>
+    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
+  <div class="ion-modal-content-custom">
+    <ion-content class="padding">
+      <input type="text" name="search" ng-model="searchFilter">
+      
+      YOUR ASSOCIATES
+
+      <ion-list>
+        <ion-item ng-repeat="person in project.acceptedList | filter: searchFilter" ng-hide="!searchFilter">
+          {{ person.first_name }} {{ person.last_name }}
+        </ion-item>
+      </ion-list>
+
+      TAGGED PEOPLE
+
+      <ion-list>
+        <ion-item ng-repeat="person in project.people">
+          {{ person.first_name }} {{ person.last_name }}
+        </ion-item>
+      </ion-list>
+
+
+    </ion-content>
+  </div>
+</ion-modal-view>

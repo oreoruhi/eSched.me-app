@@ -199,6 +199,42 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       });
   };
 
+  modalScope.openTagModal = function(id) {
+    $ionicModal.fromTemplateUrl('templates/modals/project/tag-people.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      DataService.getAllTaggedToProject(id)
+        .then(function(result) {
+          modalScope.project.people = result.data;
+          modalScope.project.acceptedList = [];
+          DataService.getFriendsList(userId)
+            .then(function(result) {
+              modalScope.friendsList = result.data;
+              modalScope.friendsList.forEach(function(friend) {
+                //pag sya yung naka login
+                if(userId == friend.user_id) {
+                  DataService.GetUserById(friend.friend_id)
+                    .then(function(result) {
+                      result.data[0].request_id = friend.id;
+                      modalScope.project.acceptedList.push(result.data[0]);
+                    });
+                } else {
+                  DataService.GetUserById(friend.user_id)
+                    .then(function(result) {
+                      result.data[0].request_id = friend.id;
+                      modalScope.project.acceptedList.push(result.data[0]);
+                    });
+                }
+              });
+            });
+          console.log(modalScope.project.acceptedList);
+          dataCtrl.modal = modal;
+          dataCtrl.modal.show();
+        });
+    });
+  };
+
   angular.extend(modalScope, dataCtrl);
   modalScope.userId = userId;
 }
