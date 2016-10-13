@@ -6,8 +6,9 @@
     .controller('FriendCtrl', controllerFunction);
 
 
-  function controllerFunction(DataService, $cookieStore) {
+  function controllerFunction(DataService, $cookieStore, $ionicModal, $rootScope) {
     var self = this;
+    var modalScope = $rootScope.$new(true);
 
     function _init() {
       self.acceptedList = [];
@@ -56,6 +57,21 @@
         });
     }
 
+
+
+  self.openModalMessageAssociate = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/message-associate.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      self.modal = modal;
+      self.modal.show();
+    });
+  };
+
+  modalScope.closeModal = function() {
+    self.modal.hide();
+  };
 
     _init();
   }

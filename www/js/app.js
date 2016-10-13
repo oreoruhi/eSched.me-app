@@ -172,6 +172,16 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
+      .state('dashboard.chat', {
+        cache: false,
+        url: '/chat',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/chat-detail.html'
+          }
+        }
+      })
+
 
       $urlRouterProvider.otherwise('/');
 
