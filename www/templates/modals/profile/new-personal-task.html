@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="start" name="start" ng-readonly="true" ng-model="task.reminder"  ng-click="openDatePicker()" style="color:#000;" required autocomplete="off">
+              <input type="date" id="start" name="start" ng-readonly="true" ng-model="reminder"  ng-click="openDatePicker()" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Reminder Date</label>
@@ -40,7 +40,7 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-          ng-click="createPersonalTask(task.title, task.desc, task.reminder)">
+          ng-click="createPersonalTask(task.title, task.desc, reminder)">
           Create Task
         </button>
       </center>

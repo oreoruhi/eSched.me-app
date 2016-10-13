@@ -138,8 +138,7 @@
           };
           $cordovaDatePicker.show(projectOptions)
             .then(function(result) {
-              modalScope.task = {};
-              modalScope.task.reminder = result;
+              modalScope.reminder = result;
             });
       });
     };
