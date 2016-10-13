@@ -11,7 +11,7 @@
       <ion-list>
         YOUR ASSOCIATES
         <ion-item 
-          ng-repeat="person in project. acceptedList | filter: searchFilter" 
+          ng-repeat="person in project.acceptedList | filter: searchFilter" 
           ng-click="addTag(project.id, person.id)">
           {{ person.first_name }} {{ person.last_name }}
         </ion-item>

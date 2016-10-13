@@ -230,9 +230,13 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
                     });
                 }
               });
+              console.log(modalScope.project.people);
+              console.log(modalScope.project.acceptedList);
+              console.log(_.without(modalScope.project.people, modalScope.project.acceptedList));
+              dataCtrl.modal = modal;
+              dataCtrl.modal.show();
             });
-          dataCtrl.modal = modal;
-          dataCtrl.modal.show();
+
         });
     });
   };
@@ -267,6 +271,11 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   }
 
   modalScope.addTag = function(project_id, user_id) {
+    for(i = 0; i < modalScope.project.people.length; i++) {
+      if(modalScope.project.people[i].id1 == user_id) {
+        return false;
+      }
+    }
     ProjectService.addTag(project_id, user_id)
       .then(function(result) {
         getTagData();
