@@ -24,6 +24,9 @@
     var modalScope = $rootScope.$new();
     angular.extend(modalScope, self);
 
+    var modalScope = $rootScope.$new();
+    angular.extend(modalScope, self);
+
     self.userId = $cookieStore.get('userId');
     self.isRequest = false;
     self.isPending = false;
@@ -109,6 +112,44 @@
           self.acceptRequest = false;
           self.isRequest = true;
           self.associateAccepted = true;
+        });
+    }
+
+    self.showTaskModal = function() {
+      $ionicModal.fromTemplateUrl('templates/modals/profile/new-personal-task.html', {
+        scope: modalScope,
+        animation: 'fade-in-scale'
+      }).then(function(modal) {
+        modalScope.modal = modal;
+        modal.show();
+      });
+    }
+
+    modalScope.close = function() {
+      modalScope.modal.hide();
+    }
+
+    modalScope.openDatePicker = function () {
+      $ionicPlatform.ready(function() {
+          var projectOptions = {
+            date: new Date(),
+            mode: 'date',
+            minDate: new Date().valueOf()
+          };
+          $cordovaDatePicker.show(projectOptions)
+            .then(function(result) {
+              modalScope.task = {};
+              modalScope.task.reminder = result;
+            });
+      });
+    };
+
+    modalScope.createPersonalTask = function(title, description, reminder) {
+      var reminderDate = new Date(reminder).toISOString();
+      DataService.createPersonalTask(self.userId, title, description, reminderDate)
+        .then(function(result) {
+          modalScope.modal.hide();
+          init();
         });
     }
 
