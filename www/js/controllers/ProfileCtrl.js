@@ -86,6 +86,18 @@
         });
     }
 
+    self.openModalEditProfile = function() {
+      $ionicModal.fromTemplateUrl('templates/modals/profile/profile-edit.html', {
+        scope: modalScope,
+        animation: 'fade-in-scale'
+      }).then(function(modal) {
+        modalScope.modal = modal;
+        modalScope.user = self.user;
+        $log.info(modalScope.user);
+        modal.show();
+      });
+    }
+
     self.associateWithUser = function(friendId) {
       DataService.associateWithUser(self.userId, friendId)
         .then(function(result) {

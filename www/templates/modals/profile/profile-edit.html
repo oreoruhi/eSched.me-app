@@ -1,7 +1,7 @@
 <ion-modal-view class="ion-nifty-modal">
   <ion-header-bar class="bar-calm">
     <h1 class="title">Update Information</h1>
-    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+    <div class="button button-clear" ng-click="close()"><span class="icon ion-close"></span></div>
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="name" name="name" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="name" name="name" style="color:#fff;" ng-model="user[0].first_name" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>First Name</label>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" style="color:#fff;" ng-model="user[0].last_name" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Last Name</label>
@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" style="color:#fff;" ng-model="user[0].occupation" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Occupation</label>
@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" style="color:#fff;" ng-model="user[0].skills" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Skills</label>
@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" style="color:#fff;" ng-model="user[0].about_me" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>About Me</label>
