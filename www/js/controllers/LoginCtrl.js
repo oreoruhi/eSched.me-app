@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService, ionicToast) {
+    .controller('LoginCtrl', function (Backand, $state, $rootScope, $cookieStore,LoginService, ionicToast) {
         var login = this;
 
         function clearLogin() {
@@ -12,6 +12,7 @@ angular.module('eSchedMe.controllers', [])
             LoginService.signin(login.email, login.password)
                 .then(function (result) {
                     console.log(result);
+                    $cookieStore.put('userId', result.userId);
                     onLogin();
 
                 }, function (error) {

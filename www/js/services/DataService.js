@@ -255,10 +255,10 @@
       }
 
 
-      vm.editProfile = function(first_name, last_name, skills, about_me, occupation) {
+      vm.editProfile = function(userId ,first_name, last_name, skills, about_me, occupation) {
         return $http ({
           method: 'PUT',
-          url: vm.baseUrl + '/1/objects/users/47?returnObject=true',
+          url: vm.baseUrl + '/1/objects/users/' + userId + '?returnObject=true',
           data: {
             first_name: first_name,
             last_name: last_name,

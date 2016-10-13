@@ -174,6 +174,7 @@
 
     modalScope.editProfile = function() {
       DataService.editProfile(
+          self.userId,
           modalScope.user[0].first_name, 
           modalScope.user[0].last_name, 
           modalScope.user[0].skills, 

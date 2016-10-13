@@ -1,4 +1,25 @@
-<a name="1.8.2"></a>
+<a name="1.8.10"></a>
+
+### 1.8.11 (2016-09-30)
+
+#### Features
+
+* Add automatic sign in to the socialSignin(). This option allow in the social sign-in to force Backand to signup
+user if they are not.
+
+### 1.8.10 (2016-09-26)
+
+#### Features
+
+* Change socket URL to a new DNS
+
+
+### 1.8.9 (2016-08-20)
+
+#### Features
+
+* Fix Facebook inApp login
+
 
 ### 1.8.2 (2015-11-19)
 
