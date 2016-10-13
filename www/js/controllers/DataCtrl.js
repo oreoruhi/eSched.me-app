@@ -230,8 +230,6 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
                     });
                 }
               });
-              // modalScope.acceptedList = _.without(modalScope.project.acceptedList, modalScope.project.people);
-              // console.log(modalScope.acceptedList);
             });
           dataCtrl.modal = modal;
           dataCtrl.modal.show();
@@ -264,8 +262,6 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
                     });
                 }
               });
-              modalScope.acceptedList = _.difference(modalScope.project.acceptedList, modalScope.project.people);
-              console.log(modalScope.acceptedList);
             });
         });
   }
