@@ -255,7 +255,21 @@
       }
 
 
-
+      vm.editProfile = function(first_name, last_name, skills, about_me, occupation) {
+        return $http ({
+          method: 'PUT',
+          url: vm.baseUrl + '/1/objects/users/47?returnObject=true',
+          data: {
+            first_name: first_name,
+            last_name: last_name,
+            img_name: '',
+            skills: skills,
+            about_me: about_me,
+            modified: new Date().toISOString(),
+            occupation: occupation
+          }
+        });
+      }
 
     }
       

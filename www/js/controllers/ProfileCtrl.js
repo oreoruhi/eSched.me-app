@@ -171,6 +171,18 @@
         });
     }
 
+    modalScope.editProfile = function() {
+      DataService.editProfile(
+          modalScope.user[0].first_name, 
+          modalScope.user[0].last_name, 
+          modalScope.user[0].skills, 
+          modalScope.user[0].about_me,
+          modalScope.user[0].occupation)
+        .then(function(result) {
+          modalScope.modal.hide();
+        });
+    }
+
     init();
     angular.extend(modalScope, profileCtrl);
   }
