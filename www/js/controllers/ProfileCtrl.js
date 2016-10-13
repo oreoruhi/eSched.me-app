@@ -184,6 +184,8 @@
         });
     }
 
+    
+
     init();
     angular.extend(modalScope, profileCtrl);
   }

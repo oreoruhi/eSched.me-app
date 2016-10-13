@@ -7,10 +7,12 @@
     <ion-content class="padding">
       <input type="text" name="search" ng-model="searchFilter">
       
-      YOUR ASSOCIATES
 
       <ion-list>
-        <ion-item ng-repeat="person in project.acceptedList | filter: searchFilter" ng-hide="!searchFilter">
+        YOUR ASSOCIATES
+        <ion-item 
+          ng-repeat="person in project. acceptedList | filter: searchFilter" 
+          ng-click="addTag(project.id, person.id)">
           {{ person.first_name }} {{ person.last_name }}
         </ion-item>
       </ion-list>
@@ -18,7 +20,10 @@
       TAGGED PEOPLE
 
       <ion-list>
-        <ion-item ng-repeat="person in project.people">
+        <ion-item 
+          ng-repeat="person in project.people"
+          ng-click="removeTag(person.id)">
+
           {{ person.first_name }} {{ person.last_name }}
         </ion-item>
       </ion-list>

@@ -13,10 +13,11 @@ DataCtrlFunction.$inject = [
   '$ionicHistory',
   '$ionicPopover',
   '$ionicPlatform',
-  '$cordovaDatePicker'
+  '$cordovaDatePicker',
+  '_'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, $ionicPlatform, $cordovaDatePicker) {
+function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, $ionicPlatform, $cordovaDatePicker, _) {
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -200,6 +201,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   modalScope.openTagModal = function(id) {
+    dataCtrl.projectId = id;
     $ionicModal.fromTemplateUrl('templates/modals/project/tag-people.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
@@ -207,6 +209,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
       DataService.getAllTaggedToProject(id)
         .then(function(result) {
           modalScope.project.people = result.data;
+          console.log(result.data);
           modalScope.project.acceptedList = [];
           DataService.getFriendsList(userId)
             .then(function(result) {
@@ -227,13 +230,57 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
                     });
                 }
               });
+              // modalScope.acceptedList = _.without(modalScope.project.acceptedList, modalScope.project.people);
+              // console.log(modalScope.acceptedList);
             });
-          console.log(modalScope.project.acceptedList);
           dataCtrl.modal = modal;
           dataCtrl.modal.show();
         });
     });
   };
+
+  function getTagData() {
+    DataService.getAllTaggedToProject(dataCtrl.projectId)
+        .then(function(result) {
+          modalScope.project.people = result.data;
+          console.log(result.data);
+          modalScope.project.acceptedList = [];
+          DataService.getFriendsList(userId)
+            .then(function(result) {
+              modalScope.friendsList = result.data;
+              modalScope.friendsList.forEach(function(friend) {
+                //pag sya yung naka login
+                if(userId == friend.user_id) {
+                  DataService.GetUserById(friend.friend_id)
+                    .then(function(result) {
+                      result.data[0].request_id = friend.id;
+                      modalScope.project.acceptedList.push(result.data[0]);
+                    });
+                } else {
+                  DataService.GetUserById(friend.user_id)
+                    .then(function(result) {
+                      result.data[0].request_id = friend.id;
+                      modalScope.project.acceptedList.push(result.data[0]);
+                    });
+                }
+              });
+              modalScope.acceptedList = _.difference(modalScope.project.acceptedList, modalScope.project.people);
+              console.log(modalScope.acceptedList);
+            });
+        });
+  }
+
+  modalScope.addTag = function(project_id, user_id) {
+    ProjectService.addTag(project_id, user_id)
+      .then(function(result) {
+        getTagData();
+      });
+  }
+
+  modalScope.removeTag = function(tag_id) {
+    ProjectService.removeTag(tag_id)
+      .then(function(result) { getTagData() });
+  }
 
   angular.extend(modalScope, dataCtrl);
   modalScope.userId = userId;
