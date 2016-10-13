@@ -145,6 +145,7 @@
     }
 
     modalScope.close = function() {
+      init();
       modalScope.modal.hide();
     }
 
