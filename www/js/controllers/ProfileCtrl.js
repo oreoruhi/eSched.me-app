@@ -125,6 +125,13 @@
       });
     }
 
+    self.deleteTask = function(id) {
+      DataService.deletePersonalTask(id)
+        .then(function(result) {
+          init();
+        });
+    }
+
     modalScope.close = function() {
       modalScope.modal.hide();
     }
