@@ -9,7 +9,7 @@
       
 
       <ion-list>
-        YOUR ASSOCIATES
+        <p style="color: #fff; margin-bottom: 10px;">Your associates</p>
         <ion-item 
           ng-repeat="person in project.acceptedList | filter: searchFilter" 
           ng-click="addTag(project.id, person.id)">
@@ -17,14 +17,14 @@
         </ion-item>
       </ion-list>
 
-      TAGGED PEOPLE
+      <p style="color: #fff; margin-bottom: 10px;">Tagged people</p>
 
       <ion-list>
         <ion-item 
-          ng-repeat="person in project.people"
-          ng-click="removeTag(person.id)">
+          ng-repeat="person in project.people">
 
           {{ person.first_name }} {{ person.last_name }}
+          <ion-option-button class="button-assertive" ng-click="removeTag(person.id)">Untag</ion-option-button>
         </ion-item>
       </ion-list>
 
