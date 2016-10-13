@@ -152,6 +152,26 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
+      .state('dashboard.notification', {
+        cache: false,
+        url: '/notification',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/notification.html'
+          }
+        }
+      })
+
+      .state('dashboard.inbox', {
+        cache: false,
+        url: '/inbox',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/inbox.html'
+          }
+        }
+      })
+
 
       $urlRouterProvider.otherwise('/');
 

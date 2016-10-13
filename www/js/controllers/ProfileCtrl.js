@@ -11,10 +11,13 @@
     $state,
     $log,
     DataService,
-    $cookieStore
+    $cookieStore,
+    $ionicModal,
+    $rootScope
   ) {
 
     var self = this;
+    var modalScope = $rootScope.$new(true);
 
     self.userId = $cookieStore.get('userId');
     self.isRequest = false;
@@ -99,7 +102,33 @@
         });
     }
 
+  self.openModalEditProfile = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/profile-edit.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      self.modal = modal;
+      self.modal.show();
+    });
+  };
+
+  self.openModalMessageAssociate = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/message-associate.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      self.modal = modal;
+      self.modal.show();
+    });
+  };
+
+  modalScope.closeModal = function() {
+    self.modal.hide();
+  };
+
+
     init();
+    angular.extend(modalScope, profileCtrl);
   }
 
 })();

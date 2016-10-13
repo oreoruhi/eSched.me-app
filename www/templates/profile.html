@@ -13,7 +13,7 @@
           <span id="profile-description" class="padding">{{profile.user[0].occupation}}</span><br><br>
         </div>
         <div >
-          <button class="button button-block button-balanced icon ion-edit" ng-if="profile.id == profile.userId">
+          <button class="button button-block button-balanced icon ion-edit" ng-if="profile.id == profile.userId" ng-click="profile.openModalEditProfile()">
             Edit Profile
           </button>
           <button class="button button-block button-calm icon ion-android-person-add" ng-click="profile.associateWithUser(profile.user[0].id)" ng-if="profile.id !== profile.userId" ng-hide="profile.isRequest">
@@ -27,7 +27,7 @@
           </button>
           <div class="button-bar" ng-show="profile.associateAccepted">
               <button ng-click="profile.removeAssociate(profile.associateRequestId)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
-              <button class="button button-block button-border ion-chatboxes icon-left button-calm">Message</button>
+              <button class="button button-block button-border ion-chatboxes icon-left button-calm" ng-click="profile.openModalMessageAssociate()">Message</button>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
             </div>
         </ion-content>
 		  </ion-tab>
-          <ion-floating-button ng-click="dataCtrl.openModalCreateProject()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3" >
+          <ion-floating-button button-color="#fff" icon="ion-plus" icon-color="#11c1f3" >
           </ion-floating-button>
 	</ion-tabs>
 </ion-view>
