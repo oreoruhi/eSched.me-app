@@ -208,7 +208,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
           Backand.getUserDetails()
             .then(function(result) {
               console.log(result);
-              $cookieStore.put('userId', result.userId);
+              window.localStorage.setItem('userId', result.userId);
             });
           $state.go('dashboard.newsfeed');
         });

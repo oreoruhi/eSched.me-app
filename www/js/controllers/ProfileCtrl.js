@@ -27,7 +27,7 @@
     var modalScope = $rootScope.$new();
     angular.extend(modalScope, self);
 
-    self.userId = $cookieStore.get('userId');
+    self.userId = window.localStorage.getItem('userId');
     self.isRequest = false;
     self.isPending = false;
     self.associateAccepted = false;

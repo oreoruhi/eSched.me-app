@@ -12,7 +12,7 @@
 
     function _init() {
       self.acceptedList = [];
-      self.userId = $cookieStore.get('userId');
+      self.userId = window.localStorage.getItem('userId');
       DataService.getRequestsInfo(self.userId)
         .then(function(result) {
           self.followRequest = result.data;

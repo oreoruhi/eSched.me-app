@@ -49,8 +49,8 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   function init() {
-    console.log($cookieStore.get('userId'));
-    userId = $cookieStore.get('userId');
+    console.log(window.localStorage.getItem('userId'));
+    userId = window.localStorage.getItem('userId');
     DataService.GetUserById(userId)
       .then(function(result) {
         console.log(result.data);
@@ -232,7 +232,6 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
               });
               console.log(modalScope.project.people);
               console.log(modalScope.project.acceptedList);
-              console.log(_.without(modalScope.project.people, modalScope.project.acceptedList));
               dataCtrl.modal = modal;
               dataCtrl.modal.show();
             });

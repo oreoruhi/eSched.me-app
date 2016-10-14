@@ -12,7 +12,7 @@ angular.module('eSchedMe.controllers', [])
             LoginService.signin(login.email, login.password)
                 .then(function (result) {
                     console.log(result);
-                    $cookieStore.put('userId', result.userId);
+                    window.localStorage.setItem('userId', result.userId)
                     onLogin();
 
                 }, function (error) {
