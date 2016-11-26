@@ -8,8 +8,8 @@
 .ion-nifty-modal {
   width: 90%;
   min-height: 0 !important;
-  height: 400px !important;
-  top: 20%;
+  height: 90% !important;
+  top: 5%;
   left: 5%;
   right: 5%;
   bottom: 5%;

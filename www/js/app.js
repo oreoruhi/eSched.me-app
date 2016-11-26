@@ -97,14 +97,14 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         }
       })
 
-      .state('dashboard.group', {
-        url: '/group',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/group.html'
-          }
-        }
-      })
+      // .state('dashboard.group', {
+      //   url: '/group',
+      //   views: {
+      //     'menuContent': {
+      //       templateUrl: 'templates/group.html'
+      //     }
+      //   }
+      // })
 
       .state('dashboard.submodule', {
         cache: false,
@@ -178,6 +178,16 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         views: {
           'menuContent': {
             templateUrl: 'templates/chat-detail.html'
+          }
+        }
+      })
+
+      .state('dashboard.groupchat', {
+        cache: false,
+        url: '/groupchat',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/chat-detail-group.html'
           }
         }
       })
