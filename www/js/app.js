@@ -65,7 +65,7 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
         templateUrl: 'templates/dashboard.html',
         controller: 'DataCtrl as dataCtrl',
         data: {
-         role: 'User'
+         //role: 'User'
         }
       })
 
@@ -232,12 +232,12 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             if (toState.name === 'login') {
                 //signout();
             }
-            if(toState.name === 'dashboard.newsfeed') {
-              if(toState.data.role !== Backand.getUserRole()) {
-                event.preventDefault();
-                $state.go('login');
-              }
-            }
+            // if(toState.name === 'dashboard.newsfeed') {
+            //   if(toState.data.role !== Backand.getUserRole()) {
+            //     event.preventDefault();
+            //     $state.go('login');
+            //   }
+            // }
             else if (toState.name != 'login' && Backand.getToken() === undefined) {
                 unauthorized();
             }

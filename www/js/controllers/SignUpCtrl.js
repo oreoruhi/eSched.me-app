@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('eSchedMe')
-  app.controller('SignUpCtrl', function(Backand, $state, $rootScope, LoginService, AuthService, ionicToast) {
+  app.controller('SignUpCtrl', function($cordovaFacebook, $state, $rootScope, LoginService, AuthService, ionicToast, $http) {
     var self = this;
 
     function _init() {
@@ -12,10 +12,21 @@
     }
 
     self.socialSignIn = function(provider) {
-      LoginService.socialSignIn(provider)
-        .then(onLogin)
-        .catch(errorHandler);
+      $cordovaFacebook.login(["public_profile", "email"])
+        .then(function(success) {
+          fblogin(success);
+        }, function (error) {
+          console.log(error);
+        });
     };
+
+    function fblogin(success) {
+      $http.post('http://192.168.0.10:3000/auth/fblogin', success)
+        .then(function(result) {
+          $rootScope.$broadcast('authorized');
+          $state.go('dashboard.newsfeed');
+      });
+    }
 
 
     function onLogin(result) {
