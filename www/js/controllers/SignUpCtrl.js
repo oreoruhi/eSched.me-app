@@ -7,7 +7,6 @@
 
     function _init() {
       self.reset();
-      self.provider = Backand.getSocialProviers();
 
     }
 
@@ -23,6 +22,7 @@
     function fblogin(success) {
       $http.post('http://192.168.0.10:3000/auth/fblogin', success)
         .then(function(result) {
+          window.localStorage.setItem('id_token', result.data.token)
           $rootScope.$broadcast('authorized');
           $state.go('dashboard.newsfeed');
       });

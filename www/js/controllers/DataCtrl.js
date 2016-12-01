@@ -25,11 +25,12 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
 
   function getProjectList() {
-    DataService.getProjectList(userId)
-      .then(function(result){
-        console.log(result);
-        dataCtrl.projectList = result.data;
-      });
+    // DataService.getProjectList(userId)
+    //   .then(function(result){
+    //     console.log(result);
+    //     dataCtrl.projectList = result.data;
+    //   });
+    dataCtrl.projectList = dataCtrl.user.activities;
   };
 
   dataCtrl.filterUsers = function (name) {
@@ -49,15 +50,11 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
   };
 
   function init() {
-    console.log(window.localStorage.getItem('userId'));
-    userId = window.localStorage.getItem('userId');
-    DataService.GetUserById(userId)
+    DataService.GetUserById()
       .then(function(result) {
-        console.log(result.data);
-        dataCtrl.user = result.data;
-        console.log(JSON.stringify(dataCtrl.user[0]));
+        dataCtrl.user = result.data.data;
+        console.log(dataCtrl.user);
       });
-    getProjectList();
   }
 
 

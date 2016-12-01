@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'eSchedMe' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast', 'ngCookies', 'ion-floating-menu', 'ngCordova', 'underscore'])
+angular.module('eSchedMe', ['ionic', 'angular-jwt','eSchedMe.controllers', 'eSchedMe.services', 'ionic-toast', 'ngCookies', 'ion-floating-menu', 'ngCordova', 'underscore'])
 
-    .run(function ($ionicPlatform, Backand) {
+    .run(function ($ionicPlatform, $http) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -24,19 +24,28 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
                 StatusBar.styleLightContent();
             }
 
-            var isMobile = !(ionic.Platform.platforms[0] == "browser");
-            Backand.setIsMobile(isMobile);
-            Backand.setRunSignupAfterErrorInSigninSocial(true);
+            if(window.localStorage.getItem('id_token')) {
+              $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
+            }
+
         });
     })
 
-  .config(function (BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-      BackandProvider.setAppName('chenabu');
-      BackandProvider.setSignUpToken('1d7623b9-2973-4485-a4c3-fe6221053f9f');
-      BackandProvider.setAnonymousToken('4122a81c-e475-4fcf-bd6e-24c79074204f');
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider) {
 
       $ionicConfigProvider.tabs.position('bottom');
       $ionicConfigProvider.navBar.alignTitle('center');
+
+      jwtOptionsProvider.config({
+        tokenGetter: function() {
+          return window.localStorage.getItem('id_token');
+        },
+        whiteListedDomains: [
+          '192.168.0.10:3000'
+        ]
+      });
+
+      $httpProvider.interceptors.push('jwtInterceptor');
 
       $stateProvider
       .state('signup', {
@@ -194,11 +203,9 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
 
 
       $urlRouterProvider.otherwise('/');
-
-      $httpProvider.interceptors.push('APIInterceptor');
     })
 
-    .run(function ($rootScope, $state, $cookieStore, LoginService, Backand, DataService) {
+    .run(function ($rootScope, $state, $cookieStore, LoginService, DataService) {
 
         function unauthorized() {
             console.log("User is unauthorized. Sending to login page.");
@@ -213,35 +220,38 @@ angular.module('eSchedMe', ['ionic', 'backand', 'eSchedMe.controllers', 'eSchedM
             unauthorized();
         });
 
-        $rootScope.$on(Backand.EVENTS.SIGNIN, function (event, data) {
-          $rootScope.$broadcast('authorized');
-          Backand.getUserDetails()
-            .then(function(result) {
-              console.log(result);
-              window.localStorage.setItem('userId', result.userId);
-            });
-          $state.go('dashboard.newsfeed');
-        });
+        // $rootScope.$on(Backand.EVENTS.SIGNIN, function (event, data) {
+        //   $rootScope.$broadcast('authorized');
+        //   Backand.getUserDetails()
+        //     .then(function(result) {
+        //       console.log(result);
+        //       window.localStorage.setItem('userId', result.userId);
+        //     });
+        //   $state.go('dashboard.newsfeed');
+        // });
 
-        $rootScope.$on(Backand.EVENTS.SIGNOUT, function(event, data) {
-          //window.location.reload();
-        });
+        // $rootScope.$on(Backand.EVENTS.SIGNOUT, function(event, data) {
+        //   //window.location.reload();
+        // });
 
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            if (toState.name === 'login') {
-                //signout();
-            }
-            // if(toState.name === 'dashboard.newsfeed') {
-            //   if(toState.data.role !== Backand.getUserRole()) {
-            //     event.preventDefault();
-            //     $state.go('login');
-            //   }
+            // if (toState.name === 'login') {
+            //     //signout();
             // }
-            else if (toState.name != 'login' && Backand.getToken() === undefined) {
-                unauthorized();
-            }
+            // // if(toState.name === 'dashboard.newsfeed') {
+            // //   if(toState.data.role !== Backand.getUserRole()) {
+            // //     event.preventDefault();
+            // //     $state.go('login');
+            // //   }
+            // // }
+            // else if (toState.name != 'login' && Backand.getToken() === undefined) {
+            //     unauthorized();
+            // }
         });
+    })
+    .constant('API', {
+      "URL": "http://192.168.0.10:3000"
     })
 
 

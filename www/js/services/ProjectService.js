@@ -4,7 +4,6 @@ angular.module('eSchedMe')
     '$state',
     '$rootScope',
     '$ionicModal',
-    'Backand',
     ProjectService
   ]);
 
@@ -14,8 +13,8 @@ function ProjectService(
   $http, 
   $state,
   $rootScope,
-  $ionicModal,
-  Backand) {
+  $ionicModal
+  ) {
   var project = {};
   var modalScope = $rootScope.$new(true);
   project.setData = function(project) {
@@ -33,19 +32,13 @@ function ProjectService(
 
   project.addTag = function(project_id, user_id) {
     return $http ({
-      method: 'POST',
-      url: Backand.getApiUrl() + '/1/objects/activity_tags?returnObject=true',
-      data: {
-        activity_id: project_id,
-        friend_id: user_id
-      }
+      
     });
   }
 
   project.removeTag = function(tag_id) {
     return $http ({
-      method: 'DELETE',
-      url: Backand.getApiUrl() + '/1/objects/activity_tags/' + tag_id
+      
     });
   }
 

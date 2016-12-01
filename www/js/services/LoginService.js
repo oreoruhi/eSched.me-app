@@ -1,6 +1,6 @@
 angular.module('eSchedMe.services', [])
 
-    .service('APIInterceptor', function ($rootScope, $q) {
+    .service('APIInterceptor', function ($rootScope, $q, $http) {
         var service = this;
 
         service.responseError = function (response) {
@@ -11,20 +11,19 @@ angular.module('eSchedMe.services', [])
         };
     })
 
-    .service('LoginService', function (Backand, $q) {
+    .service('LoginService', function ($q, API, $http) {
         var service = this;
 
 
-        service.signin = function (email, password, appName) {
+        service.signin = function (email, password) {
             //call Backand for sign in
-            return Backand.signin(email, password);
+            return $http.post('http://192.168.0.10:3000/auth/login', {
+              "email": '2test@yahoo.com',
+              "password": 'polki123'
+            });
         };
 
-        service.socialSignIn = function(provider) {
-          return Backand.socialSignIn (provider, null, true);
-        }
-
         service.signout = function () {
-            return Backand.signout();
+            
         };
     });
