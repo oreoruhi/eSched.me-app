@@ -52,12 +52,12 @@
 
   <ion-side-menu side="right">
     <ion-header-bar class="bar-calm">
-      <input type="text" class="search-input" ng-model="dataCtrl.searchInput" ng-change="dataCtrl.filterUsers(dataCtrl.searchInput)" placeholder="Search people..." style="color:#fff;">
+      <input type="text" class="search-input" ng-model="dataCtrl.searchInput" ng-change="dataCtrl.filterUsers()" placeholder="Search people..." style="color:#fff;">
     </ion-header-bar>
     <ion-content>
       <div class="search-result">
         <ion-list>
-          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult" href="#/dashboard/profile/{{result.id}}">
+          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult | filter: dataCtrl.searchInput" href="#/dashboard/user/{{result.id}}">
             {{result.first_name}} {{result.last_name}}
           </ion-item>
         </ion-list>

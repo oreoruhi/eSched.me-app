@@ -32,10 +32,58 @@
     self.isPending = false;
     self.associateAccepted = false;
 
-    self.id = JSON.parse(window.localStorage.getItem('user')).id;
+    self.id = $state.params.id;
 
     function init() {
-      self.user = JSON.parse(window.localStorage.getItem('user'));
+      DataService.getPersonalTasks(self.userId)
+        .then(function(result) {
+          self.personalTasks = result.data.data;
+        });
+
+      DataService.GetUserById(self.id)
+        .then(function(result) {
+          self.user = result.data;
+          $log.info(self.userId + '     ' + self.id);
+
+          // Start of HIGHLY UNOPTIMIZED CODE
+          DataService.getAllAssociates(self.userId)
+            .then(function(result) {
+              self.associates = result.data.data
+              self.associates.forEach(function(result) {
+                $log.info(result);
+                if(result.friend_id == self.id) {
+                  self.isRequest = true;
+                  self.associateRequestId = result.id;
+                  if(result.status == "Pending") {
+                    self.isPending = true;
+                  } else if (result.status === "Accepted"){
+                    self.associateAccepted = true;
+                  } else if (result.status === "Seen") {
+                    self.ignored = true;
+                  }
+                }
+              });
+            });
+          // End of HIGHLY UNOPTIMIZED CODE
+          DataService.checkAssociateRequest(self.userId)
+            .then(function(result) {
+              self.requests = result.data;
+              self.requests.forEach(function(res) {
+                self.associateRequestId = res.id;
+                console.log(res.user_id +'    ' + self.id);
+                if(res.user_id == self.id) {
+                  if(res.status == "Pending") {
+                    self.isRequest = true;
+                    self.acceptRequest = true;
+                  }
+                  if(res.status == "Accepted") {
+                    self.isRequest = true;
+                    self.associateAccepted = true;
+                  }
+                }
+              });
+            });
+        });
     }
 
     self.openModalEditProfile = function() {
@@ -126,18 +174,18 @@
 
     modalScope.editProfile = function() {
       DataService.editProfile(
-          self.user.id,
-          modalScope.user.first_name,
-          modalScope.user.last_name,
-          modalScope.user.skills,
-          modalScope.user.about_me,
-          modalScope.user.occupation)
+          self.userId,
+          modalScope.user[0].first_name, 
+          modalScope.user[0].last_name, 
+          modalScope.user[0].skills, 
+          modalScope.user[0].about_me,
+          modalScope.user[0].occupation)
         .then(function(result) {
           modalScope.modal.hide();
         });
     }
 
-
+    
 
     init();
     angular.extend(modalScope, profileCtrl);

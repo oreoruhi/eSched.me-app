@@ -9,34 +9,44 @@ ModuleCtrlFunction.$inject = [
   '$ionicModal',
   '$cordovaDatePicker',
   '$ionicPlatform',
-  '$ionicPopover'
+  '$ionicPopover',
+  '$stateParams'
 ];
 
-function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $ionicModal, $cordovaDatePicker, $ionicPlatform, $ionicPopover) {
+function ModuleCtrlFunction($rootScope,
+ $state,
+$cookieStore,
+ModuleService,
+$ionicModal,
+$cordovaDatePicker,
+$ionicPlatform,
+$ionicPopover,
+$stateParams) {
   var moduleCtrl = this;
   //var userId;
   var modalScope = $rootScope.$new(true);
   var project = $state.params.project;
-  modalScope.project = project;
-  moduleCtrl.project = project;
-  moduleCtrl.userId = window.localStorage.getItem('userId');
+  modalScope.project = window.localStorage.getItem('project');
+  moduleCtrl.project = JSON.parse(window.localStorage.getItem('project'));
+  moduleCtrl.userId = window.localStorage.getItem('user_id');
 
   function init() {
     modalScope.remainingPercentage = 100;
     moduleCtrl.remainingPercentage = 100;
-    ModuleService.getProjectModules(project.id)
-      .then(function(result) {
-        moduleCtrl.totalPercentage = 0;
-        moduleCtrl.modules = result.data.data;
-        console.log(result);
-        moduleCtrl.modules.forEach(function (module) {
-          moduleCtrl.totalPercentage += module.percentage;
-          modalScope.remainingPercentage = 100 - moduleCtrl.totalPercentage;
-          moduleCtrl.remainingPercentage = modalScope.remainingPercentage;
-        });
-      });
+    // ModuleService.getProjectModules($stateParams.id)
+    //   .then(function(result) {
+    //     moduleCtrl.totalPercentage = 0;
+    //     moduleCtrl.modules = result.data.data;
+    //     console.log(result);
+    //     moduleCtrl.modules.forEach(function (module) {
+    //       moduleCtrl.totalPercentage += module.percentage;
+    //       modalScope.remainingPercentage = 100 - moduleCtrl.totalPercentage;
+    //       moduleCtrl.remainingPercentage = modalScope.remainingPercentage;
+    //     });
+    //   });
+    moduleCtrl.modules = moduleCtrl.project.modules.data;
+    console.log(moduleCtrl.project);
   }
-
 
   moduleCtrl.openModalSummaryModule = function (module) {
     modalScope.module = module;
@@ -111,11 +121,18 @@ function ModuleCtrlFunction($rootScope, $state, $cookieStore, ModuleService, $io
   }
 
   modalScope.newModule = function(id, name, desc, percentage, priority, start, end) {
-    ModuleService.newModule(id, name, desc, percentage, priority, start, end)
-      .then(function(result) {
-        init();
-        moduleCtrl.modal.hide();
-      });
+    $data = {
+      "activity_id": id,
+      "title": name,
+      "percentage": percentage,
+      "priority": priority,
+      "status": "ongoing",
+      "description": desc,
+      "start": start,
+      "end": end
+    };
+
+    ModuleService.save($data)
   };
 
   modalScope.updateModule = function(id, title, priority, end, description) {
