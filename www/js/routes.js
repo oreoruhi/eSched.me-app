@@ -52,10 +52,7 @@ angular.module('eSchedMe')
           user: function($http) {
             return $http({
               method: 'GET',
-              url: API.URL + '/api/v1/me',
-              headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
-              }
+              url: API.URL + '/api/v1/me'
             });
           }
         }
@@ -128,19 +125,13 @@ angular.module('eSchedMe')
           requests: function ($http) {
             return $http({
               method: 'GET',
-              url: API.URL + '/api/v1/me/requests',
-              headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
-              }
+              url: API.URL + '/api/v1/me/requests'
             });
           },
           friends: function ($http) {
             return $http({
               method: 'GET',
-              url: API.URL + '/api/v1/me/friends',
-              headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
-              }
+              url: API.URL + '/api/v1/me/friends'
             });
           }
         }

@@ -9,13 +9,14 @@
 
   function profileCtrl(
     $state,
+    $http,
     $log,
     DataService,
-    $cookieStore,
     $ionicModal,
     $rootScope,
     $ionicPlatform,
     $cordovaDatePicker,
+    API,
     user
   ) {
 
@@ -28,10 +29,6 @@
     var modalScope = $rootScope.$new();
     angular.extend(modalScope, self);
 
-    self.userId = window.localStorage.getItem('userId');
-    self.isRequest = false;
-    self.isPending = false;
-    self.associateAccepted = false;
 
     self.id = JSON.parse(window.localStorage.getItem('user')).id;
 
@@ -51,36 +48,7 @@
         $log.info(modalScope.user);
         modal.show();
       });
-    }
-
-    self.associateWithUser = function(friendId) {
-      DataService.associateWithUser(self.userId, friendId)
-        .then(function(result) {
-          $log.info(result);
-          self.associateRequestId = result.data.__metadata.id;
-          self.isRequest = true;
-          self.isPending = true;
-        });
-    }
-
-    self.removeAssociate = function(id) {
-      DataService.removeAssociate(id)
-        .then(function(result) {
-          $log.info(result);
-          self.isRequest = false;
-          self.isPending = false;
-          self.associateAccepted = false;
-        });
-    }
-
-    self.acceptAssociateRequest = function(id) {
-      DataService.acceptAssociateRequest(id)
-        .then(function(result) {
-          self.acceptRequest = false;
-          self.isRequest = true;
-          self.associateAccepted = true;
-        });
-    }
+    };
 
     self.showTaskModal = function() {
       $ionicModal.fromTemplateUrl('templates/modals/profile/new-personal-task.html', {
@@ -90,19 +58,16 @@
         modalScope.modal = modal;
         modal.show();
       });
-    }
+    };
 
     self.deleteTask = function(id) {
-      DataService.deletePersonalTask(id)
-        .then(function(result) {
-          init();
-        });
-    }
+      // to implement using resource
+    };
 
     modalScope.close = function() {
       init();
       modalScope.modal.hide();
-    }
+    };
 
     modalScope.openDatePicker = function () {
       $ionicPlatform.ready(function() {
@@ -120,12 +85,22 @@
 
     modalScope.createPersonalTask = function(title, description, reminder) {
       var reminderDate = new Date(reminder).toISOString();
-      DataService.createPersonalTask(self.userId, title, description, reminderDate)
-        .then(function(result) {
-          modalScope.modal.hide();
-          init();
-        });
-    }
+      $http({
+        method: 'POST',
+        url: API.URL + '/api/v1/personaltask',
+        data: {
+          user_id: self.id,
+          title: title,
+          description: description,
+          reminder_date: '',
+          status: 'ongoing'
+        }
+      }).then(function (result) {
+        console.log(result);
+        modalScope.modal.hide();
+        init();
+      });
+    };
 
     modalScope.editProfile = function() {
       DataService.editProfile(
@@ -138,7 +113,7 @@
         .then(function(result) {
           modalScope.modal.hide();
         });
-    }
+    };
 
 
 

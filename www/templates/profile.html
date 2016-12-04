@@ -16,19 +16,6 @@
           <button class="button button-block button-balanced icon ion-edit" ng-if="profile.id === profile.user.id" ng-click="profile.openModalEditProfile()">
             Edit Profile
           </button>
-          <button class="button button-block button-calm icon ion-android-person-add" ng-click="profile.associateWithUser(profile.user[0].id)" ng-if="profile.id !== profile.user.id" ng-hide="profile.isRequest">
-            Follow
-          </button>
-          <button class="button button-block button-assertive icon ion-android-cancel" ng-click="profile.removeAssociate(profile.associateRequestId)" ng-if="profile.id !== profile.user.id" ng-show="profile.isPending || profile.ignored == true">
-            Cancel Request
-          </button>
-          <button class="button button-block button-balanced icon ion-android-checkbox-outline" ng-click="profile.acceptAssociateRequest(profile.associateRequestId)" ng-if="profile.id !== profile.user.id" ng-show="profile.acceptRequest">
-            Accept Request
-          </button>
-          <div class="button-bar" ng-show="profile.associateAccepted">
-              <button ng-click="profile.removeAssociate(profile.associateRequestId)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
-              <button class="button button-block button-border ion-chatboxes icon-left button-calm" ng-click="profile.openModalMessageAssociate()">Message</button>
-          </div>
         </div>
       </div>
       <ion-list>

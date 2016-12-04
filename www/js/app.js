@@ -30,10 +30,8 @@ angular.module('eSchedMe', [
               // org.apache.cordova.statusbar required
               StatusBar.styleLightContent();
           }
-
-
-          $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
       });
+      $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider) {
@@ -81,7 +79,7 @@ angular.module('eSchedMe', [
     })
     .constant('API', {
       "URL": "http://192.168.0.10:3000"
-    })
+    });
 
 
 
