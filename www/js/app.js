@@ -56,7 +56,7 @@ angular.module('eSchedMe', [
       $urlRouterProvider.otherwise('/');
     })
 
-    .run(function ($rootScope, $state, $cookieStore, LoginService, DataService) {
+    .run(function ($rootScope, $state, $cookieStore, LoginService, $ionicHistory) {
 
         function unauthorized() {
             console.log("User is unauthorized. Sending to login page.");
@@ -71,34 +71,12 @@ angular.module('eSchedMe', [
             unauthorized();
         });
 
-        // $rootScope.$on(Backand.EVENTS.SIGNIN, function (event, data) {
-        //   $rootScope.$broadcast('authorized');
-        //   Backand.getUserDetails()
-        //     .then(function(result) {
-        //       console.log(result);
-        //       window.localStorage.setItem('userId', result.userId);
-        //     });
-        //   $state.go('dashboard.newsfeed');
-        // });
-
-        // $rootScope.$on(Backand.EVENTS.SIGNOUT, function(event, data) {
-        //   //window.location.reload();
-        // });
-
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            // if (toState.name === 'login') {
-            //     //signout();
-            // }
-            // // if(toState.name === 'dashboard.newsfeed') {
-            // //   if(toState.data.role !== Backand.getUserRole()) {
-            // //     event.preventDefault();
-            // //     $state.go('login');
-            // //   }
-            // // }
-            // else if (toState.name != 'login' && Backand.getToken() === undefined) {
-            //     unauthorized();
-            // }
+          $ionicHistory.nextViewOptions({
+            disableBack: true,
+            // disableAnimate: true
+          })
         });
     })
     .constant('API', {

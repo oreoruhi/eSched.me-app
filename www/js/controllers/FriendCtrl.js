@@ -5,57 +5,50 @@
   angular.module('eSchedMe')
     .controller('FriendCtrl', controllerFunction);
 
+  controllerFunction.$inject = [
+    '$state',
+    '$http',
+    '$ionicModal',
+    '$rootScope',
+    'requests',
+    'friends',
+    'API'
+  ];
 
-  function controllerFunction(DataService, $cookieStore, $ionicModal, $rootScope) {
+  function controllerFunction($state, $http, $ionicModal, $rootScope, requests, friends, API) {
     var self = this;
     var modalScope = $rootScope.$new(true);
 
     function _init() {
-      self.acceptedList = [];
-      self.userId = window.localStorage.getItem('userId');
-      DataService.getRequestsInfo(self.userId)
-        .then(function(result) {
-          self.followRequest = result.data;
-          console.log(result.data);
-        });
-
-      DataService.getFriendsList(self.userId)
-        .then(function(result) {
-          self.friendsList = result.data;
-          self.friendsList.forEach(function(friend) {
-            //pag sya yung naka login
-            if(self.userId == friend.user_id) {
-              DataService.GetUserById(friend.friend_id)
-                .then(function(result) {
-                  result.data[0].request_id = friend.id;
-                  self.acceptedList.push(result.data[0]);
-                });
-            } else {
-              DataService.GetUserById(friend.user_id)
-                .then(function(result) {
-                  result.data[0].request_id = friend.id;
-                  self.acceptedList.push(result.data[0]);
-                });
-            }
-          });
-        });
+      self.requests = requests.data.data;
+      self.friends = friends.data.data;
     }
 
-    self.acceptRequest = function(id) {
-      DataService.acceptAssociateRequest(id)
-        .then(function(result) {
-          console.log('Accepted!');
-          _init();
-        });
-    }
+    self.approveRequest = function(user_id) {
+      $http({
+        method: 'POST',
+        url: API.URL + '/api/v1/me/approve/' + user_id,
+        headers: {
+          'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+        }
+      }).then(function (result) {
+        console.log(result);
+        $state.reload();
+      });
+    };
 
-    self.deleteRequest = function(id) {
-      DataService.removeAssociate(id)
-        .then(function(result) {
-          console.log('Deleted!');
-          _init();
-        });
-    }
+    self.deleteRequest = function(user_id) {
+      $http({
+        method: 'POST',
+        url: API.URL + '/api/v1/me/unfriend/' + user_id,
+        headers: {
+          'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+        }
+      }).then(function (result) {
+        console.log(result);
+        $state.reload();
+      });
+    };
 
 
 

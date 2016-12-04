@@ -29,7 +29,7 @@
         vm.GetUserById = function(id) {
             return $http({
               method: 'GET',
-              url: API.URL + '/api/v1/me',
+              url: API.URL + '/api/v1/me?include=personal_tasks',
               headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
               }

@@ -56,6 +56,8 @@ function OtherUsers($stateParams, $state,$http, API) {
         'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
       }
     }).then(function (result) {
+      console.log(result);
+      console.log('DELETINF!!!');
       vm.init();
     });
   };

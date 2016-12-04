@@ -1,5 +1,5 @@
 angular.module('eSchedMe')
-  .config(function ($stateProvider) {
+  .config(['$stateProvider', 'API', function ($stateProvider, API) {
     $stateProvider
       .state('signup', {
         url: '/signup',
@@ -41,11 +41,22 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.profile', {
-        // cache: false,
-        url: '/profile/:id',
+        url: '/profile',
         views: {
           'menuContent': {
-            templateUrl: 'templates/profile.html'
+            templateUrl: 'templates/profile.html',
+            controller: 'ProfileCtrl as profile'
+          }
+        },
+        resolve: {
+          user: function($http) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me',
+              headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+              }
+            });
           }
         }
       })
@@ -62,7 +73,8 @@ angular.module('eSchedMe')
         url: '/project',
         views: {
           'menuContent': {
-            templateUrl: 'templates/project.html'
+            templateUrl: 'templates/project.html',
+            controller: 'ProjectCtrl as vm'
           }
         }
       })
@@ -104,11 +116,32 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.friend', {
-        // cache: false,
+        cache: false,
         url: '/friend',
         views: {
           'menuContent': {
-            templateUrl: 'templates/friend.html'
+            templateUrl: 'templates/friend.html',
+            controller: 'FriendCtrl as friend'
+          }
+        },
+        resolve: {
+          requests: function ($http) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me/requests',
+              headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+              }
+            });
+          },
+          friends: function ($http) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me/friends',
+              headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+              }
+            });
           }
         }
       })
@@ -152,4 +185,4 @@ angular.module('eSchedMe')
           }
         }
       });
-  });
+  }]);

@@ -1,10 +1,10 @@
-<ion-view view-title="Friends" ng-controller="FriendCtrl as friend">
+<ion-view view-title="Friends">
   <ion-content class="content-body">
     <ion-list>
-      <ion-item ng-repeat="request in friend.followRequest" href="#/dashboard/profile/{{person.id}}">
+      <ion-item ng-repeat="request in friend.requests" ui-sref="dashboard.otheruser({id: request.id})">
         <img class="post-profile-image" src="./img/no-image.jpg">
         {{request.first_name}} {{request.last_name}}
-	    <ion-option-button class="button-calm" ng-click="friend.acceptRequest(request.id)">Accept</ion-option-button>
+	    <ion-option-button class="button-calm" ng-click="friend.approveRequest(request.id)">Accept</ion-option-button>
 	    <ion-option-button class="button-assertive" ng-click="friend.deleteRequest(request.id)">Ignore</ion-option-button>
       </ion-item>
     </ion-list>
@@ -20,11 +20,11 @@
 	    <ion-content class="content-body">
 	        <div style="margin-top: 44px;"></div>
           <ion-list>
-			      <ion-item ng-repeat="person in friend.acceptedList" href="#/dashboard/profile/{{person.id}}">
+			      <ion-item ng-repeat="person in friend.friends" ui-sref="dashboard.otheruser({id: person.id})">
 			        <img class="post-profile-image" src="./img/no-image.jpg">
 			        {{person.first_name}} {{person.last_name}}
   				    <ion-option-button class="button-calm" ng-click="friend.openModalMessageAssociate()">Message</ion-option-button>
-  				    <ion-option-button class="button-assertive" ng-click="friend.deleteRequest(person.request_id)">Unfollow</ion-option-button>
+  				    <ion-option-button class="button-assertive" ng-click="friend.deleteRequest(person.id)">Unfollow</ion-option-button>
 			      </ion-item>
 			    </ion-list>
 	    </ion-content>

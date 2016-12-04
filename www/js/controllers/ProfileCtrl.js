@@ -15,7 +15,8 @@
     $ionicModal,
     $rootScope,
     $ionicPlatform,
-    $cordovaDatePicker
+    $cordovaDatePicker,
+    user
   ) {
 
     var self = this;
@@ -35,7 +36,9 @@
     self.id = JSON.parse(window.localStorage.getItem('user')).id;
 
     function init() {
+      window.localStorage.setItem('user',JSON.stringify(user.data.data));
       self.user = JSON.parse(window.localStorage.getItem('user'));
+      self.personalTasks = self.user.personal_tasks.data;
     }
 
     self.openModalEditProfile = function() {

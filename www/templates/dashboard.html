@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" hide-back-button="true">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-calm">
       <ion-nav-back-button>
@@ -22,25 +22,25 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/dashboard/profile/{{dataCtrl.user[0].id}}">
+        <ion-item menu-close ui-sref="dashboard.profile">
           Profile
         </ion-item>
-        <ion-item menu-close href="#/dashboard/newsfeed">
+        <ion-item menu-close ui-sref="dashboard.newsfeed">
           Updates
         </ion-item>
-        <ion-item menu-close href="#/dashboard/notification">
+        <ion-item menu-close ui-sref="dashboard.notification">
           Notifications
         </ion-item>
-        <ion-item menu-close href="#/dashboard/inbox">
+        <ion-item menu-close ui-sref="dashboard.inbox">
           Inbox
         </ion-item>
-        <ion-item menu-close href="#/dashboard/friend">
+        <ion-item menu-close ui-sref="dashboard.friend">
           Friends
         </ion-item>
-        <ion-item menu-close href="#/dashboard/project">
+        <ion-item menu-close ui-sref="dashboard.project">
           Projects
         </ion-item>
-        <ion-item menu-close href="#/dashboard/timeline">
+        <ion-item menu-close ui-sref="dashboard.timeline">
           Timeline Map
         </ion-item>
         <ion-item menu-close class="item-blue" href="" ng-click="dataCtrl.signout()">
@@ -49,6 +49,7 @@
       </ion-list>
     </ion-content>
   </ion-side-menu>
+
 
   <ion-side-menu side="right">
     <ion-header-bar class="bar-calm">
