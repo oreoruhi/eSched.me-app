@@ -13,17 +13,17 @@
         <span id="profile-description" class="padding">{{vm.user.data.occupation}}</span><br><br>
       </div>
       <div >
-        <button class="button button-block button-calm icon ion-android-person-add" ng-click="profile.associateWithUser(profile.user[0].id)" ng-show="vm.user.meta.noRelation">
+        <button class="button button-block button-calm icon ion-android-person-add" ng-click="vm.sendRequest(vm.user.data.id)" ng-show="vm.user.meta.noRelation">
           Follow
         </button>
-        <button class="button button-block button-assertive icon ion-android-cancel" ng-click="profile.removeAssociate(profile.associateRequestId)" ng-show="vm.user.meta.myRequest">
+        <button class="button button-block button-assertive icon ion-android-cancel" ng-click="vm.deleteRelation(vm.user.data.id)" ng-show="vm.user.meta.myRequest">
           Cancel Request
         </button>
-        <button class="button button-block button-balanced icon ion-android-checkbox-outline" ng-click="profile.acceptAssociateRequest(profile.associateRequestId)" ng-show="vm.user.meta.requestOf">
+        <button class="button button-block button-balanced icon ion-android-checkbox-outline" ng-click="vm.approveRequest(vm.user.data.id)" ng-show="vm.user.meta.requestOf">
           Accept Request
         </button>
         <div class="button-bar" ng-show="vm.user.meta.friends">
-          <button ng-click="profile.removeAssociate(profile.associateRequestId)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
+          <button ng-click="vm.deleteRelation(vm.user.data.id)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
           <button class="button button-block button-border ion-chatboxes icon-left button-calm" ng-click="profile.openModalMessageAssociate()">Message</button>
         </div>
       </div>

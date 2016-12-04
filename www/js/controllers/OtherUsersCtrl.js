@@ -24,15 +24,40 @@ function OtherUsers($stateParams, $state,$http, API) {
   };
 
   vm.approveRequest = function(user_id) {
-
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/me/approve/' + user_id,
+      headers: {
+        'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+      }
+    }).then(function (result) {
+      console.log(result);
+      vm.init();
+    });
   };
 
   vm.sendRequest = function(user_id) {
-
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/me/add/' + user_id,
+      headers: {
+        'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+      }
+    }).then(function (result) {
+      vm.init();
+    });
   };
 
   vm.deleteRelation = function (user_id) {
-
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/me/unfriend/' + user_id,
+      headers: {
+        'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+      }
+    }).then(function (result) {
+      vm.init();
+    });
   };
 
   vm.init();
