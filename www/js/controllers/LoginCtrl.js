@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function ($state, $rootScope, $cookieStore,LoginService, ionicToast) {
+    .controller('LoginCtrl', function ($http, $state, $rootScope, $cookieStore,LoginService, ionicToast) {
         var login = this;
 
         function clearLogin() {
@@ -12,7 +12,8 @@ angular.module('eSchedMe.controllers', [])
             LoginService.signin(login.email, login.password)
                 .then(function (result) {
                     console.log(result);
-                    window.localStorage.setItem('id_token', result.data.token)
+                    window.localStorage.setItem('id_token', result.data.token);
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.token;
                     onLogin();
 
                 }, function (error) {

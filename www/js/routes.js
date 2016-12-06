@@ -41,6 +41,7 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.profile', {
+        cache: false,
         url: '/profile',
         views: {
           'menuContent': {
@@ -67,12 +68,29 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.project', {
+        cache: false,
         url: '/project',
         views: {
           'menuContent': {
             templateUrl: 'templates/project.html',
             controller: 'ProjectCtrl as vm'
           }
+        }
+      })
+
+      .state('dashboard.module', {
+        // cache: false,
+        url: '/module',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/module.html',
+            controller: 'ModuleCtrl as moduleCtrl'
+          }
+        },
+        resolve: {
+          modules: ['$http', '$stateParams', function ($http, $stateParams) {
+            return $http.get()
+          }]
         }
       })
 
@@ -94,20 +112,6 @@ angular.module('eSchedMe')
         views: {
           'menuContent': {
             templateUrl: 'templates/timeline.html'
-          }
-        }
-      })
-
-      .state('dashboard.module', {
-        // cache: false,
-        url: '/module',
-        controller: 'ModuleCtrl as moduleCtrl',
-        // params: {
-        //   project: null
-        // },
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/module.html'
           }
         }
       })

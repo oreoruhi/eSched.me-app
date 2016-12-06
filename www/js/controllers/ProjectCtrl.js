@@ -12,13 +12,14 @@
       $cordovaDatePicker,
       $ionicPopover) {
       var vm = this;
+      vm.showModules = false;
 
       vm.getProjects = function() {
         vm.projects = ProjectData.get();
         console.log(vm.projects);
         vm.user = JSON.parse(window.localStorage.getItem('user'));
         console.log(vm.user);
-      }
+      };
 
       vm.saveProject = function(title, desc, status, start, end, priority) {
         var data = {

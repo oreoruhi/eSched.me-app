@@ -17,7 +17,9 @@
     $ionicPlatform,
     $cordovaDatePicker,
     API,
-    user
+    user,
+    PersonalTaskData,
+    _
   ) {
 
     var self = this;
@@ -61,7 +63,14 @@
     };
 
     self.deleteTask = function(id) {
-      // to implement using resource
+      PersonalTaskData.delete({task: id}, function (resp, header) {
+        console.log(resp);
+        self.personalTasks = _.reject(self.personalTasks, function (el) {
+          return el.id == id;
+        });
+      }, function (error) {
+        console.log(error);
+      });
     };
 
     modalScope.close = function() {
@@ -88,17 +97,17 @@
       $http({
         method: 'POST',
         url: API.URL + '/api/v1/personaltask',
-        data: {
+        data:  {
           user_id: self.id,
           title: title,
           description: description,
-          reminder_date: '',
+          reminder_date: reminderDate,
           status: 'ongoing'
         }
       }).then(function (result) {
         console.log(result);
         modalScope.modal.hide();
-        init();
+        self.personalTasks = _.union(self.personalTasks, [result.data]);
       });
     };
 

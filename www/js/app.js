@@ -31,7 +31,7 @@ angular.module('eSchedMe', [
               StatusBar.styleLightContent();
           }
       });
-      $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
+      // $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider) {
