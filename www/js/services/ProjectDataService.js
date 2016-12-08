@@ -3,20 +3,16 @@
   .factory('ProjectData', ['$resource','API', function($resource, API) {
     return $resource(API.URL + '/api/v1/activity/:project', {project: '@project'}, {
       get: {
-        method: 'GET',
-        headers: {'Authorization': 'Bearer ' + window.localStorage.getItem('id_token') }
+        method: 'GET'
       },
       save: {
-        method: 'POST',
-        headers: {'Authorization': 'Bearer ' + window.localStorage.getItem('id_token') }
+        method: 'POST'
       },
       delete: {
-        method: 'DELETE',
-        headers: {'Authorization': 'Bearer ' + window.localStorage.getItem('id_token') }
+        method: 'DELETE'
       },
       update: {
-        method: 'PATCH',
-        headers: {'Authorization': 'Bearer ' + window.localStorage.getItem('id_token') }
+        method: 'PATCH'
       }
     });
   }]);

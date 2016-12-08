@@ -118,11 +118,75 @@
         });
       }
 
+      function filterFriends(friends, tagged) {
+        var taggedId = {};
+
+        tagged.forEach(function (obj) {
+          taggedId[obj.id] = obj;
+        });
+
+        return friends.filter(function (obj) {
+          return !(obj.id in taggedId);
+        })
+      }
+      vm.tagPeople = function (project) {
+        console.log(project);
+        $ionicModal
+          .fromTemplateUrl('templates/modals/project/tag-people.html', function (modal) {
+            $scope.project = project;
+            $scope.project.end = new Date(project.end);
+            $scope.friends = [];
+            $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me/friends'
+            }).then(function (result) {
+              $scope.allFriends = result.data.data;
+              $scope.friends = filterFriends(result.data.data, project.tagged.data);
+            });
+            $scope.addTag = vm.addTag;
+            $scope.unTag = vm.unTag;
+            vm.modal = modal;
+            vm.modal.show();
+          }, {
+            scope: $scope,
+            animation: 'fade-in-scale'
+          });
+      };
+
+      vm.addTag = function (project_id, person_id) {
+        $http({
+          method: 'POST',
+          url: API.URL + '/api/v1/activity/' + project_id + '/tag',
+          data: {
+            "user_id": person_id
+          }
+        }).then(function (result) {
+          $scope.project = result.data.activity.data;
+          $scope.friends = filterFriends($scope.friends, $scope.project.tagged.data);
+        })
+      };
+
+      vm.unTag = function (project_id, person_id) {
+        $http({
+          method: 'POST',
+          url: API.URL + '/api/v1/activity/' + project_id + '/untag',
+          data: {
+            "user_id": person_id
+          }
+        }).then(function (result) {
+          console.log(result);
+          $scope.project = result.data.activity.data;
+          $scope.friends = filterFriends($scope.allFriends, $scope.project.tagged.data);
+        })
+      };
+
+
 
       vm.projectPopover = function($event, project){
         $scope.deleteProject = vm.deleteProject;
         $scope.project = project;
         $scope.editProject = vm.editProject;
+        $scope.openTagModal = vm.tagPeople;
         $ionicPopover.fromTemplateUrl('templates/events/project-popover.html', {
           scope: $scope
         }).then(function(popover) {
