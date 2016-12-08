@@ -145,6 +145,7 @@
             });
             $scope.addTag = vm.addTag;
             $scope.unTag = vm.unTag;
+            $scope.closeModal = vm.closeModal;
             vm.modal = modal;
             vm.modal.show();
           }, {
