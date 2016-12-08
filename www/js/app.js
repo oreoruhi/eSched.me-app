@@ -31,7 +31,7 @@ angular.module('eSchedMe', [
               StatusBar.styleLightContent();
           }
       });
-      // $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
+      $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider) {
@@ -71,10 +71,14 @@ angular.module('eSchedMe', [
 
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-          $ionicHistory.nextViewOptions({
-            disableBack: true,
-            // disableAnimate: true
-          })
+          if(toState.name == 'dashboard.module') {
+            return;
+          } else {
+            $ionicHistory.nextViewOptions({
+              disableBack: true,
+              // disableAnimate: true
+            });
+          }
         });
     })
     .constant('API', {

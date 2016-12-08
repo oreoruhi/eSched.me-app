@@ -10,7 +10,9 @@
       $scope,
       $ionicPlatform,
       $cordovaDatePicker,
-      $ionicPopover) {
+      $ionicPopover,
+      $state,
+      API) {
       var vm = this;
       vm.showModules = false;
 
@@ -89,8 +91,7 @@
       vm.updateProject = function(id, title, desc, end, priority) {
         $http({
           method: 'PATCH',
-          url: 'http://192.168.0.10:3000/api/v1/activity/' + id,
-          headers: {'Authorization': 'Bearer ' + window.localStorage.getItem('id_token') },
+          url: API.URL + '/api/v1/activity/' + id,
           data: {
             'title': title,
             'desc': desc,
@@ -100,8 +101,9 @@
         }).then(function(result) {
             vm.getProjects();
             vm.closeModal();
+            vm.popover.hide();
         });
-      }
+}
 
       vm.projectSummary = function(project) {
         $ionicModal
@@ -148,6 +150,10 @@
                 if(provider == 'end' ) $scope.endDate = result;
               });
         });
+      };
+
+      vm.goToModule = function (module, project) {
+        $state.go('dashboard.module',{project: project, module: module});
       };
 
       vm.getProjects();

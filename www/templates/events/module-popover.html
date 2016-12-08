@@ -4,11 +4,11 @@
     </ion-header-bar>
     <ion-content>
        <ion-list>
-        <ion-item menu-close ng-click="editModule(module.id)">
+        <ion-item menu-close ng-click="vm.editModule(module)">
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
-        <ion-item menu-close ng-click="deleteModule(module.id)">
+        <ion-item menu-close ng-click="vm.deleteModule()">
           <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
         </ion-item>

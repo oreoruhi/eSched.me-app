@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="name" name="name" ng-model="name" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="name" name="name" ng-model="vm.modal.name" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Module Name</label>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" ng-model="desc" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" ng-model="vm.modal.description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Core Objective</label>
@@ -32,7 +32,7 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <input type="range" min="1" max="{{remainingPercentage}}" value="{{percentage}}" ng-model="percentage">
+              <input type="range" min="1" max="{{remainingPercentage}}" value="{{percentage}}" ng-model="vm.modal.percentage">
               <h4>Percentage: {{percentage}}%</h4>
               <label class="label-date">Percentage</label>
               <!--<label>Percentage</label>-->
@@ -45,7 +45,7 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="priority">
+              <select class="item item-input item-select" style="width:100%;" ng-model="vm.modal.priority">
                 <option value="1">Low</option>
                 <option value="2">Moderate</option>
                 <option value="3">High</option>
@@ -56,7 +56,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input id="start-date" type="date" name="start-date" ng-readonly="true" ng-model="start" ng-click="openDatePicker(project, 'start')" style="color:#000;" required autocomplete="off">
+              <input id="start-date" type="date" name="start-date" ng-readonly="true" ng-model="vm.modal.start" ng-click="openDatePicker(project, 'start')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Start Date</label>
@@ -66,7 +66,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="vm.modal.end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
@@ -76,7 +76,7 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="newModule(project.id, name, desc, percentage, priority, start, end)">
+                ng-click="vm.saveModule()">
           Create Module
         </button>
       </center>
