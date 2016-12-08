@@ -3,10 +3,10 @@
 
   var serviceId = 'appModalService';
   angular.module('eSchedMe').factory(serviceId, [
-    '$ionicModal', '$rootScope', '$q', '$injector', '$controller', appModalService
+    '$ionicModal', '$rootScope', '$q', '$injector', '$controller', '$ionicPlatform', '$cordovaDatePicker', appModalService
   ]);
 
-  function appModalService($ionicModal, $rootScope, $q, $injector, $controller) {
+  function appModalService($ionicModal, $rootScope, $q, $injector, $controller, $ionicPlatform, $cordovaDatePicker) {
 
     return {
       show: show
@@ -31,6 +31,20 @@
         modalScope.closeModal = function (result) {
           deferred.resolve(result);
           modalScope.modal.hide();
+        };
+        modalScope.openDatePicker = function (provider) {
+          $ionicPlatform.ready(function() {
+            var projectOptions = {
+              date: new Date(),
+              mode: 'date',
+              minDate: new Date().valueOf()
+            };
+            $cordovaDatePicker.show(projectOptions)
+              .then(function(result) {
+                if(provider === 'end') modalScope.end = result;
+                if(provider === 'start') modalScope.start = result;
+              });
+          });
         };
         modalScope.$on('modal.hidden', function (thisModal) {
           if (thisModal.currentScope) {
@@ -66,6 +80,8 @@
         scope.modal.remove();
       }
     }
+
+
 
     function _evalController(ctrlName) {
       var result = {

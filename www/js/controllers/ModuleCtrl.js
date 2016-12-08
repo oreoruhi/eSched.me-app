@@ -44,7 +44,7 @@ function ModuleCtrlFunction(
     console.log('clicked');
     appPopoverService.show('templates/events/module-popover.html', 'ModuleModalCtrl as vm', $event, module)
       .then(function (result) {
-        console.log(result);
+        if(!result) return;
         if(result.message === "Module Deleted!") {
           vm.modules = _.reject(vm.modules, function (el) {
             return el.id == result.module.data.id;
@@ -55,11 +55,12 @@ function ModuleCtrlFunction(
 
 }
 
-function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state) {
+function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $scope) {
   // parameters is the project for this module
   var vm = this;
 
   vm.edit = parameters;
+  if(!parameters.user) $scope.end = new Date(parameters.end);
   vm.editModule = function () {
     appModalService.show('templates/modals/module/edit-module.html', 'ModuleModalCtrl as vm', parameters)
       .then(function (result) {
@@ -72,7 +73,8 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state) {
       });
   };
 
-  vm.updateModule = function () {
+  vm.updateModule = function (end) {
+    vm.edit.end = new Date(end).toISOString();
     ModuleData.update({module: parameters.id}, vm.edit,
     function (resp,header) {
       vm.closeModal(resp);
@@ -94,14 +96,14 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state) {
       });
   };
 
-  vm.saveModule = function () {
+  vm.saveModule = function (start, end) {
     ModuleData.save({
       'activity_id': parameters.id,
       'title': vm.modal.name,
       'percetage': vm.modal.percentage,
       'description': vm.modal.description,
-      'start': vm.modal.start,
-      'end': vm.modal.end,
+      'start': new Date(start).toISOString(),
+      'end': new Date(end).toISOString(),
       'status': 'ongoing',
       'priority': vm.modal.priority
     }, function (resp, headers) {
