@@ -1,6 +1,6 @@
 angular.module('eSchedMe.services', [])
 
-    .service('APIInterceptor', function ($rootScope, $q, $http) {
+    .service('APIInterceptor', function ($rootScope, $q, $http, API) {
         var service = this;
 
         service.responseError = function (response) {
@@ -17,13 +17,13 @@ angular.module('eSchedMe.services', [])
 
         service.signin = function (email, password) {
             //call Backand for sign in
-            return $http.post('http://192.168.0.10:3000/auth/login', {
-              "email": '2test@yahoo.com',
-              "password": 'polki123'
+            return $http.post(API.URL + '/auth/login', {
+              "email": email,
+              "password": password
             });
         };
 
         service.signout = function () {
-            
+
         };
     });

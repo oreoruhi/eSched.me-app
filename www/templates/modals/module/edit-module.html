@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="name" name="name" ng-model="data.title" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="name" name="name" ng-model="vm.edit.title" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Module Name</label>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="description" name="description" ng-model="data.description" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="description" name="description" ng-model="vm.edit.description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Core Objective</label>
@@ -46,10 +46,10 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="data.priority">
-                <option value="1" ng-selected="data.priority == 1">Low</option>
-                <option value="2" ng-selected="data.priority == 2">Moderate</option>
-                <option value="3" ng-selected="data.priority == 3">High</option>
+              <select class="item item-input item-select" style="width:100%;" ng-model="vm.edit.priority">
+                <option value="1" ng-selected="vm.edit.priority == 1">Low</option>
+                <option value="2" ng-selected="vm.edit.priority == 2">Moderate</option>
+                <option value="3" ng-selected="vm.edit.priority == 3">High</option>
               </select>
             </div>
           </div>
@@ -58,7 +58,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="data.end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="vm.edit.end" ng-click="openDatePicker(project, 'end')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">End Date</label>
@@ -68,7 +68,7 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="updateModule(module.id, data.title, data.priority, data.end, data.description)">
+                ng-click="vm.updateModule()">
           Update Module
         </button>
       </center>

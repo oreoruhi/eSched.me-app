@@ -79,23 +79,22 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.module', {
-        // cache: false,
+        cache: false,
         url: '/module',
         views: {
           'menuContent': {
             templateUrl: 'templates/module.html',
-            controller: 'ModuleCtrl as moduleCtrl'
+            controller: 'ModuleCtrl as vm'
           }
         },
-        resolve: {
-          modules: ['$http', '$stateParams', function ($http, $stateParams) {
-            return $http.get()
-          }]
+        params: {
+          project: null,
+          module: null
         }
       })
 
       .state('dashboard.submodule', {
-        // cache: false,
+        cache: false,
         url: '/submodule/:id',
         controller: 'SubmoduleCtrl',
         controlerAs: 'ctrl',

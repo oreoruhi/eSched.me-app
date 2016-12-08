@@ -18,35 +18,11 @@
           Summary
         </a>
         <p>|</p>
-        <a class="tab-item" ng-click="showModules = ! showModules" style="background: #fff; color: #000;">
+        <a class="tab-item" ng-click="vm.goToModule(project.modules.data, project)" style="background: #fff; color: #000;">
           <i class="icon ion-android-clipboard"></i>
           Modules
         </a>
       </div>
-      <!--<ion-list ng-show="showModules">-->
-        <!--<ion-item ng-repeat="module in project.modules.data">-->
-          <!--{{module.title}} - {{module.description}}-->
-        <!--</ion-item>-->
-      <!--</ion-list>-->
-      <div class="card" ng-show="showModules" ng-controller="ModuleCtrl as vm" ng-repeat="module in project.modules.data">
-        <div class="item item-divider">
-          {{module.title}}
-        </div>
-        <div class="item item-text-wrap">
-          {{module.description}}
-        </div>
-        <div class="item item-divider">
-          <button class="button button-positive">
-            More Info
-          </button>
-          <button class="button button-stable">
-            Show Submodules
-          </button>
-        </div>
-      </div>
-      <button ng-show="showModules" class="button button-block button-balanced">
-        Add Module
-      </button>
     </div>
 
 
@@ -85,7 +61,7 @@
                   Summary
                 </a>
                 <p>|</p>
-                <a class="tab-item" ng-click="dataCtrl.openProjectModules(project)" style="background: #fff; color: #3f3f3f;">
+                <a class="tab-item"  ng-click="vm.goToModule(project.modules.data, project)" style="background: #fff; color: #3f3f3f;">
                   <i class="icon ion-android-clipboard"></i>
                   Modules
                 </a>
