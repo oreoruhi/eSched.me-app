@@ -23,6 +23,11 @@ function ModuleCtrlFunction(
     console.log($stateParams.module);
     vm.project = $stateParams.project;
     vm.modules = $stateParams.module;
+    console.log(vm.modules);
+    _.each(vm.modules, function(obj) {
+      obj.end = new Date(obj.end).toISOString();
+      obj.start = new Date(obj.start).toISOString();
+    });
     vm.user = JSON.parse(window.localStorage.getItem('user'));
   }
 
@@ -60,7 +65,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
   var vm = this;
 
   vm.edit = parameters;
-  if(!parameters.user) $scope.end = new Date(parameters.end);
+  if(!parameters.user) $scope.end = parameters.end;
   vm.editModule = function () {
     appModalService.show('templates/modals/module/edit-module.html', 'ModuleModalCtrl as vm', parameters)
       .then(function (result) {
@@ -74,7 +79,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
   };
 
   vm.updateModule = function (end) {
-    vm.edit.end = new Date(end).toISOString();
+    vm.edit.end = end;
     ModuleData.update({module: parameters.id}, vm.edit,
     function (resp,header) {
       vm.closeModal(resp);
@@ -102,8 +107,8 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
       'title': vm.modal.name,
       'percetage': vm.modal.percentage,
       'description': vm.modal.description,
-      'start': new Date(start).toISOString(),
-      'end': new Date(end).toISOString(),
+      'start': start,
+      'end': end,
       'status': 'ongoing',
       'priority': vm.modal.priority
     }, function (resp, headers) {
