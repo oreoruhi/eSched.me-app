@@ -9,6 +9,7 @@ function ModuleCtrlFunction(
   $stateParams,
   $state,
   $ionicHistory,
+  API,
   _
   ) {
 
@@ -18,6 +19,8 @@ function ModuleCtrlFunction(
 
 
   function init() {
+    vm.maxPercentage = 100;
+    vm.availablePercentage = 100;
     console.log("Initializing Module Controller.");
     console.log($stateParams.project);
     console.log($stateParams.module);
@@ -27,20 +30,30 @@ function ModuleCtrlFunction(
     _.each(vm.modules, function(obj) {
       obj.end = new Date(obj.end).toISOString();
       obj.start = new Date(obj.start).toISOString();
+      console.log(obj.percentage);
+      vm.availablePercentage -= obj.percentage;
     });
     vm.user = JSON.parse(window.localStorage.getItem('user'));
   }
 
 
-  function refreshData(response) {
-    vm.modal.hide();
+  function refreshPercentage() {
+    vm.availablePercentage = 100;
+    _.each(vm.modules, function(obj) {
+      console.log(vm.availablePercentage);
+      vm.availablePercentage -= obj.percentage;
+      console.log(vm.availablePercentage);
+    });
   }
 
   vm.createModule = function () {
+    vm.project.availablePercentage = vm.availablePercentage;
+    console.log(vm.availablePercentage);
     appModalService.show('templates/modals/module/create-module.html', 'ModuleModalCtrl as vm', vm.project)
       .then(function (result) {
         if(result) {
           vm.modules = _.union(vm.modules, [result]);
+          refreshPercentage();
         }
       });
   };
@@ -54,6 +67,7 @@ function ModuleCtrlFunction(
           vm.modules = _.reject(vm.modules, function (el) {
             return el.id == result.module.data.id;
           });
+          refreshPercentage();
         }
       });
   }
@@ -65,6 +79,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
   var vm = this;
 
   vm.edit = parameters;
+  if(parameters.availablePercentage) vm.availablePercentage = parameters.availablePercentage;
   if(!parameters.user) $scope.end = parameters.end;
   vm.editModule = function () {
     appModalService.show('templates/modals/module/edit-module.html', 'ModuleModalCtrl as vm', parameters)
@@ -105,7 +120,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     ModuleData.save({
       'activity_id': parameters.id,
       'title': vm.modal.name,
-      'percetage': vm.modal.percentage,
+      'percentage': vm.modal.percentage,
       'description': vm.modal.description,
       'start': start,
       'end': end,

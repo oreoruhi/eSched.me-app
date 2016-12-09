@@ -32,8 +32,8 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <input type="range" min="1" max="{{remainingPercentage}}" value="{{percentage}}" ng-model="vm.modal.percentage">
-              <h4>Percentage: {{percentage}}%</h4>
+              <input type="range" min="1" max="{{vm.availablePercentage}}" value="{{vm.modalpercentage}}" ng-model="vm.modal.percentage">
+              <h4>Percentage: {{vm.modal.percentage}}%</h4>
               <label class="label-date">Percentage</label>
               <!--<label>Percentage</label>-->
             </div>
