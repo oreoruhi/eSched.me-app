@@ -44,7 +44,7 @@ angular.module('eSchedMe', [
           return window.localStorage.getItem('id_token');
         },
         whiteListedDomains: [
-          '192.168.0.10:3000',
+          '54.254.254.163',
           '192.168.0.10:8100'
         ]
       });
@@ -82,7 +82,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "http://192.168.0.10:3000"
+      "URL": "http://54.254.254.163"
     });
 
 

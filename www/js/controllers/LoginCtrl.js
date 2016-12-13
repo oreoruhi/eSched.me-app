@@ -33,14 +33,9 @@ angular.module('eSchedMe.controllers', [])
         }
 
         function signout() {
-            LoginService.signout()
-                .then(function () {
-                    login.email = '';
-                    login.password = '';
-                    $rootScope.$broadcast('logout');
-                    $state.go('login');
-                })
-
+            var user = JSON.parse(window.localStorage.getItem(user));
+            console.log(user);
+            LoginService.signout(user);
         }
 
         login.signin = signin;

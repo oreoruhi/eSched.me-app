@@ -95,13 +95,17 @@ angular.module('eSchedMe')
 
       .state('dashboard.submodule', {
         cache: false,
-        url: '/submodule/:id',
-        controller: 'SubmoduleCtrl',
-        controlerAs: 'ctrl',
+        url: '/submodule/:module_id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/submodule.html'
+            templateUrl: 'templates/submodule.html',
+            controller: 'SubmoduleCtrl as ctrl',
           }
+        },
+        resolve: {
+          module: ['ModuleData', '$stateParams', function(ModuleData, $stateParams) {
+            return ModuleData.get({module: $stateParams.module_id}).$promise;
+          }]
         }
       })
 

@@ -81,11 +81,10 @@ function DataCtrlFunction(
 
 
   dataCtrl.signout = function() {
-    LoginService.signout()
-    .then(function () {
-        $rootScope.$broadcast('logout');
-        $state.go('login');
-    });
+    var user = window.localStorage.getItem('user');
+    user = JSON.parse(user);
+    console.log(user);
+    LoginService.signout(user);
   };
 
   dataCtrl.createProject = function(name, desc, priority, start, end) {

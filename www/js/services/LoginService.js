@@ -11,7 +11,7 @@ angular.module('eSchedMe.services', [])
         };
     })
 
-    .service('LoginService', function ($q, API, $http) {
+    .service('LoginService', function ($q, API, $http, $cordovaFacebook, $state) {
         var service = this;
 
 
@@ -23,7 +23,19 @@ angular.module('eSchedMe.services', [])
             });
         };
 
-        service.signout = function () {
-
+        service.signout = function (user) {
+          if(user.fuid) {
+            $cordovaFacebook.logout().then(
+            function( success ) {
+              console.log(success);
+              $http.defaults.headers.common['Authorization'] = 'Bearer ' + '';
+              $state.go('login');
+            }, function(error) {
+              console.log(error);
+            });
+          } else {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + '';
+              $state.go('login');
+          }
         };
     });

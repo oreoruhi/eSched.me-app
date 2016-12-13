@@ -3,9 +3,9 @@
 
     var app = angular.module('eSchedMe');
 
-    app.service('ModuleService', ['$http', '$resource', ModuleServiceFunction]);
+    app.service('ModuleService', ['$http', '$resource', 'API', ModuleServiceFunction]);
 
-    function ModuleServiceFunction($http, $resource) {
+    function ModuleServiceFunction($http, $resource, API) {
       // var vm = this;
 
 
@@ -30,6 +30,6 @@
 
       // }
 
-       return $resource('http://192.168.0.10:3000/api/v1/module/:module', {module: '@module'});
+       return $resource(API.URL + '/api/v1/module/:module', {module: '@module'});
     }
 })();

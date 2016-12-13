@@ -137,7 +137,7 @@
       vm.editProfile = function(userId ,first_name, last_name, skills, about_me, occupation) {
         return $http ({
           method: 'POST',
-          url: 'http://192.168.0.10:3000/api/v1/me/update',
+          url: API.URL + '/api/v1/me/update',
           headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
           },

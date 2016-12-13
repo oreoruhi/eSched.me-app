@@ -1,9 +1,9 @@
-<ion-view view-title="Submodules" ng-controller="SubmoduleCtrl as ctrl">
+<ion-view view-title="Submodules">
   <ion-content class="content-body">
-    <div class="list card" ng-repeat="submodule in ctrl.module.submodules">
+    <div class="list card" ng-repeat="submodule in ctrl.module.submodules.data">
       <div class="item item-button-right">
         <p>{{submodule.title}}</p>
-        <div class="buttons" ng-click="ctrl.editSubmoduleModal(submodule.id)" style="padding-left: 20px;"><span class="icon ion-edit"></span></div>
+        <div class="buttons" ng-click="ctrl.editSubmoduleModal(submodule)" style="padding-left: 20px;"><span class="icon ion-edit"></span></div>
       </div>
       <div class="item item-body">
         {{submodule.description}}
@@ -14,14 +14,14 @@
           Summary
         </a>
         <p>|</p>
-        <a class="tab-item" style="background: #fff; color: #000;">
+        <a class="tab-item" ng-click="ctrl.deleteSubmodule(submodule.id)" style="background: #fff; color: #000;">
           <i class="icon ion-android-cancel"></i>
           Delete
         </a>
       </div>
     </div>
   </ion-content>
-  <ion-floating-button ng-if="ctrl.remainingPercentage !== 0" ng-click="ctrl.createSubmoduleModal()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
+  <ion-floating-button ng-if="ctrl.availablePercentage" ng-click="ctrl.createSubmoduleModal()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
 </ion-view>
 
