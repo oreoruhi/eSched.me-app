@@ -1,12 +1,12 @@
-<ion-view view-title="Modules" ng-controller="ModuleCtrl as moduleCtrl">
+<ion-view view-title="Modules">
   <ion-content class="content-body">
-    <div class="list card" ng-if="moduleCtrl.modules" ng-repeat="module in moduleCtrl.modules">
+    <div class="list card" ng-if="vm.modules" ng-repeat="module in vm.modules">
       <div class="item item-button-right">
         <p>{{module.title}}</p>
-        <div class="buttons" ng-if="moduleCtrl.project.user_id == moduleCtrl.userId" ng-click="moduleCtrl.showPopoverModule($event, module)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
+        <div class="buttons" ng-if="vm.project.user.data.id == vm.user.id" ng-click="vm.showOptions($event, module)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
       </div>
       <div class="item item-body">
-        <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{moduleCtrl.project.first_name}} {{moduleCtrl.project.last_name}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{vm.project.user.data.first_name}} {{vm.project.user.data.last_name}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Assigned to:</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Duration: {{module.start | date: 'MMMM dd, y'}} to {{module.end | date: 'MMMM dd, y'}}</span> <br><br>
         {{module.description}}
@@ -17,16 +17,17 @@
           Summary
         </a>
         <p>|</p>
-        <a href="#/dashboard/submodule/{{module.id}}" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+        <a ui-sref="dashboard.submodule({module_id: module.id})" class="tab-item" ng-click="" style="background: #fff; color: #000;">
           <i class="icon ion-clipboard"></i>
           Submodules
         </a>
       </div>
     </div>
   </ion-content>
-  <ion-floating-button
-    ng-show="moduleCtrl.remainingPercentage" ng-if= "moduleCtrl.project.user_id == moduleCtrl.userId"
-    ng-click="moduleCtrl.openModalCreateModule()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
+  <ion-floating-button ng-if="vm.project.user.data.id == vm.user.id" ng-show="vm.availablePercentage"
+    ng-click="vm.createModule()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
+
+  <!--ng-show="moduleCtrl.remainingPercentage" ng-if= "moduleCtrl.project.user_id == moduleCtrl.userId"-->
 </ion-view>
 

@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function (Backand, $state, $rootScope, $cookieStore,LoginService, ionicToast) {
+    .controller('LoginCtrl', function ($http, $state, $rootScope, $cookieStore,LoginService, ionicToast) {
         var login = this;
 
         function clearLogin() {
@@ -12,7 +12,8 @@ angular.module('eSchedMe.controllers', [])
             LoginService.signin(login.email, login.password)
                 .then(function (result) {
                     console.log(result);
-                    window.localStorage.setItem('userId', result.userId)
+                    window.localStorage.setItem('id_token', result.data.token);
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.token;
                     onLogin();
 
                 }, function (error) {
@@ -21,6 +22,7 @@ angular.module('eSchedMe.controllers', [])
                       ionicToast.show("You have entered invalid login credentials.", 'bottom', false, 2000);
                     }
                 })
+
         }
 
         function onLogin(){
@@ -31,14 +33,9 @@ angular.module('eSchedMe.controllers', [])
         }
 
         function signout() {
-            LoginService.signout()
-                .then(function () {
-                    login.email = '';
-                    login.password = '';
-                    $rootScope.$broadcast('logout');
-                    $state.go('login');
-                })
-
+            var user = JSON.parse(window.localStorage.getItem(user));
+            console.log(user);
+            LoginService.signout(user);
         }
 
         login.signin = signin;

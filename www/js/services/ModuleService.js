@@ -3,71 +3,33 @@
 
     var app = angular.module('eSchedMe');
 
-    app.service('ModuleService', ['Backand','$http', ModuleServiceFunction]);
+    app.service('ModuleService', ['$http', '$resource', 'API', ModuleServiceFunction]);
 
-    function ModuleServiceFunction(Backand, $http) {
-      var vm = this;
-      var apiUrl = Backand.getApiUrl();
+    function ModuleServiceFunction($http, $resource, API) {
+      // var vm = this;
 
-      vm.getProjectModules = function(id) {
-        return $http ({
-          method: 'GET',
-          url: Backand.getApiUrl() + '/1/objects/modules',
-          params: {
-            pageSize: 20,
-            pageNumber: 1,
-            filter: [
-              {
-                fieldName: 'activity_id',
-                operator: 'equals',
-                value: id
-              }
-            ],
-            sort: ''
-          }
-        });
-      };
 
-      vm.deleteModule = function (id) {
-        return $http.delete('https://api.backand.com/1/objects/modules/' + id);
-      };
+      // vm.deleteModule = function (id) {
+      //   return $http.delete('https://api.backand.com/1/objects/modules/' + id);
+      // };
 
-      vm.newModule = function(id, name, desc, percentage, priority, start, end) {
-        var today = new Date().toISOString();
-        return $http ({
-          method: 'POST',
-          url: Backand.getApiUrl() + '/1/objects/modules?returnObject=true',
-          data: {
-            activity_id: id,
-            title: name,
-            description: desc,
-            percentage: percentage,
-            priority: priority,
-            status: 'ongoing',
-            start: start,
-            end: end,
-            created: today,
-            modified: today
-          }
-        });
-      };
+      // vm.newModule = function(id, name, desc, percentage, priority, start, end) {
+      //   var today = new Date().toISOString();
+      //   return $http ({
 
-      vm.updateModule = function(id, title, priority, end, description) {
-        return $http ({
-          method: 'PUT',
-          url: apiUrl + '/1/objects/modules/' + id,
-          data: {
-            title: title,
-            priority: priority,
-            end: new Date(end),
-            description: description,
-            modified: new Date()
-          }
-        });
-      }
+      //   });
+      // };
 
-      vm.getModuleById = function(id) {
-        return $http.get(apiUrl + '/1/objects/modules/' + id);
-      }
+      // vm.updateModule = function(id, title, priority, end, description) {
+      //   return $http ({
+
+      //   });
+      // }
+
+      // vm.getModuleById = function(id) {
+
+      // }
+
+       return $resource(API.URL + '/api/v1/module/:module', {module: '@module'});
     }
 })();

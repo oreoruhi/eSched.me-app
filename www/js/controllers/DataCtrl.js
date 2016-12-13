@@ -14,10 +14,29 @@ DataCtrlFunction.$inject = [
   '$ionicPopover',
   '$ionicPlatform',
   '$cordovaDatePicker',
-  '_'
+  '$location',
+  '_',
+  'ProjectData'
 ];
 
-function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, LoginService, ProjectService, $ionicModal, $ionicHistory, $ionicPopover, $ionicPlatform, $cordovaDatePicker, _) {
+function DataCtrlFunction(
+  $http,
+  $rootScope,
+  $state,
+  $cookieStore,
+  DataService,
+  LoginService,
+  ProjectService,
+  $ionicModal,
+  $ionicHistory,
+  $ionicPopover,
+  $ionicPlatform,
+  $cordovaDatePicker,
+  $location,
+  _,
+  ProjectData) {
+
+
   var dataCtrl = this;
   var userId;
   var modalScope = $rootScope.$new(true);
@@ -25,18 +44,19 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
 
 
   function getProjectList() {
-    DataService.getProjectList(userId)
-      .then(function(result){
-        console.log(result);
-        dataCtrl.projectList = result.data;
-      });
+    // DataService.getProjectList(userId)
+    //   .then(function(result){
+    //     console.log(result);
+    //     dataCtrl.projectList = result.data;
+    //   });
+    dataCtrl.projectList = dataCtrl.user.activities;
   };
 
   dataCtrl.filterUsers = function (name) {
-    DataService.filterUsers(name)
+    DataService.GetUsers()
       .then(function (result) {
         console.log(result);
-        dataCtrl.searchResult = result.data;
+        dataCtrl.searchResult = result.data.data;
       });
   };
 
@@ -45,55 +65,69 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
     // $ionicHistory.nextViewOptions({
     //   disableBack: true
     // });
-    $state.go('dashboard.module', {project: project});
+    window.localStorage.setItem('project', JSON.stringify(project));
+    $state.go('dashboard.module');
   };
 
   function init() {
-    console.log(window.localStorage.getItem('userId'));
-    userId = window.localStorage.getItem('userId');
-    DataService.GetUserById(userId)
+    DataService.GetUserById()
       .then(function(result) {
-        console.log(result.data);
-        dataCtrl.user = result.data;
-        console.log(JSON.stringify(dataCtrl.user[0]));
+        dataCtrl.user = result.data.data;
+        window.localStorage.setItem('user_id', dataCtrl.user.id);
+        window.localStorage.setItem('user', JSON.stringify(dataCtrl.user));
+        console.log(dataCtrl.user);
       });
-    getProjectList();
   }
 
 
   dataCtrl.signout = function() {
-    LoginService.signout()
-    .then(function () {
-        $rootScope.$broadcast('logout');
-        $state.go('login');
-    });
+    var user = window.localStorage.getItem('user');
+    user = JSON.parse(user);
+    console.log(user);
+    LoginService.signout(user);
   };
 
-  dataCtrl.createProject = function(name, description, priority, start, end) {
-    var startDate = new Date(start).toISOString();
-    var endDate = new Date(end).toISOString();
-    DataService.createProject(userId, name, description, priority, startDate, endDate)
-      .then(function(result) {
-        if(result.status === 200) {
-          dataCtrl.modal.hide();
-          getProjectList();
-        }
-      });
+  dataCtrl.createProject = function(name, desc, priority, start, end) {
+    // var start = new Date(start).toISOString();
+    // var end = new Date(end).toISOString();
+    var user_id = window.localStorage.getItem('user_id');
+    var data = {
+      "user_id": user_id,
+      "title": name,
+      "desc": desc,
+      "status": "ongoing",
+      "start": start,
+      "end": end,
+      "priority": priority
+    };
+
+    ProjectData.save(data);
+    init();
+    modalScope.closeModal();
   };
 
 
   dataCtrl.deleteProjectById = function(id) {
-    DataService.deleteProjectById(id)
-      .then(function(result) {
-        DataService.deleteModulesOfProject(id)
-          .then(function() {
-            if(result.status === 200) {
-              console.log('Project is successfully deleted');
-              modalScope.popover.hide();
-              getProjectList();
-            }
-          })
+    ProjectData.delete({project: id},
+      function(resp, header){
+        console.log('Project is successfully deleted');
+        modalScope.popover.hide();
+        $state.go('dashboard.project');
+      },
+      function(error) {
+
       });
+    // DataService.deleteProjectById(id)
+    //   .then(function(result) {
+    //     DataService.deleteModulesOfProject(id)
+    //       .then(function() {
+    //         if(result.status === 200) {
+    //           console.log('Project is successfully deleted');
+    //           modalScope.popover.hide();
+    //           getProjectList();
+    //         }
+    //       })
+    //   });
   };
 
   dataCtrl.openModalCreateProject = function() {
@@ -115,6 +149,7 @@ function DataCtrlFunction($http, $rootScope, $state, $cookieStore, DataService, 
         .then(function(result) {
           modalScope.project = result.data.data[0];
           dataCtrl.modal = modal;
+
           dataCtrl.modal.show();
         });
     });

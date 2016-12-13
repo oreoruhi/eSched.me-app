@@ -1,6 +1,6 @@
 angular.module('eSchedMe.services', [])
 
-    .service('APIInterceptor', function ($rootScope, $q) {
+    .service('APIInterceptor', function ($rootScope, $q, $http, API) {
         var service = this;
 
         service.responseError = function (response) {
@@ -11,20 +11,31 @@ angular.module('eSchedMe.services', [])
         };
     })
 
-    .service('LoginService', function (Backand, $q) {
+    .service('LoginService', function ($q, API, $http, $cordovaFacebook, $state) {
         var service = this;
 
 
-        service.signin = function (email, password, appName) {
+        service.signin = function (email, password) {
             //call Backand for sign in
-            return Backand.signin(email, password);
+            return $http.post(API.URL + '/auth/login', {
+              "email": email,
+              "password": password
+            });
         };
 
-        service.socialSignIn = function(provider) {
-          return Backand.socialSignIn (provider, null, true);
-        }
-
-        service.signout = function () {
-            return Backand.signout();
+        service.signout = function (user) {
+          if(user.fuid) {
+            $cordovaFacebook.logout().then(
+            function( success ) {
+              console.log(success);
+              $http.defaults.headers.common['Authorization'] = 'Bearer ' + '';
+              $state.go('login');
+            }, function(error) {
+              console.log(error);
+            });
+          } else {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + '';
+              $state.go('login');
+          }
         };
     });

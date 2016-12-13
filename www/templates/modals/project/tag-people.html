@@ -6,12 +6,12 @@
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
       <input type="text" name="search" ng-model="searchFilter">
-      
+
 
       <ion-list>
         <p style="color: #fff; margin-bottom: 10px;">Your associates</p>
-        <ion-item 
-          ng-repeat="person in project.acceptedList | filter: searchFilter" 
+        <ion-item
+          ng-repeat="person in friends | filter: searchFilter"
           ng-click="addTag(project.id, person.id)">
           {{ person.first_name }} {{ person.last_name }}
         </ion-item>
@@ -20,11 +20,11 @@
       <p style="color: #fff; margin-bottom: 10px;">Tagged people</p>
 
       <ion-list>
-        <ion-item 
-          ng-repeat="person in project.people">
+        <ion-item
+          ng-repeat="person in project.tagged.data">
 
           {{ person.first_name }} {{ person.last_name }}
-          <ion-option-button class="button-assertive" ng-click="removeTag(person.id)">Untag</ion-option-button>
+          <ion-option-button class="button-assertive" ng-click="unTag(project.id, person.id)">Untag</ion-option-button>
         </ion-item>
       </ion-list>
 
