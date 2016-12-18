@@ -40,11 +40,8 @@ angular.module('eSchedMe', [
       $ionicConfigProvider.navBar.alignTitle('center');
 
       jwtOptionsProvider.config({
-        toenGetter: function() {
-          return window.localStorage.getItem('id_token');
-        },
         whiteListedDomains: [
-          '54.254.254.163',
+          'api.diaz.tech',
           '192.168.0.10:8100'
         ]
       });
@@ -82,7 +79,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "http://54.254.254.163"
+      "URL": "http://api.diaz.tech"
     });
 
 
