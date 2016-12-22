@@ -23,11 +23,13 @@
         console.log(vm.user);
       };
 
-      vm.saveProject = function(title, desc, status, start, end, priority) {
+      vm.saveProject = function(title, desc, budget, vendor, status, start, end, priority) {
         var data = {
           "user_id": window.localStorage.getItem('user_id'),
           "title": title,
           "desc": desc,
+          "budget": budget,
+          "vendor": vendor,
           "status": status,
           "start": start,
           "end": end,

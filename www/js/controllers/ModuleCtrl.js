@@ -122,6 +122,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
       'title': vm.modal.name,
       'percentage': vm.modal.percentage,
       'description': vm.modal.description,
+      'risk': vm.modal.risk,
       'start': start,
       'end': end,
       'status': 'ongoing',
@@ -134,3 +135,4 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     });
   };
 }
+ 
