@@ -11,8 +11,11 @@ angular.module('eSchedMe.controllers')
 
          console.log(vm.meetings);
 
+         vm.markers = [];
+
          vm.meetings.forEach(function (meeting) {
-           console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+            //    console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+            vm.markers.push("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
          });
 
         });
@@ -25,6 +28,8 @@ angular.module('eSchedMe.controllers')
  
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  
+    var mapLat = position.coords.latitude;
+    var mapLong = position.coords.longitude;
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
     var mapOptions = {
@@ -36,7 +41,10 @@ angular.module('eSchedMe.controllers')
     vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
     
     google.maps.event.addListenerOnce(vm.map, 'idle', function(){
- 
+    
+    vm.markers.push("['You are here'" + "," + mapLat + "," + mapLong + "]");
+
+    console.log(vm.markers);
         var marker = new google.maps.Marker({
             map: vm.map,
             animation: google.maps.Animation.DROP,
