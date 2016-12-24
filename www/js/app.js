@@ -79,7 +79,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "http://api.diaz.tech"
+      "URL": "https://api.diaz.tech"
     });
 
 
