@@ -15,42 +15,59 @@ angular.module('eSchedMe.controllers')
 
          vm.meetings.forEach(function (meeting) {
             //    console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
-            vm.markers.push("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+            // vm.markers.push("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(meeting.lat, meeting.long),
+              title: meeting.location
+            });
+            vm.markers.push(marker);
          });
+
+         console.log(vm.markers);
 
         });
     }
 
     init();
-    
+
 
     var options = {timeout: 10000, enableHighAccuracy: true};
- 
+
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
- 
+
     var mapLat = position.coords.latitude;
     var mapLong = position.coords.longitude;
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
+
     var mapOptions = {
       center: latLng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
- 
-    vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    
-    google.maps.event.addListenerOnce(vm.map, 'idle', function(){
-    
-    vm.markers.push("['You are here'" + "," + mapLat + "," + mapLong + "]");
 
+    vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    google.maps.event.addListenerOnce(vm.map, 'idle', function(){
+
+    // vm.markers.push("['You are here'" + "," + mapLat + "," + mapLong + "]");
+    var yourPosition = new google.maps.Marker({
+      position: new google.maps.LatLng(mapLat, mapLong),
+      title: 'You are here'
+    });
+
+    vm.markers.push(yourPosition);
     console.log(vm.markers);
+
+    vm.markers.forEach(function (marker) {
+      marker.setMap(vm.map);
+    });
+
         var marker = new google.maps.Marker({
             map: vm.map,
             animation: google.maps.Animation.DROP,
             position: latLng
-        });      
-        
+        });
+
         var infoWindow = new google.maps.InfoWindow({
             content: '<div class="info_content">' +
                      '<h4>You are here!</h4>' +
@@ -59,7 +76,7 @@ angular.module('eSchedMe.controllers')
 
         // ["Pangalan ng address", latitude, longitude],
         // for(ctr; ctr < max_ctr; ctr++){
-        //     console.log("[" + vm.meetings[ctr].location + "," + vm.meeting[ctr].lat + "," + vm.meeting[ctr].long + "],"); 
+        //     console.log("[" + vm.meetings[ctr].location + "," + vm.meeting[ctr].lat + "," + vm.meeting[ctr].long + "],");
         // }
 
         // ["Pangalan ng address", latitude, longitude]
@@ -68,7 +85,7 @@ angular.module('eSchedMe.controllers')
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow.open(vm.map, marker);
         });
-        
+
         });
     }, function(error){
         console.log("Could not get location");
