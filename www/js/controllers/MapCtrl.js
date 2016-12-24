@@ -10,9 +10,10 @@ angular.module('eSchedMe.controllers')
             // console.log(ctr);
 
          console.log(vm.meetings);
-         for (var meeting in vm.meetings) {
-            console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],"); 
-         }
+
+         vm.meetings.forEach(function (meeting) {
+           console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+         });
 
         });
     }
