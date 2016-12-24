@@ -111,9 +111,9 @@ angular.module('eSchedMe')
 
       .state('dashboard.timeline', {
         url: '/timeline',
-        controller: 'MapCtrl',
         views: {
           'menuContent': {
+            controller: 'MapCtrl',
             templateUrl: 'templates/timeline.html'
           }
         }
