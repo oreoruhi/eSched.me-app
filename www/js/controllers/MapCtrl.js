@@ -11,9 +11,8 @@ angular.module('eSchedMe.controllers')
 
          console.log(vm.meetings);
 
-         vm.markers = [];
-
          vm.meetings.forEach(function (meeting) {
+<<<<<<< HEAD
             //    console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
             // vm.markers.push("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
             var marker = new google.maps.Marker({
@@ -21,6 +20,9 @@ angular.module('eSchedMe.controllers')
               title: meeting.location
             });
             vm.markers.push(marker);
+=======
+           console.log("[" + meeting.location + "," + meeting.lat + "," + meeting.long + "],");
+>>>>>>> parent of 92ca4ef... multiple markers update
          });
 
          console.log(vm.markers);
@@ -34,9 +36,13 @@ angular.module('eSchedMe.controllers')
     var options = {timeout: 10000, enableHighAccuracy: true};
 
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+<<<<<<< HEAD
 
     var mapLat = position.coords.latitude;
     var mapLong = position.coords.longitude;
+=======
+ 
+>>>>>>> parent of 92ca4ef... multiple markers update
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
     var mapOptions = {
@@ -48,6 +54,7 @@ angular.module('eSchedMe.controllers')
     vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     google.maps.event.addListenerOnce(vm.map, 'idle', function(){
+<<<<<<< HEAD
 
     // vm.markers.push("['You are here'" + "," + mapLat + "," + mapLong + "]");
     var yourPosition = new google.maps.Marker({
@@ -62,6 +69,9 @@ angular.module('eSchedMe.controllers')
       marker.setMap(vm.map);
     });
 
+=======
+ 
+>>>>>>> parent of 92ca4ef... multiple markers update
         var marker = new google.maps.Marker({
             map: vm.map,
             animation: google.maps.Animation.DROP,
