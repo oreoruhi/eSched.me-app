@@ -17,7 +17,6 @@ angular.module('eSchedMe.controllers')
 
             var mapLat = position.coords.latitude;
             var mapLong = position.coords.longitude;
-            var bounds = new google.maps.LatLngBounds();
         
             var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -41,7 +40,6 @@ angular.module('eSchedMe.controllers')
  
                 vm.meetings.forEach(function(meeting){
                     var position = new google.maps.LatLng(meeting.lat, meeting.long);
-                    bounds.extend(position);
                     var markers = new google.maps.Marker({
                         position: position,
                         map: vm.map,
