@@ -119,6 +119,19 @@ angular.module('eSchedMe')
         }
       })
 
+      .state('dashboard.meeting', {
+        url: '/meeting',
+        views: {
+          'menuContent': {
+            controller: 'MeetingCtrl as vm',
+            templateUrl: 'templates/meetings.html'
+          }
+        },
+        params: {
+          project: null
+        }
+      })
+
       .state('dashboard.friend', {
         cache: false,
         url: '/friend',

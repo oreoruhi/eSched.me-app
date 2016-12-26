@@ -190,6 +190,7 @@
         $scope.project = project;
         $scope.editProject = vm.editProject;
         $scope.openTagModal = vm.tagPeople;
+        $scope.goToMeeting = vm.goToMeeting;
         $ionicPopover.fromTemplateUrl('templates/events/project-popover.html', {
           scope: $scope
         }).then(function(popover) {
@@ -222,6 +223,11 @@
       vm.goToModule = function (module, project) {
         $state.go('dashboard.module',{project: project, module: module});
       };
+
+      vm.goToMeeting = function(project){
+        vm.popover.hide();
+        $state.go('dashboard.meeting',{project: project});
+      }
 
       vm.getProjects();
 

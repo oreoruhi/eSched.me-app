@@ -1,0 +1,74 @@
+<ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">New Meeting</h1>
+    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
+  <div class="ion-modal-content-custom">
+    <ion-content class="padding">
+        <!--oh my god-->
+
+      <form action="">
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="text" id="name" name="name" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Meeting Name</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="text" id="agenda" name="agenda" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Agenda</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="text" id="location" name="location" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label>Location</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="meetingdate" name="meetingdate" ng-readonly="true" ng-model="meetingdate"  ng-click="openDatePicker('meetingdate')" style="color:#000;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label class="label-date">Date</label>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="end" name="end" ng-readonly="true" ng-model="endDate"  ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label class="label-date">End Date</label>
+            </div>
+          </div>
+        </div>
+        PUT TIME HERE-->
+
+        <center>
+        <button type="button" class="button button-medium button-calm" type="button"
+                ng-click="">
+          Create Project
+        </button>
+      </center>
+      </form>
+
+    </ion-content>
+  </div>
+</ion-modal-view>
