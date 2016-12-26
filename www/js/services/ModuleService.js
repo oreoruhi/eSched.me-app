@@ -6,29 +6,6 @@
     app.service('ModuleService', ['$http', '$resource', 'API', ModuleServiceFunction]);
 
     function ModuleServiceFunction($http, $resource, API) {
-      // var vm = this;
-
-
-      // vm.deleteModule = function (id) {
-      //   return $http.delete('https://api.backand.com/1/objects/modules/' + id);
-      // };
-
-      // vm.newModule = function(id, name, desc, percentage, priority, start, end) {
-      //   var today = new Date().toISOString();
-      //   return $http ({
-
-      //   });
-      // };
-
-      // vm.updateModule = function(id, title, priority, end, description) {
-      //   return $http ({
-
-      //   });
-      // }
-
-      // vm.getModuleById = function(id) {
-
-      // }
 
        return $resource(API.URL + '/api/v1/module/:module', {module: '@module'});
     }

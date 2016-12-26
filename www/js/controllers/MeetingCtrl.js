@@ -3,7 +3,7 @@ angular.module('eSchedMe.controllers')
 .controller('MeetingCtrl', function(
     $state, 
     $scope, 
-    MeetingService, 
+    MeetingData,
     $ionicPopover, 
     $ionicModal, 
     $ionicPlatform, 
@@ -11,7 +11,7 @@ angular.module('eSchedMe.controllers')
     var vm = this;
 
     function init(){
-
+        vm.getMeetings();
     }
 
     vm.meetingPopover = function($event){
@@ -53,6 +53,11 @@ angular.module('eSchedMe.controllers')
       vm.closeModal = function() {
         vm.modal.hide();
       }
+
+      vm.getMeetings = function() {
+        vm.meetings = MeetingData.get();
+        console.log(vm.meetings);
+      };
 
     init();
 

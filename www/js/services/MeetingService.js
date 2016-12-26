@@ -1,13 +1,19 @@
 (function() {
-    'use strict';
-
-    var app = angular.module('eSchedMe');
-
-    app.service('MeetingService', ['$http', 'API', MeetingServiceFunction]);
-
-    function MeetingServiceFunction($http, API) {
-        var vm = this;
-
-    }
-
+  angular.module('eSchedMe')
+  .factory('MeetingData', ['$resource','API', function($resource, API) {
+    return $resource(API.URL + '/api/v1/meeting/:meeting', {meeting: '@meeting'}, {
+      get: {
+        method: 'GET'
+      },
+      save: {
+        method: 'POST'
+      },
+      delete: {
+        method: 'DELETE'
+      },
+      update: {
+        method: 'PATCH'
+      }
+    });
+  }]);
 })();
