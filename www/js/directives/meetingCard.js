@@ -8,7 +8,7 @@ angular.module('eSchedMe.directives', [])
         },
         templateUrl: 'templates/directives/meeting-card.html',
         controller: function($scope) {
-          console.log($scope.$parent.vm);
+          $scope.meeting.date = new Date($scope.meeting.date);
 
           $scope.deleteMeeting = function(meeting) {
             console.log(meeting.id);
