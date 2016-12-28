@@ -62,23 +62,31 @@ angular.module('eSchedMe.controllers')
     };
 
     var geocoder = new google.maps.Geocoder();
-
-    vm.saveMeeting = function(location, date, status) {
+    var data;
+    vm.saveMeeting = function(location, date, meetingStatus) {
       console.log(location);
       geocoder.geocode( {'address': location}, function(results, status) {
         if (status == 'OK') {
           console.log(results[0].geometry.location.lat() + " " + results[0].geometry.location.lng());
-          var data = {
+           data = {
               "activity_id": $stateParams.project.id,
               "location": location,
               "long": results[0].geometry.location.lng(),
               "lat": results[0].geometry.location.lat(),
-              "status": status,
-              "date": date,
+              "status": meetingStatus,
+              "date": date
           };
           console.log(data);
-
-          MeetingData.save(data,
+        } else {
+          console.log('Geocode was not successful for the following reason: ' + status);
+          data = {
+              "activity_id": $stateParams.project.id,
+              "location": location,
+              "status": meetingStatus,
+              "date": date
+          };
+        }
+        MeetingData.save(data,
           function(resp, header) {
               console.log(resp);
               vm.getMeetings();
@@ -86,10 +94,7 @@ angular.module('eSchedMe.controllers')
           },
           function(error) {
               console.log(error);
-          });
-        } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
-        }
+        });
       });
       console.log(location);
     }
