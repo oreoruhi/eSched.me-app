@@ -1,7 +1,7 @@
 <ion-view view-title="Meetings">
   <ion-content class="content-body">
     <div ng-repeat="meeting in vm.meetings.data">
-      <meeting-card ></meeting-card>
+      <meeting-card meeting="meeting"></meeting-card>
     </div>
   </ion-content>
   <ion-floating-button ng-click="vm.createMeeting()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">

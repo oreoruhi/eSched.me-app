@@ -6,8 +6,8 @@ angular.module('eSchedMe.directives', [])
         meeting: "="
       },
       templateUrl: 'templates/directives/meeting-card.html',
-      controller: function() {
-
+      controller: function($scope) {
+        console.log($scope.meeting);
       }
     }
   });

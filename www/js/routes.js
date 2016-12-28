@@ -119,6 +119,16 @@ angular.module('eSchedMe')
         }
       })
 
+      .state('dashboard.direction', {
+        url: '/direction',
+        views: {
+          'menuContent': {
+            controller: '',
+            templateUrl: 'templates/meeting-view.html'
+          }
+        }
+      })
+
       .state('dashboard.meeting', {
         url: '/meeting',
         views: {

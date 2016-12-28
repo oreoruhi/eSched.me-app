@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="text" id="location" name="location" style="color:#fff;" required autocomplete="off">
+              <input type="text" id="location" name="location" ng-model="location" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label>Location</label>
@@ -63,7 +63,7 @@
 
         <center>
         <button type="button" class="button button-medium button-calm" type="button"
-                ng-click="">
+                ng-click="saveMeeting(location, meetingdate, 'for review')">
           Create Project
         </button>
       </center>
