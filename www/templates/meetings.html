@@ -3,7 +3,7 @@
     <div class="list card" ng-repeat="meeting in vm.meetings.data">
       <div class="item item-button-right">
         <p>Meeting Title</p>
-        <div class="buttons" ng-click="vm.meetingPopover($event)" style="padding-left: 20px;"><span class="icon ion-more"></span></div>
+        <div class="buttons" style="padding-left: 20px;"><span class="icon ion-close"></span></div>
       </div>
       <div class="item item-body">
         <span style="font-size: 12px; color: #3f3f3f;">Location: {{meeting.location}} </span> <br>
@@ -16,15 +16,15 @@
           <i class="icon ion-android-list" style="font-size: 12;"></i>
            View
         </a>
-        <p>|</p>
+        <p ng-if="meeting.lat" ng-show="meeting.long">|</p>
         <a class="tab-item" style="background: #fff; color: #000;">
           <i class="icon ion-android-clipboard"></i>
            Edit
         </a>
         <p>|</p>
         <a class="tab-item" style="background: #fff; color: #000;">
-          <i class="icon ion-android-clipboard"></i>
-           Delete
+          <i class="icon ion-ios-checkmark"></i>
+           Completed
         </a>
       </div>
     </div>

@@ -4,7 +4,6 @@ angular.module('eSchedMe.controllers')
     $state, 
     $scope, 
     MeetingData,
-    $ionicPopover, 
     $ionicModal, 
     $ionicPlatform, 
     $cordovaDatePicker,
@@ -14,15 +13,6 @@ angular.module('eSchedMe.controllers')
     function init(){
         vm.getMeetings();
     }
-
-    vm.meetingPopover = function($event){
-    $ionicPopover.fromTemplateUrl('templates/events/meeting-popover.html', {
-        scope: $scope
-    }).then(function(popover) {
-        vm.popover = popover; 
-        vm.popover.show($event);
-        });
-    };
 
     vm.createMeeting = function() {
     $ionicModal
@@ -70,15 +60,26 @@ angular.module('eSchedMe.controllers')
         geocoder.geocode( {'address': location}, function(results, status) {
         if (status == 'OK') {
             console.log(results[0].geometry.location.lat() + " " + results[0].geometry.location.lng());
+            console.log(data);
+
             var data = {
                 "activity_id": $stateParams.project.id,
                 "location": location,
                 "long": results[0].geometry.location.lng(),
                 "lat": results[0].geometry.location.lat(),
                 "status": status,
-                "date": date,
+                "date": date
             };
-            console.log(data);
+        } else {
+            console.log('Geocode was not successful for the following reason: ' + status);      
+           
+            var data = {
+                "activity_id": $stateParams.project.id,
+                "location": location,
+                "status": status,
+                "date": date
+            };
+        }
 
             MeetingData.save(data,
             function(resp, header) {
@@ -89,9 +90,6 @@ angular.module('eSchedMe.controllers')
             function(error) {
                 console.log(error);
             });
-        } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
-        }
         });
         console.log(location);
       }
