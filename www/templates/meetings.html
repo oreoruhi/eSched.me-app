@@ -11,6 +11,22 @@
         <span style="font-size: 12px; color: #3f3f3f;">Date and Time: {{meeting.date | date: 'MMMM dd, y'}}</span> <br><br>
         Meeting agenda
       </div>
+      <div class="item tabs tabs-icon-left" style="background: #fff;">
+        <a class="tab-item" ng-if="meeting.lat" ng-show="meeting.long" ng-click="" style="background: #fff; color: #000;">
+          <i class="icon ion-android-list" style="font-size: 12;"></i>
+           View
+        </a>
+        <p>|</p>
+        <a class="tab-item" style="background: #fff; color: #000;">
+          <i class="icon ion-android-clipboard"></i>
+           Edit
+        </a>
+        <p>|</p>
+        <a class="tab-item" style="background: #fff; color: #000;">
+          <i class="icon ion-android-clipboard"></i>
+           Delete
+        </a>
+      </div>
     </div>
   </ion-content>
   <ion-floating-button ng-click="vm.createMeeting()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
