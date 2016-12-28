@@ -8,6 +8,7 @@ angular.module('eSchedMe', [
   'angular-jwt',
   'eSchedMe.controllers',
   'eSchedMe.services',
+  'eSchedMe.directives',
   'ionic-toast',
   'ion-floating-menu',
   'underscore',
