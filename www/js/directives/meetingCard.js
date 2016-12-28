@@ -1,5 +1,5 @@
 angular.module('eSchedMe.directives', [])
-  .directive('meetingCard', ['MeetingData',
+  .directive('meetingCard', ['MeetingData', 'appModalService',
     function(MeetingData) {
       return {
         restrict: 'E',
@@ -7,7 +7,7 @@ angular.module('eSchedMe.directives', [])
           meeting: "="
         },
         templateUrl: 'templates/directives/meeting-card.html',
-        controller: function($scope) {
+        controller: function($scope, appModalService) {
           $scope.meeting.date = new Date($scope.meeting.date);
 
           $scope.deleteMeeting = function(meeting) {
@@ -22,6 +22,10 @@ angular.module('eSchedMe.directives', [])
                 console.log(error);
               }
             );
+          }
+
+          $scope.editMeeting = function(meeting) {
+            appModalService.show('templates/modals/meeting/edit-meeting.html', 'MeetingEditCtrl as vm', meeting);
           }
         }
       }
