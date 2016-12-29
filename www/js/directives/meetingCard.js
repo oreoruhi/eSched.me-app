@@ -27,6 +27,18 @@ angular.module('eSchedMe.directives', [])
           $scope.editMeeting = function(meeting) {
             appModalService.show('templates/modals/meeting/edit-meeting.html', 'MeetingEditCtrl as vm', meeting);
           }
+
+          $scope.completeMeeting = function(meeting) {
+            MeetingData.update({meeting: meeting.id}, {status: 'Completed'},
+            function(resp, header) {
+              if(resp.message === "Meeting Updated!") {
+                $scope.$parent.vm.getMeetings();
+              }
+            },
+            function(error) {
+              console.log(error);
+            });
+          }
         }
       }
   }]);
