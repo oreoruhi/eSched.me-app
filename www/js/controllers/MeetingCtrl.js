@@ -4,6 +4,7 @@ angular.module('eSchedMe.controllers')
     $state,
     $scope,
     MeetingData,
+    $ionicPopover, 
     $ionicModal, 
     $ionicPlatform, 
     $cordovaDatePicker,
@@ -13,6 +14,15 @@ angular.module('eSchedMe.controllers')
     function init(){
         vm.getMeetings();
     }
+
+    vm.meetingPopover = function($event){
+    $ionicPopover.fromTemplateUrl('templates/events/meeting-popover.html', {
+        scope: $scope
+    }).then(function(popover) {
+        vm.popover = popover; 
+        vm.popover.show($event);
+        });
+    };
 
     vm.createMeeting = function() {
     $ionicModal
