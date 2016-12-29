@@ -29,6 +29,7 @@ angular.module('eSchedMe.directives', [])
           }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           $scope.completeMeeting = function(meeting) {
             MeetingData.update({meeting: meeting.id}, {status: 'Completed'},
             function(resp, header) {
@@ -39,6 +40,11 @@ angular.module('eSchedMe.directives', [])
             function(error) {
               console.log(error);
             });
+=======
+          $scope.viewMeeting = function(meeting){
+              console.log("clicked");
+              $state.go('dashboard.direction',{meeting: meeting});
+>>>>>>> 883a4b1ae1cd201370e8cd6cee6fd7b370c63708
 =======
           $scope.viewMeeting = function(meeting){
               console.log("clicked");
