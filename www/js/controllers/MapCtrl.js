@@ -21,8 +21,8 @@ angular.module('eSchedMe.controllers')
             google.maps.event.addListener(markers, 'click', function () {
             infoWindowMultiple.open(vm.map, markers);
 
-            google.maps.event.addListener(vm.map, "click", function(event) { infoWindowMultiple.close(vm.map, markers); });
-        });
+            google.maps.event.addListener(vm.map, "click", function(event) { infoWindowMultiple.close(vm.map, markers); }); 
+        });               
 
         });
     }
@@ -53,7 +53,7 @@ angular.module('eSchedMe.controllers')
             vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
             google.maps.event.addListenerOnce(vm.map, 'idle', function(){
-
+ 
                 multipleMarkers();
 
                 var marker = new google.maps.Marker({
@@ -71,14 +71,14 @@ angular.module('eSchedMe.controllers')
                     infoWindow.open(vm.map, marker);
                 });
 
-                google.maps.event.addListener(vm.map, "click", function(event) { infoWindow.close(vm.map, marker); });
+                google.maps.event.addListener(vm.map, "click", function(event) { infoWindow.close(vm.map, marker); }); 
 
                 });
-
+                
             }, function(error){
-
+                
                 var latLng = new google.maps.LatLng(vm.meetings[0].lat, vm.meetings[0].long);
-
+            
 
                 var mapOptions = {
                 center: latLng,
@@ -89,7 +89,7 @@ angular.module('eSchedMe.controllers')
                 vm.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
                 google.maps.event.addListenerOnce(vm.map, 'idle', function(){
-
+    
                     multipleMarkers();
 
                 });

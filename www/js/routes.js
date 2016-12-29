@@ -123,12 +123,9 @@ angular.module('eSchedMe')
         url: '/direction',
         views: {
           'menuContent': {
-            controller: 'DirectionsCtrl as vm',
+            controller: '',
             templateUrl: 'templates/meeting-view.html'
           }
-        },
-        params: {
-          meeting: null
         }
       })
 
