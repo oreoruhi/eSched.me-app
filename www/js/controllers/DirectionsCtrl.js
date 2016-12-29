@@ -12,12 +12,12 @@ angular.module('eSchedMe.controllers')
     var end;
 
 
-    var options = {timeout: 10000, enableHighAccuracy: true};
+    // var options = {timeout: 10000, enableHighAccuracy: true};
 
-    $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+    $cordovaGeolocation.getCurrentPosition().then(function(position){
       directionsLatitude = position.coords.latitude;
       directionsLongitude = position.coords.longitude;
-      destinationLatitude = $stateParams.meeting.lat;
+      destinationLatitude =  $stateParams.meeting.lat;
       destinationLongitude = $stateParams.meeting.long;
       directionsLatLng = new google.maps.LatLng(directionsLatitude, directionsLongitude);
       destinationLatLng = new google.maps.LatLng(destinationLatitude, destinationLongitude);
@@ -45,9 +45,10 @@ angular.module('eSchedMe.controllers')
         directionsMap = new google.maps.Map(vm.map, directionsOptions);
         directionsDisplay = new google.maps.DirectionsRenderer({
           draggable: true,
-          map: directionsMap,
+          map: directionsMap
         });
         directionsDisplay.setMap(directionsMap);
+
         calcRoute();
     }
 

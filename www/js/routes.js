@@ -121,6 +121,7 @@ angular.module('eSchedMe')
 
       .state('dashboard.direction', {
         url: '/direction',
+        cache: false,
         views: {
           'menuContent': {
             controller: 'DirectionsCtrl as vm',

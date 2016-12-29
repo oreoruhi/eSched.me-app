@@ -29,7 +29,8 @@ angular.module('eSchedMe.directives', [])
           }
 
           $scope.viewMeeting = function(meeting){
-              console.log("clicked");
+              // console.log("clicked");
+              console.log(meeting);
               $state.go('dashboard.direction',{meeting: meeting});
           }
 
