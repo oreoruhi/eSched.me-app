@@ -1,32 +1,7 @@
 <ion-view view-title="Meetings">
   <ion-content class="content-body">
-    <div class="list card" ng-repeat="meeting in vm.meetings.data">
-      <div class="item item-button-right">
-        <p>Meeting Title</p>
-        <div class="buttons" style="padding-left: 20px;"><span class="icon ion-close"></span></div>
-      </div>
-      <div class="item item-body">
-        <span style="font-size: 12px; color: #3f3f3f;">Location: {{meeting.location}} </span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Status: {{meeting.status}}</span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Date and Time: {{meeting.date | date: 'MMMM dd, y'}}</span> <br><br>
-        Meeting agenda
-      </div>
-      <div class="item tabs tabs-icon-left" style="background: #fff;">
-        <a class="tab-item" ng-if="meeting.lat" ng-show="meeting.long" ng-click="" style="background: #fff; color: #000;">
-          <i class="icon ion-android-list" style="font-size: 12;"></i>
-           View
-        </a>
-        <p ng-if="meeting.lat" ng-show="meeting.long">|</p>
-        <a class="tab-item" style="background: #fff; color: #000;">
-          <i class="icon ion-android-clipboard"></i>
-           Edit
-        </a>
-        <p>|</p>
-        <a class="tab-item" style="background: #fff; color: #000;">
-          <i class="icon ion-ios-checkmark"></i>
-           Completed
-        </a>
-      </div>
+    <div ng-repeat="meeting in vm.meetings.data">
+      <meeting-card meeting="meeting"></meeting-card>
     </div>
   </ion-content>
   <ion-floating-button ng-click="vm.createMeeting()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
