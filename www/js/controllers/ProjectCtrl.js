@@ -104,8 +104,19 @@
             vm.getProjects();
             vm.closeModal();
             vm.popover.hide();
-        });
-}
+              });
+      }
+
+      vm.completeProject = function (project) {
+        ProjectData.update({ project: project.id }, { status: "Completed" },
+          function (resp, header) {
+            console.log(resp);
+          },
+          function (error) {
+            console.log(error);
+          }
+        );
+      }
 
       vm.projectSummary = function(project) {
         $ionicModal

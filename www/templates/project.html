@@ -1,4 +1,4 @@
-<ion-view view-title="Projects">
+﻿<ion-view view-title="Projects">
   <ion-content class="content-body">
 
     <div class="list card" ng-repeat="project in vm.projects.data" >
@@ -21,6 +21,11 @@
         <a class="tab-item" ng-click="vm.goToModule(project.modules.data, project)" style="background: #fff; color: #000;">
           <i class="icon ion-android-clipboard"></i>
           Modules
+        </a>
+        <p>|</p>
+        <a class="tab-item" ng-click="vm.completeProject(project)" style="background: #fff; color: #000;">
+          <i class="icon ion-checkmark-circled"></i>
+          Complete
         </a>
       </div>
     </div>
