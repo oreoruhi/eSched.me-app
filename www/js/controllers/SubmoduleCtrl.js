@@ -77,6 +77,14 @@ function controllerFunction($stateParams, $rootScope, ModuleData, $log, Submodul
     });
   }
 
+  self.completeSubmodule = function(submodule) {
+    SubmoduleService.update({submodule: submodule.id}, {status: "Completed"},
+      function(resp,header) {
+        console.log(resp);
+      }
+    );
+  }
+
   modalScope.editSubmodule = function(id, title, description) {
     SubmoduleService.update({submodule: id}, {
       'title': title,

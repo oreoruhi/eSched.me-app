@@ -6,6 +6,9 @@
     function ProjectCtrlFunction(
       $http,
       ProjectData,
+      ModuleData,
+      SubmoduleService,
+      MeetingData,
       $ionicModal,
       $scope,
       $ionicPlatform,
@@ -108,9 +111,26 @@
       }
 
       vm.completeProject = function (project) {
+        console.log(project);
+        // TODO:dj complete of module and submodules
+        // ugly fucking cordovaDatePicker
         ProjectData.update({ project: project.id }, { status: "Completed" },
           function (resp, header) {
-            console.log(resp);
+
+            project.meetings.data.forEach(function(meeting) {
+              MeetingData.update({meeting: meeting.id}, {status: 'Completed'});
+            });
+
+            project.modules.data.forEach(function(module) {
+              ModuleData.update({module: module.id}, {status: "Completed"},
+                function(resp, head) {
+                  module.submodules.data.forEach(function(submodule) {
+                    SubmoduleService.update({submodule: submodule.id}, {status: "Completed"},
+                      function(resp,header) {console.log(resp)});
+                  });
+                }
+              );
+            });
           },
           function (error) {
             console.log(error);
@@ -197,6 +217,7 @@
 
 
       vm.projectPopover = function($event, project){
+        console.log(project);
         $scope.deleteProject = vm.deleteProject;
         $scope.project = project;
         $scope.editProject = vm.editProject;

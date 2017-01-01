@@ -6,6 +6,7 @@ function ModuleCtrlFunction(
   appModalService,
   appPopoverService,
   ModuleData,
+  SubmoduleService,
   $stateParams,
   $state,
   $ionicHistory,
@@ -72,12 +73,26 @@ function ModuleCtrlFunction(
       });
   }
 
+  vm.completeModule = function(module) {
+    console.log(module);
+    ModuleData.update({module: module.id}, {status: "Completed"},
+      function(resp, header) {
+        if(resp.message === 'Module Updated!') {
+          module.submodules.data.forEach(function(submodule) {
+            SubmoduleService.update({submodule: submodule.id}, {status: "Completed"});
+          });
+        }
+      }
+    );
+  };
+
 }
 
 function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $scope) {
   // parameters is the project for this module
   var vm = this;
 
+  vm.module=parameters;
   vm.edit = parameters;
   if(parameters.availablePercentage) vm.availablePercentage = parameters.availablePercentage;
   if(!parameters.user) $scope.end = parameters.end;
@@ -135,4 +150,4 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     });
   };
 }
- 
+

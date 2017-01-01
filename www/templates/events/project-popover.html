@@ -4,11 +4,11 @@
     </ion-header-bar>
     <ion-content>
        <ion-list>
-        <ion-item menu-close ng-click="editProject(project)">
+        <ion-item menu-close ng-if="!(project.status === 'Completed')" ng-click="editProject(project)">
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
-        <ion-item menu-close ng-click="deleteProject(project.id)">
+        <ion-item menu-close ng-if="!(project.status === 'Completed')"  ng-click="deleteProject(project.id)">
           <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
         </ion-item>
@@ -16,7 +16,7 @@
 		    <i class="icon ion-android-map"></i>&nbsp;&nbsp;&nbsp;
           Meetings
         </ion-item>
-        <ion-item menu-close ng-click="openTagModal(project)">
+        <ion-item menu-close ng-if="!(project.status === 'Completed')"  ng-click="openTagModal(project)">
         <i class="icon ion-android-contacts"></i>&nbsp;&nbsp;&nbsp;
           Tag Associates
         </ion-item>
