@@ -4,17 +4,13 @@
     </ion-header-bar>
     <ion-content>
        <ion-list>
-        <ion-item menu-close ng-click="vm.editModule(module)">
+        <ion-item menu-close ng-if="!(vm.module.status === 'Completed')" ng-click="vm.editModule(module)">
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
-        <ion-item menu-close ng-click="vm.deleteModule()">
+        <ion-item menu-close ng-if="!(vm.module.status === 'Completed')" ng-click="vm.deleteModule()">
           <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
-        </ion-item>
-        <ion-item menu-close ng-click="">
-		    <i class="icon ion-android-map"></i>&nbsp;&nbsp;&nbsp;
-          Set Meeting
         </ion-item>
         <ion-item menu-close ng-click="">
         <i class="icon ion-android-person-add"></i>&nbsp;&nbsp;&nbsp;

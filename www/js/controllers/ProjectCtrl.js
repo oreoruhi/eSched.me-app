@@ -112,8 +112,8 @@
 
       vm.completeProject = function (project) {
         console.log(project);
-
-        // ugly fucking code
+        // TODO:dj complete of module and submodules
+        // ugly fucking cordovaDatePicker
         ProjectData.update({ project: project.id }, { status: "Completed" },
           function (resp, header) {
 
