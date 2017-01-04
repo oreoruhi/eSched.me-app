@@ -1,0 +1,29 @@
+<ion-modal-view class="ion-nifty-modal">
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">Enter New End Date</h1>
+    <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
+  <div class="ion-modal-content-custom">
+    <ion-content class="padding">
+
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label class="label-date">End Date</label>
+            </div>
+          </div>
+        </div>
+
+        <center>
+          <button type="button" class="button button-medium button-calm" type="button"
+                  ng-click="vm.updateModule(end)">
+            Update Module
+          </button>
+        </center>
+      </form>
+    </ion-content>
+  </div>
+</ion-modal-view>

@@ -42,7 +42,7 @@ angular.module('eSchedMe', [
 
       jwtOptionsProvider.config({
         whiteListedDomains: [
-          'localhost:3000',
+          '192.168.0.10:3000',
           '192.168.0.10:8100'
         ]
       });
@@ -80,7 +80,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "http://localhost:3000"
+      "URL": "http://192.168.0.10:3000"
     });
 
 

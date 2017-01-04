@@ -75,7 +75,7 @@ function ModuleCtrlFunction(
 
   vm.completeModule = function(module) {
     console.log(module);
-    ModuleData.update({module: module.id}, {status: "Completed"},
+    ModuleData.update({module: module.id}, {status: "completed"},
       function(resp, header) {
         if(resp.message === 'Module Updated!') {
           module.submodules.data.forEach(function(submodule) {
@@ -85,6 +85,21 @@ function ModuleCtrlFunction(
       }
     );
   };
+
+
+  vm.markAsOngoing = function (module) {
+    console.log(module);
+    module.end = new Date(module.end);
+    appModalService.show('templates/modals/module/mark-as-ongoing.html', 'ModuleModalCtrl as vm', module)
+      .then(function (result) {
+        if (!result) {
+          vm.closePopover();
+          $state.reload();
+        } else {
+          vm.closePopover();
+        }
+      });
+  }
 
 }
 
@@ -110,6 +125,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
 
   vm.updateModule = function (end) {
     vm.edit.end = end;
+    vm.edit.status = "ongoing";
     ModuleData.update({module: parameters.id}, vm.edit,
     function (resp,header) {
       vm.closeModal(resp);

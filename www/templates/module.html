@@ -21,10 +21,15 @@
           <i class="icon ion-clipboard"></i>
           Submodules
         </a>
-        <p ng-if="!(module.status === 'Completed')">|</p>
-        <a ng-click="vm.completeModule(module)" ng-if="!(module.status === 'Completed')" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+        <p ng-hide="module.status === 'completed' || module.status === 'failed'">|</p>
+        <a ng-click="vm.completeModule(module)" ng-hide="module.status === 'completed' || module.status === 'failed'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
           Complete
+        </a>
+        <p ng-show="module.status === 'failed'">|</p>
+        <a ng-click="vm.markAsOngoing(module)" ng-show="module.status === 'failed'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+          <i class="icon ion-play"></i>
+          On-Going
         </a>
       </div>
     </div>

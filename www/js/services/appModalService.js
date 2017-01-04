@@ -3,22 +3,25 @@
 
   var serviceId = 'appModalService';
   angular.module('eSchedMe').factory(serviceId, [
-    '$ionicModal', '$rootScope', '$q', '$injector', '$controller', '$ionicPlatform', '$cordovaDatePicker', appModalService
+    '$ionicModal', '$rootScope', '$q', '$injector', '$controller', '$ionicPlatform', '$cordovaDatePicker', 'ProjectData', appModalService
   ]);
 
-  function appModalService($ionicModal, $rootScope, $q, $injector, $controller, $ionicPlatform, $cordovaDatePicker) {
-
+  function appModalService($ionicModal, $rootScope, $q, $injector, $controller, $ionicPlatform, $cordovaDatePicker, ProjectData) {
+    var projectData;
     return {
       show: show
     }
 
     function show(templateUrl, controller, parameters) {
+      ProjectData.get({project: parameters.activity_id}, function (resp, header) {
+        projectData = resp;
+      });
       // Grab the injector and create a new scope
       var deferred = $q.defer(),
         ctrlInstance,
         modalScope = $rootScope.$new(),
         thisScopeId = modalScope.$id;
-
+      console.log(parameters);
       $ionicModal.fromTemplateUrl(templateUrl, {
         scope: modalScope,
         animation: 'fade-in-scale'
@@ -37,7 +40,8 @@
             var projectOptions = {
               date: new Date(),
               mode: 'date',
-              minDate: new Date().valueOf()
+              minDate: new Date().valueOf(),
+              maxDate: new Date(projectData.data[0].end).valueOf()
             };
             $cordovaDatePicker.show(projectOptions)
               .then(function(result) {
