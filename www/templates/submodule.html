@@ -18,8 +18,8 @@
           <i class="icon ion-android-cancel"></i>
           Delete
         </a>
-        <p ng-if="!(submodule.status === 'Completed')">|</p>
-        <a ng-click="ctrl.completeSubmodule(submodule)" ng-if="!(submodule.status === 'Completed')" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+        <p ng-hide="submodule.status === 'completed'">|</p>
+        <a ng-click="ctrl.completeSubmodule(submodule)" ng-hide="submodule.status === 'completed'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
           Complete
         </a>

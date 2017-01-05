@@ -78,9 +78,10 @@ function controllerFunction($stateParams, $rootScope, ModuleData, $log, Submodul
   }
 
   self.completeSubmodule = function(submodule) {
-    SubmoduleService.update({submodule: submodule.id}, {status: "Completed"},
+    SubmoduleService.update({submodule: submodule.id}, {status: "completed"},
       function(resp,header) {
         console.log(resp);
+        submodule.status = "completed";
       }
     );
   }
