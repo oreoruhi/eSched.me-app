@@ -22,8 +22,8 @@
           <i class="icon ion-android-clipboard"></i>
           Modules
         </a>
-        <p>|</p>
-        <a class="tab-item" ng-click="vm.completeProject(project)" style="background: #fff; color: #000;">
+        <p ng-hide="(project.status == 'completed') || (project.status == 'failed')">|</p>
+        <a ng-hide="(project.status == 'completed') || (project.status == 'failed')"class="tab-item" ng-click="vm.completeProject(project)" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
           Complete
         </a>

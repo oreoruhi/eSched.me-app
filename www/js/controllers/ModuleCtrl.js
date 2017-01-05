@@ -5,6 +5,7 @@ angular.module('eSchedMe')
 function ModuleCtrlFunction(
   appModalService,
   appPopoverService,
+  ProjectData,
   ModuleData,
   SubmoduleService,
   $stateParams,
@@ -35,6 +36,22 @@ function ModuleCtrlFunction(
       vm.availablePercentage -= obj.percentage;
     });
     vm.user = JSON.parse(window.localStorage.getItem('user'));
+    refreshData()
+  }
+
+  function refreshData() {
+    ProjectData.get({project: $stateParams.project.id},
+      function (resp, header) {
+        console.log(resp);
+        vm.project = resp.data;
+        vm.modules = resp.data.modules.data;
+        _.each(vm.modules, function(obj) {
+          obj.end = new Date(obj.end).toISOString();
+          obj.start = new Date(obj.start).toISOString();
+          console.log(obj.percentage);
+          vm.availablePercentage -= obj.percentage;
+        });
+      });
   }
 
 
@@ -79,9 +96,10 @@ function ModuleCtrlFunction(
       function(resp, header) {
         if(resp.message === 'Module Updated!') {
           module.submodules.data.forEach(function(submodule) {
-            SubmoduleService.update({submodule: submodule.id}, {status: "Completed"});
+            SubmoduleService.update({submodule: submodule.id}, {status: "completed"});
           });
         }
+        $state.reload();
       }
     );
   };
