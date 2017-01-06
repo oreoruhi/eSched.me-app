@@ -121,10 +121,9 @@ function ModuleCtrlFunction(
 
 }
 
-function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $scope) {
+function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $scope, $ionicModal, ProjectData, $http, API) {
   // parameters is the project for this module
   var vm = this;
-
   vm.module=parameters;
   vm.edit = parameters;
   if(parameters.availablePercentage) vm.availablePercentage = parameters.availablePercentage;
@@ -139,6 +138,60 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
           vm.closePopover();
         }
       });
+  };
+
+  vm.tagPeople = function (module) {
+    console.log(module);
+    ProjectData.get({project: module.activty_id}, function (resp, header) {
+      console.log(resp);
+      $scope.allTagged = resp.data.tagged.data;
+      $ionicModal
+        .fromTemplateUrl('templates/modals/module/tag-people.html', function (modal) {
+          $scope.module = module;
+          $scope.tagged = filterFriends(resp.data.tagged.data, module.tagged.data);
+          $scope.module.end = new Date(module.end);
+          $scope.closeModal = vm.closeModal;
+          $scope.addTag = vm.addTag;
+          $scope.unTag = vm.unTag;
+          vm.modal = modal;
+          vm.modal.show();
+        }, {
+          scope: $scope,
+          animation: 'fade-in-scale'
+        });
+    });
+  };
+
+  vm.addTag = function (module_id, user_id) {
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/module/' + module_id + '/tag',
+      data: {
+        "user_id": user_id
+      }
+    }).then(function (result) {
+      $scope.module = result.data.module.data;
+      $scope.tagged = filterFriends($scope.tagged, $scope.module.tagged.data);
+      console.log(result);
+    })
+  };
+
+  vm.unTag = function (module_id, user_id) {
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/module/' + module_id + '/untag',
+      data: {
+        "user_id": user_id
+      }
+    }).then(function (result) {
+      console.log(result);
+      $scope.module = result.data.module.data;
+      $scope.tagged = filterFriends($scope.allTagged, $scope.module.tagged.data);
+    })
+  };
+
+  vm.closeModule = function () {
+    vm.modal.hide();
   };
 
   vm.updateModule = function (end) {
@@ -183,5 +236,17 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
       console.log(error);
     });
   };
+
+  function filterFriends(friends, tagged) {
+    var taggedId = {};
+
+    tagged.forEach(function (obj) {
+      taggedId[obj.id] = obj;
+    });
+
+    return friends.filter(function (obj) {
+      return !(obj.id in taggedId);
+    })
+  }
 }
 

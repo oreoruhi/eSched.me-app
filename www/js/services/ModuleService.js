@@ -7,6 +7,13 @@
 
     function ModuleServiceFunction($http, $resource, API) {
 
-       return $resource(API.URL + '/api/v1/module/:module', {module: '@module'});
+       return $resource(API.URL + '/api/v1/module/:module', {module: '@module'}, {
+         tag: {
+           method: 'POST'
+         },
+         untag: {
+           method: 'POST'
+         }
+       });
     }
 })();
