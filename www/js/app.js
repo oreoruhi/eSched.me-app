@@ -42,7 +42,7 @@ angular.module('eSchedMe', [
 
       jwtOptionsProvider.config({
         whiteListedDomains: [
-          'api.diaz.tech',
+          '192.168.0.10:3000',
           '192.168.0.10:8100'
         ]
       });
@@ -80,7 +80,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "https://api.diaz.tech"
+      "URL": "http://192.168.0.10:3000"
     });
 
 

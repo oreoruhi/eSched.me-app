@@ -144,11 +144,12 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     console.log(module);
     ProjectData.get({project: module.activty_id}, function (resp, header) {
       console.log(resp);
+      console.log(module.tagged.data)
       $scope.allTagged = resp.data.tagged.data;
       $ionicModal
         .fromTemplateUrl('templates/modals/module/tag-people.html', function (modal) {
           $scope.module = module;
-          $scope.tagged = filterFriends(resp.data.tagged.data, module.tagged.data);
+          $scope.tagged = filterFriends($scope.allTagged, module.tagged.data);
           $scope.module.end = new Date(module.end);
           $scope.closeModal = vm.closeModal;
           $scope.addTag = vm.addTag;
@@ -190,7 +191,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     })
   };
 
-  vm.closeModule = function () {
+  vm.closeModal = function () {
     vm.modal.hide();
   };
 
