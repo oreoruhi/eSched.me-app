@@ -14,7 +14,8 @@ angular.module('eSchedMe', [
   'underscore',
   'ngCookies',
   'ngResource',
-  'ngCordova'
+  'ngCordova',
+  'doowb.angular-pusher',
   ])
 
   .run(function ($ionicPlatform, $http) {
@@ -35,10 +36,13 @@ angular.module('eSchedMe', [
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, jwtOptionsProvider, PusherServiceProvider) {
 
       $ionicConfigProvider.tabs.position('bottom');
       $ionicConfigProvider.navBar.alignTitle('center');
+      PusherServiceProvider
+        .setToken('d1f6553019debfee60fb')
+        .setOptions({ cluster: 'ap1' });
 
       jwtOptionsProvider.config({
         whiteListedDomains: [

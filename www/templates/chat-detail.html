@@ -3,14 +3,15 @@
     <section class="chats">
 
       <span>
-        <span>
-          <p class="username">Adan France Cruz</p>
+        <span ng-repeat="msg in vm.messages | orderBy: 'created_at'">
+           <!--TODO : Parent Message not appearing because of null-->
+          <p ng-hide="msg.sender_id == vm.user_id" class="username">Adan France Cruz</p>
           <!-- Possibly use ng-class for class changing here -->
-          <div class="from-them">
-            <p>'Sup? Need my join algorithms?</p>
+          <div ng-hide="msg.sender_id == vm.user_id" class="from-them">
+            <p>{{msg.message}}</p>
           </div>
-          <div class="from-me">
-            <p>Sure, send them to me later.</p>
+          <div ng-show="msg.sender_id == vm.user_id" class="from-me">
+            <p>{{msg.message}}</p>
           </div>
           <div class="clear"></div>
         </span>
