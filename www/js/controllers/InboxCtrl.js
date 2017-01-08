@@ -17,7 +17,7 @@
     function _init() {
       $http.get(API.URL + '/api/v1/me/messages')
         .then(function(result) {
-          self.messages = result.data;
+          self.messages = result.data.data;
           console.log(self.messages);
         });
       self.user = window.localStorage.getItem('user_id');
