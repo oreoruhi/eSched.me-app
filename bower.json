@@ -16,6 +16,7 @@
     "ngCordova": "^0.1.27-alpha",
     "underscore": "^1.8.3",
     "angular-underscore-module": "^1.0.3",
-    "angularbknd-sdk": "^1.8.11"
+    "angularbknd-sdk": "^1.8.11",
+    "angular-pusher": "latest"
   }
 }

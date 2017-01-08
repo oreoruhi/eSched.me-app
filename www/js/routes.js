@@ -186,18 +186,28 @@ angular.module('eSchedMe')
         url: '/inbox',
         views: {
           'menuContent': {
-            templateUrl: 'templates/inbox.html'
+            templateUrl: 'templates/inbox.html',
+            controller: 'InboxCtrl as vm'
           }
         }
       })
 
       .state('dashboard.chat', {
         // cache: false,
-        url: '/chat',
+        url: '/chat/:id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/chat-detail.html'
+            templateUrl: 'templates/chat-detail.html',
+            controller: 'ChatDetailCtrl as vm'
           }
+        },
+        resolve: {
+          requests: function ($http, $stateParams) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me/messages/' + $stateParams.id
+            });
+          },
         }
       })
 

@@ -1,10 +1,11 @@
 <ion-view view-title="Inbox">
   <ion-content class="content-body">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/dashboard/chat">
+      <ion-item ng-repeat="msg in vm.messages" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="dashboard.chat({id: msg.id})">
         <img ng-src="./img/no-image.jpg">
-        <h2>Adan France Cruz</h2>
-        <p>'Sup? Need my join algorithms?</p>
+        <h2 ng-hide="msg.sender_id == vm.user">{{msg.sender.data.first_name}} {{msg.sender.data.last_name}}</h2>
+        <h2 ng-hide="msg.receiver_id == vm.user">{{msg.receiver.data.first_name}} {{msg.receiver.data.last_name}}</h2>
+        <p>{{msg.message}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive">
