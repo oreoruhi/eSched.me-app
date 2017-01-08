@@ -2,27 +2,24 @@
   <ion-content class="content-body padding">
     <section class="chats">
 
+      <span ng-repeat="msg in vm.messages | orderBy: 'created_at'" >
+          <!--TODO : Parent Message not appearing because of null-->
+        <p ng-hide="msg.sender_id == vm.user_id" class="username">Adan France Cruz</p>
+        <!-- Possibly use ng-class for class changing here -->
+        <div ng-hide="msg.sender_id == vm.user_id" class="from-them">
+          <p>{{msg.message}}</p>
+        </div>
+        <div ng-show="msg.sender_id == vm.user_id" class="from-me">
+          <p>{{msg.message}}</p>
+        </div>
+        <div class="clear"></div>
+      </span>
       <span>
-        <span ng-repeat="msg in vm.messages | orderBy: 'created_at'">
-           <!--TODO : Parent Message not appearing because of null-->
-          <p ng-hide="msg.sender_id == vm.user_id" class="username">Adan France Cruz</p>
-          <!-- Possibly use ng-class for class changing here -->
-          <div ng-hide="msg.sender_id == vm.user_id" class="from-them">
-            <p>{{msg.message}}</p>
-          </div>
-          <div ng-show="msg.sender_id == vm.user_id" class="from-me">
-            <p>{{msg.message}}</p>
-          </div>
-          <div class="clear"></div>
-        </span>
-        <span>
-          <p class="notification"></p>
-        </span>
+        <p class="notification"></p>
       </span>
 
     </section>
   </ion-content>
-
   <form name="sendMessageForm" novalidate>
       <ion-footer-bar class="bar-stable item-input-insetmessage-footer" keyboard-attach>
               <input id="msg-input" class="input-message" type="text" placeholder="Message">
