@@ -46,7 +46,7 @@ angular.module('eSchedMe', [
 
       jwtOptionsProvider.config({
         whiteListedDomains: [
-          '192.168.0.10:3000',
+          'api.diaz.tech',
           '192.168.0.10:8100'
         ]
       });
@@ -73,7 +73,7 @@ angular.module('eSchedMe', [
 
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-          if(toState.name == 'dashboard.module') {
+          if(toState.name == 'dashboard.module' || toState.name == 'dashboard.submodule' || toState.name == 'dashboard.chat') {
             return;
           } else {
             $ionicHistory.nextViewOptions({
@@ -84,7 +84,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "http://192.168.0.10:3000"
+      "URL": "https://api.diaz.tech"
     });
 
 
