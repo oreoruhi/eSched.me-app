@@ -22,9 +22,9 @@
   </ion-content>
   <form name="sendMessageForm" novalidate>
       <ion-footer-bar class="bar-stable item-input-insetmessage-footer" keyboard-attach>
-              <input ng-model="chatMessage" id="msg-input" class="input-message" type="text" placeholder="Message">
+              <input ng-model="vm.chatMessage" id="msg-input" class="input-message" type="text" placeholder="Message">
               <div class="footer-btn-wrap">
-                <button ng-click="vm.sendMessage(vm.receiver_id, chatMessage)" class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
+                <button ng-click="vm.sendMessage(vm.receiver_id, vm.chatMessage)" class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
                 </button>
               </div>
       </ion-footer-bar>
