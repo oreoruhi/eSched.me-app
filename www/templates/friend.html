@@ -23,7 +23,7 @@
 			      <ion-item ng-repeat="person in friend.friends" ui-sref="dashboard.otheruser({id: person.id})">
 			        <img class="post-profile-image" src="./img/no-image.jpg">
 			        {{person.first_name}} {{person.last_name}}
-  				    <ion-option-button class="button-calm" ng-click="friend.openModalMessageAssociate()">Message</ion-option-button>
+  				    <ion-option-button class="button-calm" ng-click="friend.openModalMessageAssociate(person.id)">Message</ion-option-button>
   				    <ion-option-button class="button-assertive" ng-click="friend.deleteRequest(person.id)">Unfollow</ion-option-button>
 			      </ion-item>
 			    </ion-list>

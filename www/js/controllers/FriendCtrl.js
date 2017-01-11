@@ -52,7 +52,8 @@
 
 
 
-  self.openModalMessageAssociate = function() {
+  self.openModalMessageAssociate = function(id) {
+    modalScope.id = id;
     $ionicModal.fromTemplateUrl('templates/modals/message-associate.html', {
       scope: modalScope,
       animation: 'fade-in-scale'
@@ -65,6 +66,23 @@
   modalScope.closeModal = function() {
     self.modal.hide();
   };
+
+  modalScope.sendMessage = function(id, textMessage) {
+    console.log(id, textMessage);
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/user/' + id + '/message',
+      data: {
+        "message": textMessage
+      }
+    }).then(function(result) {
+      console.log(result);
+      self.modal.hide();
+      // TODO : Redirect the user to the chat detail
+      var chatDetailId = result.data.parent_id ? result.data.parent_id : result.data.id;
+      $state.go('dashboard.chat', {id: chatDetailId});
+    });
+  }
 
     _init();
   }
