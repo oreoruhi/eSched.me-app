@@ -13,6 +13,7 @@
     $log,
     DataService,
     $ionicModal,
+    $ionicLoading,
     $rootScope,
     $ionicPlatform,
     $cordovaDatePicker,
@@ -38,6 +39,7 @@
       window.localStorage.setItem('user',JSON.stringify(user.data.data));
       self.user = JSON.parse(window.localStorage.getItem('user'));
       self.personalTasks = self.user.personal_tasks.data;
+      $ionicLoading.hide();
     }
 
     self.openModalEditProfile = function() {

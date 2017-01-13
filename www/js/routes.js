@@ -1,5 +1,5 @@
 angular.module('eSchedMe')
-  .config(['$stateProvider', 'API', function ($stateProvider, API) {
+  .config(['$stateProvider', 'API', function ($stateProvider, API, $ionicLoading) {
     $stateProvider
       .state('signup', {
         url: '/signup',
@@ -50,7 +50,8 @@ angular.module('eSchedMe')
           }
         },
         resolve: {
-          user: function($http) {
+          user: function($http, $ionicLoading) {
+            $ionicLoading.show({template: '<ion-spinner>'});
             return $http({
               method: 'GET',
               url: API.URL + '/api/v1/me'

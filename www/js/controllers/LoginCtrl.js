@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function ($http, $state, $rootScope, $cookieStore,LoginService, ionicToast) {
+    .controller('LoginCtrl', function ($http, $state, $rootScope, $cookieStore,LoginService, ionicToast, $ionicLoading) {
         var login = this;
 
         function clearLogin() {
@@ -9,6 +9,7 @@ angular.module('eSchedMe.controllers', [])
         }
 
         function signin() {
+            $ionicLoading.show({template: '<ion-spinner>'});
             LoginService.signin(login.email, login.password)
                 .then(function (result) {
                     console.log(result);
@@ -29,6 +30,7 @@ angular.module('eSchedMe.controllers', [])
             $rootScope.$broadcast('authorized');
             login.email = '';
             login.password = '';
+            $ionicLoading.hide();
             $state.go('dashboard.newsfeed');
         }
 

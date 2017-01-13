@@ -12,6 +12,7 @@ DataCtrlFunction.$inject = [
   '$ionicModal',
   '$ionicHistory',
   '$ionicPopover',
+  '$ionicLoading',
   '$ionicPlatform',
   '$cordovaDatePicker',
   '$location',
@@ -30,6 +31,7 @@ function DataCtrlFunction(
   $ionicModal,
   $ionicHistory,
   $ionicPopover,
+  $ionicLoading,
   $ionicPlatform,
   $cordovaDatePicker,
   $location,
@@ -111,7 +113,7 @@ function DataCtrlFunction(
     ProjectData.delete({project: id},
       function(resp, header){
         console.log('Project is successfully deleted');
-        modalScope.popover.hide();
+        modalScope.popover.hide();$pr
         $state.go('dashboard.project');
       },
       function(error) {
