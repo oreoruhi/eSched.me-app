@@ -11,10 +11,11 @@
     '$http',
     'requests',
     'Pusher',
-    '$ionicScrollDelegate'
+    '$ionicScrollDelegate',
+    '$ionicLoading'
   ];
 
-  function controllerFunction(API, $stateParams, $http, requests, Pusher, $ionicScrollDelegate) {
+  function controllerFunction(API, $stateParams, $http, requests, Pusher, $ionicScrollDelegate, $ionicLoading) {
     var self = this;
 
     function _init() {
@@ -24,9 +25,7 @@
       self.sender_id = self.messages[0].sender_id != self.user_id ? self.messages[0].sender_id : self.user_id;
       self.receiver_id = self.messages[0].receiver_id != self.user_id ? self.messages[0].receiver_id : self.messages[0].sender_id;
       setTimeout(function() {$ionicScrollDelegate.scrollBottom(true);}, 500);
-      // TODO : Give focus to the latest chat pushed
       Pusher.subscribe('message.' + self.user_id, 'App\\Events\\ChatEvent', function(message) {
-        // TODO : Figure out if the message is new or not, if new create new parent else, add to parent
         console.log(message);
         var msg = message.message;
         if (msg.sender_id == self.user_id || msg.receiver_id == self.user_id) {
@@ -37,6 +36,7 @@
     };
 
     self.sendMessage = function(id, message) {
+      $ionicLoading.show({template: '<ion-spinner>'});
       $ionicScrollDelegate.scrollBottom(true);
       console.log("id: " + id);
       console.log("msg: " + message);
@@ -49,6 +49,7 @@
         }
       }).then(function(result) {
         console.log(result);
+        $ionicLoading.hide();
         if(result.status == 200) {
           self.messages.push(result.data);
           $ionicScrollDelegate.scrollBottom(true);
