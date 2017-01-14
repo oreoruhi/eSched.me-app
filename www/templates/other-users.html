@@ -29,7 +29,7 @@
         </div>
         <div class="button-bar" ng-show="vm.user.meta.friends">
           <button ng-click="vm.deleteRelation(vm.user.data.id)" class="button button-block button-border ion-android-close icon-left button-assertive">Unfollow</button>
-          <button class="button button-block button-border ion-chatboxes icon-left button-calm" ng-click="profile.openModalMessageAssociate()">Message</button>
+          <button class="button button-block button-border ion-chatboxes icon-left button-calm" ng-click="vm.openModalMessageAssociate(vm.user.data.id)">Message</button>
         </div>
       </div>
     </div>

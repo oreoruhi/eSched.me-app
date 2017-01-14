@@ -1,9 +1,15 @@
 angular.module('eSchedMe')
   .controller('OtherUsersCtrl', OtherUsers);
 
-function OtherUsers($stateParams, $state,$http, API) {
+function OtherUsers(
+    $stateParams,
+    $state,
+    $http,
+    $rootScope,
+    $ionicModal,
+    API) {
   var vm = this;
-
+  var modalScope = $rootScope.$new(true);
   vm.user = null;
 
 
@@ -62,5 +68,37 @@ function OtherUsers($stateParams, $state,$http, API) {
     });
   };
 
+  vm.openModalMessageAssociate = function(id) {
+    modalScope.id = id;
+    $ionicModal.fromTemplateUrl('templates/modals/message-associate.html', {
+      scope: modalScope,
+      animation: 'fade-in-scale'
+    }).then(function(modal) {
+      vm.modal = modal;
+      vm.modal.show();
+    });
+  };
+
   vm.init();
+
+  modalScope.closeModal = function() {
+    vm.modal.hide();
+  };
+
+  modalScope.sendMessage = function(id, textMessage) {
+    console.log(id, textMessage);
+    $http({
+      method: 'POST',
+      url: API.URL + '/api/v1/user/' + id + '/message',
+      data: {
+        "message": textMessage
+      }
+    }).then(function(result) {
+      console.log(result);
+      vm.modal.hide();
+      // TODO : Redirect the user to the chat detail
+      var chatDetailId = result.data.parent_id ? result.data.parent_id : result.data.id;
+      $state.go('dashboard.chat', {id: chatDetailId});
+    });
+  }
 }
