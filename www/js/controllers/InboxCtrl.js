@@ -14,6 +14,7 @@
   function controllerFunction(API, Pusher, $http) {
     var self = this;
     self.messages = [];
+
     function _init() {
       $http.get(API.URL + '/api/v1/me/messages')
         .then(function(result) {
@@ -22,6 +23,10 @@
         });
       self.user = window.localStorage.getItem('user_id');
       console.log(self.user);
+    }
+
+    self.delete = function() {
+      
     }
 
     _init();
