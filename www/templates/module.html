@@ -34,10 +34,9 @@
       </div>
     </div>
   </ion-content>
-  <ion-floating-button ng-if="vm.project.user.data.id == vm.user.id" ng-show="vm.availablePercentage"
+  <ion-floating-button ng-if="vm.project.user.data.id == vm.user.id" ng-show="vm.availablePercentage > 0"
     ng-click="vm.createModule()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
 
   <!--ng-show="moduleCtrl.remainingPercentage" ng-if= "moduleCtrl.project.user_id == moduleCtrl.userId"-->
 </ion-view>
-
