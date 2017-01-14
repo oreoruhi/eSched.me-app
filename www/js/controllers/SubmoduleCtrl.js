@@ -9,7 +9,7 @@ function controllerFunction($stateParams, $rootScope, ModuleData, $log, Submodul
   function _init() {
     $log.info('Initializing Submodule Controller');
     self.module = module.data;
-    self.maxPercentage = self.module.percentage;
+    self.maxPercentage = 100;
     self.availablePercentage = self.maxPercentage;
     _.each(self.module.submodules.data, function(obj) {
       self.availablePercentage -= obj.percentage;

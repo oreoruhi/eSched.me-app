@@ -32,7 +32,7 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <span>1</span>
+              <span>min: 1% max: {{availablePercentage}}%</span>
               <input type="range" min="1" max="{{availablePercentage}}" value="{{percentage}}" ng-model="percentage">
               <h4>Percentage: {{percentage}}%</h4>
               <span>{{remainingPercentage}}</span>
