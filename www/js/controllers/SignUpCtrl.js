@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('eSchedMe')
-  app.controller('SignUpCtrl', function($cordovaFacebook, $state, $rootScope, LoginService, AuthService, ionicToast, $http, API) {
+  app.controller('SignUpCtrl', function($cordovaFacebook, $state, $rootScope, LoginService, AuthService, ionicToast, $http, $ionicLoading,API) {
     var self = this;
 
     function _init() {
@@ -13,6 +13,7 @@
     self.socialSignIn = function(provider) {
       $cordovaFacebook.login(["public_profile", "email"])
         .then(function(success) {
+          $ionicLoading.show({template: '<ion-spinner>'});
           fblogin(success);
         }, function (error) {
           console.log(error);
@@ -25,6 +26,7 @@
           window.localStorage.setItem('id_token', result.data.token);
           $http.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.token;
           $rootScope.$broadcast('authorized');
+          $ionicLoading.hide();
           $state.go('dashboard.newsfeed');
       });
     }
