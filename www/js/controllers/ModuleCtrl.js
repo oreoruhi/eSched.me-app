@@ -16,6 +16,7 @@ function ModuleCtrlFunction(
   ) {
 
   var vm = this;
+  vm.taggedModules = [];
 
   init();
 
@@ -28,15 +29,33 @@ function ModuleCtrlFunction(
     console.log($stateParams.module);
     vm.project = $stateParams.project;
     vm.modules = $stateParams.module;
+    console.log("yung nagchecheck ng tagged");
     console.log(vm.modules);
+    vm.user = JSON.parse(window.localStorage.getItem('user'));
+
+    if(vm.project.user.data.id == vm.user.id){
+      vm.myModules = $stateParams.module;
+    } else {
+      vm.myModules = [];
+      vm.modules.forEach(function(module){
+        console.log(module);
+        module.tagged.data.forEach(function(user){
+          if(user.id == vm.user.id){
+            vm.myModules.push(module);
+          }
+        });
+      });
+    }
     _.each(vm.modules, function(obj) {
       obj.end = new Date(obj.end).toISOString();
       obj.start = new Date(obj.start).toISOString();
       console.log(obj.percentage);
       vm.availablePercentage -= obj.percentage;
+      console.log("chenaboo sa loob ng obj");
+      console.log(obj.tagged);
+      console.log(vm.user);
     });
-    vm.user = JSON.parse(window.localStorage.getItem('user'));
-    refreshData()
+    refreshData();
   }
 
   function refreshData() {

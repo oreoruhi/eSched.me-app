@@ -7,7 +7,8 @@
     <div id="profile-bg"></div>
     <div id="content">
       <div id="profile-info">
-        <img id="profile-image" src="./img/no-image.jpg">
+        <img ng-if="vm.user.data.img_name" id="profile-image" ng-src="https://esched.me/prof_imgs/{{vm.user.data.img_name}}">
+        <img id="profile-image" ng-hide="vm.user.data.img_name" src="./img/no-image.jpg">
         <!-- Replace image of user here -->
         <h3 id="profile-name">{{vm.user.data.first_name}} {{vm.user.data.last_name}}</h3>
         <span id="profile-description" class="padding">{{vm.user.data.occupation}}</span><br><br>
