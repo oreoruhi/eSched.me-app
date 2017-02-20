@@ -92,7 +92,8 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "https://api.diaz.tech"
+       "URL": "https://api.diaz.tech"
+      //"URL": "http://localhost:3000"
     });
 
 
