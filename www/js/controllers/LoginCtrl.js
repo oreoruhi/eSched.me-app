@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function ($cordovaFacebook, $http, $state, $rootScope, $cookieStore,LoginService, ionicToast, $ionicLoading) {
+    .controller('LoginCtrl', function ($http, $state, $rootScope, $cookieStore,LoginService, ionicToast, $ionicLoading) {
         var login = this;
 
         function clearLogin() {
@@ -25,27 +25,6 @@ angular.module('eSchedMe.controllers', [])
                     }
                 })
 
-        }
-
-        login.socialSignIn = function(provider) {
-          $cordovaFacebook.login(["public_profile", "email"])
-            .then(function(success) {
-              $ionicLoading.show({template: '<ion-spinner>'});
-              fblogin(success);
-            }, function (error) {
-              console.log(error);
-            });
-        };
-
-        function fblogin(success) {
-          $http.post( API.URL + '/auth/fblogin', success)
-            .then(function(result) {
-              window.localStorage.setItem('id_token', result.data.token);
-              $http.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.token;
-              $rootScope.$broadcast('authorized');
-              $ionicLoading.hide();
-              $state.go('dashboard.newsfeed');
-          });
         }
 
         function onLogin(){

@@ -9,33 +9,29 @@
             	<br>
             	<form ng-submit="login.signin()">
 			         <div class="list marginPut">
-                <div class="group">
-                  <input type="email" id="email" name="email" ng-model="login.email" style="color:#fff;" required autocomplete="off">
-                  <span class="highlight"></span>
-                  <span class="bar-input"></span>
-                  <label>Email</label>
-                </div>
+					  <div class="group">
+					    <input type="email" id="email" name="email" ng-model="login.email" style="color:#fff;" required autocomplete="off">
+					    <span class="highlight"></span>
+					    <span class="bar-input"></span>
+					    <label>Email</label>
+					  </div>
 
-                <div class="group">
-                  <input type="password" id="email" name="email" ng-model="login.password" style="color:#fff;" required autocomplete="off">
-                  <span class="highlight"></span>
-                  <span class="bar-input"></span>
-                  <label>Password</label>
-                </div>
+					  <div class="group">
+					    <input type="password" id="email" name="email" ng-model="login.password" style="color:#fff;" required autocomplete="off">
+					    <span class="highlight"></span>
+					    <span class="bar-input"></span>
+					    <label>Password</label>
+					  </div>
 			        </div>
-			       <div class="marginPut">
+			        <div class="marginPut">
 			          <button class="button button-full button-calm marginButton">
 			            Log In <i class="fa fa-sign-in"></i>
 			          </button>
 			       </div>
             	</form>
-			       <div class="marginPut">
-			          <button class="button button-full button-positive marginButton" ng-click="login.socialSignIn('facebook')">
-			            Login with Facebook <i class="fa fa-sign-in"></i>
-			          </button>
-			       </div>
+
 	            <div class = "text-center">
-	                Don't have an account yet? <strong><a href = "#/signup-form" style="color: #fff;text-decoration:none;">Sign up now!</a></strong>
+	                Don't have an account yet? <strong><a href = "#/signup" style="color: #fff;text-decoration:none;">Sign up now!</a></strong>
 	            </div>
             </div>
         </section>

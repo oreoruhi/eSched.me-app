@@ -1,6 +1,12 @@
 angular.module('eSchedMe')
   .config(['$stateProvider', 'API', function ($stateProvider, API, $ionicLoading) {
     $stateProvider
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'templates/signup.html',
+        controller: 'SignUpCtrl as signup'
+      })
+
       .state('login', {
         // cache: false,
         url: '/',
