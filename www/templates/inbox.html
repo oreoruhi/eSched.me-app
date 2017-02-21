@@ -25,11 +25,10 @@
         <ion-content class="content-body">
             <div style="margin-top: 44px;"></div>
               <ion-list>
-                <ion-item ng-repeat="gc in vm.group_messages" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-href="#/dashboard/groupchat/{{msg.id}}">
+                <ion-item ng-repeat="gc in vm.group_messages" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="dashboard.groupchat({id: gc.id})">
                   <img ng-src="./img/no-image.jpg">
                   <h2>{{gc.group_name}}</h2>
                   <p>New module updated!</p>
-
                 </ion-item>
               </ion-list>
         </ion-content>

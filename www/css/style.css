@@ -304,6 +304,38 @@ p.notification{
   clear: both;
 }
 
+.system-msg {
+  position: relative;
+  padding: 10px 20px;
+  color: white;
+  background: #0B93F6;
+  border-radius: 0px;
+  float: right;
+}
+.system-msg:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -2px;
+  right: 50%;
+  height: 20px;
+  border-right: 20px solid #0B93F6;
+  border-bottom-left-radius: 0;
+  -webkit-transform: translate(0, -2px);
+}
+.system-msg:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -56px;
+  width: 26px;
+  height: 20px;
+  background: #243547;
+  border-bottom-left-radius: 0;
+  -webkit-transform: translate(-30px, -2px);
+}
+
 .from-me {
   position: relative;
   padding: 10px 20px;
