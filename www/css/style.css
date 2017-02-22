@@ -13,7 +13,7 @@
 }
 
 .login-container > .signUp > .button-row img {
-    max-width: 80%;
+    max-width: 50%;
 }
 
 .login-container > .signUp > .sign-in {
@@ -21,7 +21,7 @@
 }
 
 .login-container > .esched-img img {
-    max-width: 80%;
+    max-width: 50%;
     padding-top: 15%;
 }
 
@@ -110,13 +110,14 @@ input:focus ~ label, input:valid ~ label,  .label-date  {
  width:100%;
  background-color:transparent;
  pointer-events: none;
+ border-bottom: 1px solid #fff;
 }
 
 .bar-input:before, .bar-input:after   {
   content:'';
   height:2px;
   width:0;
-  bottom:1px;
+  bottom:0;
   position:absolute;
   background:#fff;
   transition:0.2s ease all;

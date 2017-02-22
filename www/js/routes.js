@@ -1,12 +1,6 @@
 angular.module('eSchedMe')
   .config(['$stateProvider', 'API', function ($stateProvider, API, $ionicLoading) {
     $stateProvider
-      .state('signup', {
-        url: '/signup',
-        templateUrl: 'templates/signup.html',
-        controller: 'SignUpCtrl as signup'
-      })
-
       .state('login', {
         // cache: false,
         url: '/',
@@ -36,6 +30,15 @@ angular.module('eSchedMe')
         views: {
           'menuContent': {
             templateUrl: 'templates/newsfeed.html'
+          }
+        }
+      })
+
+      .state('dashboard.tags', {
+        url: '/tags',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/tag-requests.html'
           }
         }
       })
@@ -168,16 +171,6 @@ angular.module('eSchedMe')
               method: 'GET',
               url: API.URL + '/api/v1/me/friends'
             });
-          }
-        }
-      })
-
-      .state('dashboard.notification', {
-        // cache: false,
-        url: '/notification',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/notification.html'
           }
         }
       })
