@@ -34,6 +34,15 @@ angular.module('eSchedMe')
         }
       })
 
+      .state('dashboard.tags', {
+        url: '/tags',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/tag-requests.html'
+          }
+        }
+      })
+
       .state('dashboard.profile', {
         cache: false,
         url: '/profile',
@@ -162,16 +171,6 @@ angular.module('eSchedMe')
               method: 'GET',
               url: API.URL + '/api/v1/me/friends'
             });
-          }
-        }
-      })
-
-      .state('dashboard.notification', {
-        // cache: false,
-        url: '/notification',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/notification.html'
           }
         }
       })
