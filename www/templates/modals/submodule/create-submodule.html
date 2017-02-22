@@ -5,14 +5,14 @@
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <form action="">
+      <form action="" name="formchecker">
         <div class="row">
           <div class="col">
             <div class="group">
               <input type="text" id="name" name="name" ng-model="name" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Name</label>
+              <label>Title</label>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <input type="text" id="description" name="description" ng-model="description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Core Objective</label>
+              <label>Description</label>
             </div>
           </div>
         </div>
@@ -32,19 +32,17 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <span>min: 1% max: {{availablePercentage}}%</span>
-              <input type="range" min="1" max="{{availablePercentage}}" value="{{percentage}}" ng-model="percentage">
-              <h4>Percentage: {{percentage}}%</h4>
-              <span>{{remainingPercentage}}</span>
-              <label>Percentage</label>
+              <input type="range" min="1" max="{{availablePercentage}}" value="{{percentage}}" ng-model="percentage" required>
+              <span>Taken percent: {{percentage}}% Max percent: {{availablePercentage}}%</span>
+              <label class="label-date">Percentage</label>
             </div>
           </div>
         </div>
 
         <center>
-          <button type="button" class="button button-medium button-calm" type="button"
+          <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
                   ng-click="createNewSubmodule(name, description, percentage)">
-            Create Sub Module
+            Add Sub Module
           </button>
         </center>
       </form>

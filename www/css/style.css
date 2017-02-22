@@ -69,7 +69,14 @@ and (max-device-width : 1024px)  {
 
 /*Material-like Inputs*/
 
-input {
+.item-select {
+  color: #fff;
+  background: transparent;
+  border: transparent;
+
+}
+
+input, input[readonly]:not(.cloned-text-input) {
   color: #fff;
   font-size:15px;
   padding:5px 5px 5px 3px;
@@ -376,3 +383,8 @@ p.notification{
 .chats {
   margin-bottom: 75px;
 }
+
+.fixed-header{
+  margin-top:43px;
+}
+

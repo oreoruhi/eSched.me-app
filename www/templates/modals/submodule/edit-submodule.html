@@ -5,14 +5,14 @@
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <form action="">
+      <form action="" name="formchecker">
         <div class="row">
           <div class="col">
             <div class="group">
               <input type="text" id="name" name="name" ng-model="data.title" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Submodule Name</label>
+              <label>Title</label>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <input type="text" id="description" name="description" ng-model="data.description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Core Objective</label>
+              <label>Description</label>
             </div>
           </div>
         </div>
@@ -42,9 +42,9 @@
         </div>-->
 
         <center>
-        <button type="button" class="button button-medium button-calm" type="button"
+        <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
                 ng-click="editSubmodule(data.id, data.title, data.description)">
-          Update Submodule
+          Update Sub Module
         </button>
       </center>
       </form>

@@ -84,7 +84,9 @@
             $scope.closeModal = vm.closeModal;
             $scope.editDatePicker = vm.openDatePicker;
             $scope.project = project;
+            $scope.project.budget = parseInt(project.budget)
             $scope.project.end = new Date(project.end);
+            $scope.project.start = new Date(project.start);
             vm.modal = modal;
             vm.modal.show();
         }, {
@@ -93,13 +95,16 @@
         });
       }
 
-      vm.updateProject = function(id, title, desc, end, priority) {
+      vm.updateProject = function(id, title, desc, budget, vendor, start, end, priority) {
         $http({
           method: 'PATCH',
           url: API.URL + '/api/v1/activity/' + id,
           data: {
             'title': title,
             'desc': desc,
+            'budget': budget,
+            'vendor': vendor,
+            'start': start,
             'end': end,
             'priority': priority
           }
