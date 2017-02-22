@@ -38,7 +38,8 @@ angular.module('eSchedMe')
         url: '/tags',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tag-requests.html'
+            templateUrl: 'templates/tag-requests.html',
+            controller: 'TagsCtrl as vm'
           }
         }
       })
