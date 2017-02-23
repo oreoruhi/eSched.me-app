@@ -5,14 +5,14 @@
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <form action="">
+      <form action="" name="formchecker">
         <div class="row">
           <div class="col">
             <div class="group">
               <input type="text" id="name" name="name" ng-model="vm.edit.title" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Module Name</label>
+              <label>Title</label>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <input type="text" id="description" name="description" ng-model="vm.edit.description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Core Objective</label>
+              <label>Description</label>
             </div>
           </div>
         </div>
@@ -46,11 +46,24 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="vm.edit.priority">
-                <option value="1" ng-selected="vm.edit.priority == 1">Low</option>
-                <option value="2" ng-selected="vm.edit.priority == 2">Moderate</option>
-                <option value="3" ng-selected="vm.edit.priority == 3">High</option>
+              <select class="item item-input item-select" style="width:100%;" required>
+                <option value="" selected="selected" hidden disabled>Select risk level</option>
+                <option value="1">Low</option>
+                <option value="2">Moderate</option>
+                <option value="3">High</option>
               </select>
+              <label class="label-date">Risk Level</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>
+              <label class="label-date">Date Range (Start)</label>
             </div>
           </div>
         </div>
@@ -61,13 +74,13 @@
               <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label class="label-date">End Date</label>
+              <label class="label-date">Date Range (Eng)</label>
             </div>
           </div>
         </div>
 
         <center>
-        <button type="button" class="button button-medium button-calm" type="button"
+        <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
                 ng-click="vm.updateModule(end)">
           Update Module
         </button>

@@ -9,6 +9,9 @@
       <div class="item item-body" style="border-bottom: 1px solid #ddd;">
         <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{project.user.data.first_name}} {{project.user.data.last_name}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Duration: {{project.start | date: 'MMMM dd, y'}} to {{project.end | date: 'MMMM dd, y'}}</span><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Priority: {{project.priority}}</span><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Budget: ₱ {{project.budget}}</span><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Vendor: {{project.vendor}}</span><br>
         <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br><br>
         {{project.desc}}
       </div>
@@ -56,7 +59,10 @@
               </div>
               <div class="item item-body" style="border-bottom: 1px solid #ddd;">
                 <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{project.user.data.first_name}} {{project.user.data.last_name}}</span> <br>
-                <span style="font-size: 12px; color: #3f3f3f;">Duration: {{project.start | date: 'MMMM dd, y'}} to {{project.end | date: 'MMMM dd, y'}}</span> <br><br>
+                <span style="font-size: 12px; color: #3f3f3f;">Priority: {{project.priority}}</span><br>
+                <span style="font-size: 12px; color: #3f3f3f;">Budget: ₱ {{project.budget}}</span><br>
+                <span style="font-size: 12px; color: #3f3f3f;">Vendor: {{project.vendor}}</span><br>
+                <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br><br>
                 {{project.desc}}
 
               </div>

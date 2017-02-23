@@ -38,7 +38,8 @@ angular.module('eSchedMe')
         url: '/tags',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tag-requests.html'
+            templateUrl: 'templates/tag-requests.html',
+            controller: 'TagsCtrl as vm'
           }
         }
       })
@@ -201,16 +202,25 @@ angular.module('eSchedMe')
               method: 'GET',
               url: API.URL + '/api/v1/me/messages/' + $stateParams.id
             });
-          },
+          }
         }
       })
 
       .state('dashboard.groupchat', {
         // cache: false,
-        url: '/groupchat',
+        url: '/groupchat/:id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/chat-detail-group.html'
+            templateUrl: 'templates/chat-detail-group.html',
+            controller: 'GroupChatDetailCtrl as vm'
+          }
+        },
+        resolve: {
+          requests: function ($http, $stateParams) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/group/message/' + $stateParams.id
+            });
           }
         }
       });

@@ -48,7 +48,7 @@
           function(error) {
             console.log(error);
           });
-      }
+      };
 
       vm.deleteProject = function(id) {
         console.log('deleteing id: ' + id);
@@ -60,7 +60,7 @@
          function(error) {
            console.log(error);
          });
-      }
+      };
 
       vm.createProject = function() {
         $ionicModal
@@ -74,7 +74,7 @@
           scope: $scope,
           animation: 'fade-in-scale'
         });
-      }
+      };
 
       vm.editProject = function(project) {
         console.log(project);
@@ -84,22 +84,27 @@
             $scope.closeModal = vm.closeModal;
             $scope.editDatePicker = vm.openDatePicker;
             $scope.project = project;
+            $scope.project.budget = parseInt(project.budget)
             $scope.project.end = new Date(project.end);
+            $scope.project.start = new Date(project.start);
             vm.modal = modal;
             vm.modal.show();
         }, {
           scope: $scope,
           animation: 'fade-in-scale'
         });
-      }
+      };
 
-      vm.updateProject = function(id, title, desc, end, priority) {
+      vm.updateProject = function(id, title, desc, budget, vendor, start, end, priority) {
         $http({
           method: 'PATCH',
           url: API.URL + '/api/v1/activity/' + id,
           data: {
             'title': title,
             'desc': desc,
+            'budget': budget,
+            'vendor': vendor,
+            'start': start,
             'end': end,
             'priority': priority
           }
@@ -108,7 +113,7 @@
             vm.closeModal();
             vm.popover.hide();
               });
-      }
+      };
 
       vm.completeProject = function (project) {
         console.log(project);
@@ -136,7 +141,7 @@
             console.log(error);
           }
         );
-      }
+      };
 
       vm.projectSummary = function(project) {
         $ionicModal
@@ -149,7 +154,7 @@
           scope: $scope,
           animation: 'fade-in-scale'
         });
-      }
+      };
 
       function filterFriends(friends, tagged) {
         var taggedId = {};
@@ -235,7 +240,7 @@
 
       vm.closeModal = function() {
         vm.modal.hide();
-      }
+      };
 
       vm.openDatePicker = function (provider) {
         $ionicPlatform.ready(function() {
@@ -259,7 +264,7 @@
       vm.goToMeeting = function(project){
         vm.popover.hide();
         $state.go('dashboard.meeting',{project: project});
-      }
+      };
 
       vm.getProjects();
 

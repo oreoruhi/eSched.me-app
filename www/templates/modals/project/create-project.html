@@ -5,14 +5,14 @@
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <form action="">
+      <form action="" name="formchecker">
         <div class="row">
           <div class="col">
             <div class="group">
               <input type="text" id="name" name="name" ng-model="project.data.title" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Project Name</label>
+              <label>Title</label>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <input type="text" id="description" name="description" ng-model="project.data.desc" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Core Objective</label>
+              <label>Description</label>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
               <input type="text" id="description" name="description" ng-model="project.data.vendor" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Vendors</label>
+              <label>Vendor/Client</label>
             </div>
           </div>
         </div>
@@ -52,7 +52,8 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="project.data.priority">
+              <select class="item item-input item-select" style="width:100%;" ng-model="project.data.priority" required>
+                <option value="" selected="selected" hidden disabled>Select priority level</option>
                 <option value="1">Low</option>
                 <option value="2">Moderate</option>
                 <option value="3">High</option>
@@ -64,10 +65,10 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="start" name="start" ng-readonly="true" ng-model="startDate"  ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="start" name="start" ng-readonly="true" ng-model="startDate"  ng-click="openDatePicker('start')" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label class="label-date">Start Date</label>
+              <label class="label-date">Date Range (Start):</label>
             </div>
           </div>
         </div>
@@ -75,21 +76,22 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end" name="end" ng-readonly="true" ng-model="endDate"  ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end" name="end" ng-readonly="true" ng-model="endDate"  ng-click="openDatePicker('end')" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label class="label-date">End Date</label>
+              <label class="label-date">Date Range (End):</label>
             </div>
           </div>
         </div>
 
         <center>
-        <button type="button" class="button button-medium button-calm" type="button"
+        <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
                 ng-click="saveProject(project.data.title, project.data.desc, project.data.budget, project.data.vendor, 'ongoing', startDate, endDate, project.data.priority)">
-          Create Project
+          Add Project
         </button>
       </center>
       </form>
+      <br>
     </ion-content>
   </div>
 </ion-modal-view>

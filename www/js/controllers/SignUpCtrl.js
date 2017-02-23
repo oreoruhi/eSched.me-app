@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('eSchedMe')
-  app.controller('SignUpCtrl', function($cordovaFacebook, $state, $rootScope, LoginService, AuthService, ionicToast, $http, $ionicLoading,API) {
+  app.controller('SignUpCtrl', function($cordovaFacebook, $state, $rootScope, LoginService, AuthService, ionicToast, $http, $ionicLoading, API) {
     var self = this;
 
     function _init() {
