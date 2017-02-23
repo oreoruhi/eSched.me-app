@@ -5,14 +5,14 @@
   </ion-header-bar>
   <div class="ion-modal-content-custom">
     <ion-content class="padding">
-      <form action="">
+      <form action="" name="formchecker">
         <div class="row">
           <div class="col">
             <div class="group">
               <input type="text" id="name" name="name" ng-model="vm.modal.name" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Module Name</label>
+              <label>Title</label>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <input type="text" id="description" name="description" ng-model="vm.modal.description" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label>Core Objective</label>
+              <label>Description</label>
             </div>
           </div>
         </div>
@@ -32,11 +32,10 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <span>min:1% max:{{vm.availablePercentage}}%</span>
               <input type="range" min="1" max="{{vm.availablePercentage}}" value="{{vm.modalpercentage}}" ng-model="vm.modal.percentage">
-              <h4>Percentage: {{vm.modal.percentage}}%</h4>
               <label class="label-date">Percentage</label>
               <!--<label>Percentage</label>-->
+              <span>Taken percent: {{vm.modal.percentage}}% Max percent: {{vm.availablePercentage}}%</span>
             </div>
           </div>
         </div>
@@ -46,11 +45,29 @@
               <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>-->
-              <select class="item item-input item-select" style="width:100%;" ng-model="vm.modal.priority">
+              <select class="item item-input item-select" style="width:100%;" ng-model="vm.modal.priority" required>
+                <option value="" selected="selected" hidden disabled>Select priority level</option>
                 <option value="1">Low</option>
                 <option value="2">Moderate</option>
                 <option value="3">High</option>
               </select>
+              <label class="label-date">Priority Level</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="group">
+              <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
+              <span class="highlight"></span>
+              <span class="bar-input"></span>-->
+              <select class="item item-input item-select" style="width:100%;" required>
+                <option value="" selected="selected" hidden disabled>Select risk level</option>
+                <option value="1">Low</option>
+                <option value="2">Moderate</option>
+                <option value="3">High</option>
+              </select>
+              <label class="label-date">Risk Level</label>
             </div>
           </div>
         </div>
@@ -76,9 +93,9 @@
         </div>
 
         <center>
-        <button type="button" class="button button-medium button-calm" type="button"
+        <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
                 ng-click="vm.saveModule(start, end)">
-          Create Module
+          Add Module
         </button>
       </center>
       </form>

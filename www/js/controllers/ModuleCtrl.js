@@ -64,6 +64,7 @@ function ModuleCtrlFunction(
         console.log(resp);
         vm.project = resp.data;
         vm.modules = resp.data.modules.data;
+        vm.availablePercentage = 100;
         _.each(vm.modules, function(obj) {
           obj.end = new Date(obj.end).toISOString();
           obj.start = new Date(obj.start).toISOString();

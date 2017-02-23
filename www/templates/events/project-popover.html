@@ -8,7 +8,7 @@
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
-        <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'failed')"  ng-click="deleteProject(project.id)">
+        <ion-item menu-close ng-click="deleteProject(project.id)">
           <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
         </ion-item>
@@ -18,7 +18,7 @@
         </ion-item>
         <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'failed')"   ng-click="openTagModal(project)">
         <i class="icon ion-android-contacts"></i>&nbsp;&nbsp;&nbsp;
-          Tag Associates
+          Associates Tagged
         </ion-item>
       </ion-list>
     </ion-content>
