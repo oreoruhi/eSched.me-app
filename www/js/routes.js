@@ -34,6 +34,16 @@ angular.module('eSchedMe')
         }
       })
 
+      .state('dashboard.tags', {
+        url: '/tags',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/tag-requests.html',
+            controller: 'TagsCtrl as vm'
+          }
+        }
+      })
+
       .state('dashboard.profile', {
         cache: false,
         url: '/profile',
@@ -166,16 +176,6 @@ angular.module('eSchedMe')
         }
       })
 
-      .state('dashboard.notification', {
-        // cache: false,
-        url: '/notification',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/notification.html'
-          }
-        }
-      })
-
       .state('dashboard.inbox', {
         // cache: false,
         url: '/inbox',
@@ -202,16 +202,25 @@ angular.module('eSchedMe')
               method: 'GET',
               url: API.URL + '/api/v1/me/messages/' + $stateParams.id
             });
-          },
+          }
         }
       })
 
       .state('dashboard.groupchat', {
         // cache: false,
-        url: '/groupchat',
+        url: '/groupchat/:id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/chat-detail-group.html'
+            templateUrl: 'templates/chat-detail-group.html',
+            controller: 'GroupChatDetailCtrl as vm'
+          }
+        },
+        resolve: {
+          requests: function ($http, $stateParams) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/group/message/' + $stateParams.id
+            });
           }
         }
       });

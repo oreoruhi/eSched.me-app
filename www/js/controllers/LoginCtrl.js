@@ -1,6 +1,6 @@
 angular.module('eSchedMe.controllers', [])
 
-    .controller('LoginCtrl', function ($cordovaFacebook, $http, $state, $rootScope, $cookieStore,LoginService, ionicToast, $ionicLoading) {
+    .controller('LoginCtrl', function ($cordovaFacebook, $http, $state, $rootScope, $cookieStore,LoginService, ionicToast, $ionicLoading, API) {
         var login = this;
 
         function clearLogin() {
