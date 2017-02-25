@@ -8,7 +8,10 @@ angular.module('eSchedMe.controllers')
     $ionicModal,
     $ionicPlatform,
     $cordovaDatePicker,
-    $stateParams){
+    $stateParams,
+    $http,
+    API,
+    $log){
     var vm = this;
 
     function init(){
@@ -57,8 +60,13 @@ angular.module('eSchedMe.controllers')
     }
 
     vm.getMeetings = function() {
-      vm.meetings = MeetingData.get();
-      console.log(vm.meetings);
+      $http.get(API.URL + '/api/v1/meeting/activity/' + $stateParams.project.id )
+        .then(function (data) {
+          $log.info(data);
+          vm.meetings = data;
+        });
+      // vm.meetings = MeetingData.get();
+      // console.log(vm.meetings);
     };
 
     var geocoder = new google.maps.Geocoder();
