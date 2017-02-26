@@ -43,10 +43,12 @@ angular.module('eSchedMe.controllers')
 
     vm.openDatePicker = function (provider) {
       $ionicPlatform.ready(function() {
+        console.log(vm.meetings);
         var projectOptions = {
           date: new Date(),
           mode: 'date',
-          minDate: new Date().valueOf()
+          minDate: new Date().valueOf(),
+          maxDate: new Date(vm.meetings.data[0].activity.data.end).valueOf()
         };
         $cordovaDatePicker.show(projectOptions)
           .then(function(result) {
@@ -60,10 +62,11 @@ angular.module('eSchedMe.controllers')
     }
 
     vm.getMeetings = function() {
-      $http.get(API.URL + '/api/v1/meeting/activity/' + $stateParams.project.id )
+      $http.get(API.URL + '/api/v1/meeting/activity/' + $stateParams.project.id + '?include=activity')
         .then(function (data) {
           $log.info(data);
           vm.meetings = data;
+          console.log(data);
         });
       // vm.meetings = MeetingData.get();
       // console.log(vm.meetings);

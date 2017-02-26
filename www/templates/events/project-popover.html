@@ -1,10 +1,10 @@
-  <ion-popover-view style="height: 260px;">
+  <ion-popover-view style="height: {{project.status === 'completed' || project.status === 'expired' ? ((70*2) + 10) + 'px' : (70*4) + 'px'}};">
     <ion-header-bar>
       <h1 class="title">Project Options</h1>
     </ion-header-bar>
     <ion-content>
        <ion-list>
-        <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'failed')"  ng-click="editProject(project)">
+        <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'expired')"  ng-click="editProject(project)">
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
@@ -16,7 +16,7 @@
 		    <i class="icon ion-android-map"></i>&nbsp;&nbsp;&nbsp;
           Meetings
         </ion-item>
-        <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'failed')"   ng-click="openTagModal(project)">
+        <ion-item menu-close ng-hide="(project.status === 'completed') || (project.status === 'expired')"   ng-click="openTagModal(project)">
         <i class="icon ion-android-contacts"></i>&nbsp;&nbsp;&nbsp;
           Associates Tagged
         </ion-item>

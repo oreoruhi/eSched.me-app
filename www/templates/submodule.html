@@ -6,6 +6,7 @@
         <div class="buttons" ng-click="ctrl.editSubmoduleModal(submodule)" style="padding-left: 20px;"><span class="icon ion-edit"></span></div>
       </div>
       <div class="item item-body">
+        <span style="font-size: 12px; color: #3f3f3f;">Status: {{submodule.status | uppercase}}</span> <br><br>
         {{submodule.description}}
       </div>
       <div class="item tabs tabs-secondary tabs-icon-left">

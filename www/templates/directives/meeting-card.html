@@ -1,26 +1,26 @@
 <div class="list card">
       <div class="item item-button-right">
-        <p>Meeting Title</p>
-        <div class="buttons" ng-if="!(meeting.status == 'Completed')" ng-click="deleteMeeting(meeting)" style="padding-left: 20px;"><span class="icon ion-android-delete"></span></div>
+        <p>{{meeting.title}}</p>
+        <div class="buttons" ng-click="deleteMeeting(meeting)" style="padding-left: 20px;"><span class="icon ion-android-delete"></span></div>
       </div>
       <div class="item item-body">
         <span style="font-size: 12px; color: #3f3f3f;">Location: {{meeting.location}} </span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Status: {{meeting.status}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Status: {{meeting.status | uppercase}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Date and Time: {{meeting.date | date: 'MMMM dd, y - h:mm a'}}</span> <br><br>
-        Meeting agenda
+        {{meeting.agenda}}
       </div>
       <div class="item tabs tabs-icon-left" style="background: #fff;">
         <a class="tab-item" ng-if="meeting.lat" ng-show="meeting.long" ng-click="viewMeeting(meeting)" style="background: #fff; color: #000;">
           <i class="icon ion-android-list" style="font-size: 12;"></i>
            View
         </a>
-        <p ng-if="!(meeting.status == 'Completed')">|</p>
-        <a class="tab-item" ng-if="!(meeting.status == 'Completed')" ng-click="editMeeting(meeting)" style="background: #fff; color: #000;">
+        <p ng-if="!(meeting.status == 'completed')" ng-show="meeting.status == 'ongoing'">|</p>
+        <a class="tab-item" ng-if="!(meeting.status == 'completed')" ng-show="meeting.status == 'ongoing'" ng-click="editMeeting(meeting)" style="background: #fff; color: #000;">
           <i class="icon ion-android-clipboard"></i>
            Edit
         </a>
-        <p ng-if="!(meeting.status == 'Completed')">|</p>
-        <a class="tab-item" ng-if="!(meeting.status == 'Completed')" ng-click="completeMeeting(meeting)" style="background: #fff; color: #000;">
+        <p ng-if="!(meeting.status == 'Completed')" ng-show="meeting.status == 'ongoing'">|</p>
+        <a class="tab-item" ng-if="!(meeting.status == 'completed')" ng-show="meeting.status == 'ongoing'" ng-click="completeMeeting(meeting)" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
            Complete
         </a>

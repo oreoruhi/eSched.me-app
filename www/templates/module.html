@@ -7,8 +7,11 @@
       </div>
       <div class="item item-body">
         <span style="font-size: 12px; color: #3f3f3f;">Project Manager: {{vm.project.user.data.first_name}} {{vm.project.user.data.last_name}}</span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Assigned to:</span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Duration: {{module.start | date: 'MMMM dd, y'}} to {{module.end | date: 'MMMM dd, y'}}</span> <br><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Duration: {{module.start | date: 'MMMM dd, y'}} to {{module.end | date: 'MMMM dd, y'}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Priority: {{module.priority == 1 ? 'Low' : module.priority == 2 ? 'Moderate' : module.priority == 3 ? 'High' : ''}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Risk: {{module.risk == 1 ? 'Low' : module.risk == 2 ? 'Moderate' : module.risk == 3 ? 'High' : ''}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Quality: {{isExist(module.quality) ? module.quality/5 : 'Unrated'}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Status: {{module.status | uppercase}}</span> <br><br>
         {{module.description}}
       </div>
       <div class="item tabs tabs-icon-left" style="background: #fff;">
