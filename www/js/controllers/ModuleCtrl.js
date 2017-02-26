@@ -147,7 +147,10 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
   vm.module=parameters;
   vm.edit = parameters;
   if(parameters.availablePercentage) vm.availablePercentage = parameters.availablePercentage;
-  if(!parameters.user) $scope.end = parameters.end;
+  if(!parameters.user) {
+      $scope.end = new Date(parameters.end);
+      $scope.start = new Date(parameters.start);
+  }
   vm.editModule = function () {
     appModalService.show('templates/modals/module/edit-module.html', 'ModuleModalCtrl as vm', parameters)
       .then(function (result) {
@@ -170,6 +173,7 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
         .fromTemplateUrl('templates/modals/module/tag-people.html', function (modal) {
           $scope.module = module;
           $scope.tagged = filterFriends($scope.allTagged, module.tagged.data);
+          $scope.module.start = new Date(module.start);
           $scope.module.end = new Date(module.end);
           $scope.closeModal = vm.closeModal;
           $scope.addTag = vm.addTag;
@@ -215,7 +219,8 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     vm.modal.hide();
   };
 
-  vm.updateModule = function (end) {
+  vm.updateModule = function (start, end) {
+    vm.edit.start = start;
     vm.edit.end = end;
     vm.edit.status = "ongoing";
     ModuleData.update({module: parameters.id}, vm.edit,
@@ -270,4 +275,3 @@ function  ModalCtrlFunction(ModuleData, parameters, appModalService, $state, $sc
     })
   }
 }
-

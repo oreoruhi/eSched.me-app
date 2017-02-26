@@ -60,7 +60,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="start" ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Date Range (Start)</label>
@@ -74,14 +74,14 @@
               <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
-              <label class="label-date">Date Range (Eng)</label>
+              <label class="label-date">Date Range (End)</label>
             </div>
           </div>
         </div>
 
         <center>
         <button type="button" class="button button-medium button-calm" ng-disabled="formchecker.$invalid"
-                ng-click="vm.updateModule(end)">
+                ng-click="vm.updateModule(start, end)">
           Update Module
         </button>
       </center>
