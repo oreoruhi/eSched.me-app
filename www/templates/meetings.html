@@ -4,7 +4,7 @@
       <meeting-card meeting="meeting"></meeting-card>
     </div>
   </ion-content>
-  <ion-floating-button ng-click="vm.createMeeting()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
+  <ion-floating-button ng-click="vm.createMeeting()" ng-hide="vm.meetings.data[0].activity.data.status == 'completed' || vm.meetings.data[0].activity.data.status == 'expired'" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
 </ion-view>
 

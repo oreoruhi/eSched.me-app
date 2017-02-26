@@ -15,7 +15,7 @@ angular.module('eSchedMe.controllers')
             var infoWindowMultiple = new google.maps.InfoWindow({
                 content: '<div class="info_content">' +
                         '<h4>' + meeting.location + '</h4>' +
-                        '<p>Put agenda information here.</p>' + '</div>'
+                        '<p>' + meeting.agenda + '</p>' + '</div>'
             });
 
             google.maps.event.addListener(markers, 'click', function () {
