@@ -139,6 +139,7 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard.meeting', {
+        cache: false,
         url: '/meeting',
         views: {
           'menuContent': {
