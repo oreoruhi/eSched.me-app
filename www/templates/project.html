@@ -12,15 +12,11 @@
         <span style="font-size: 12px; color: #3f3f3f;">Priority: {{project.priority === 1 ? 'Low' : project.priority === 2 ? 'Moderate' : project.priority === 3 ? 'High' : ''}}</span><br>
         <span style="font-size: 12px; color: #3f3f3f;">Budget: ₱ {{project.budget}}</span><br>
         <span style="font-size: 12px; color: #3f3f3f;">Vendor: {{project.vendor}}</span><br>
-        <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br>
+        <span style="font-size: 12px; color: #3f3f3f;">Completed Modules: <span ng-repeat="module in project.modules.data | filter:'completed'">{{module.title}} - {{module.percentage}}%, </span></span><br><br>
         {{project.desc}}
       </div>
       <div class="item tabs tabs-icon-left" style="background: #fff;">
-        <a class="tab-item" ng-click="vm.projectSummary(project)" style="background: #fff; color: #000;">
-          <i class="icon ion-android-list" style="font-size: 12;"></i>
-          Summary
-        </a>
-        <p>|</p>
         <a class="tab-item" ng-click="vm.goToModule(project.modules.data, project)" style="background: #fff; color: #000;">
           <i class="icon ion-android-clipboard"></i>
           Modules
@@ -28,7 +24,15 @@
         <p ng-hide="(project.status == 'completed') || (project.status == 'expired')">|</p>
         <a ng-hide="(project.status == 'completed') || (project.status == 'expired')"class="tab-item" ng-click="vm.completeProject(project)" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
-          Complete
+          Complete 
+        </a>
+
+
+        <!-- Mark as ongoing --> 
+        <p ng-show="(project.status == 'completed')">|</p>
+        <a ng-show="(project.status == 'completed')"class="tab-item" style="background: #fff; color: #000;" ng-click="vm.ongoingProject(project)">
+          <i class="icon ion-play"></i>
+          Ongoing 
         </a>
       </div>
     </div>
@@ -62,7 +66,8 @@
                 <span style="font-size: 12px; color: #3f3f3f;">Priority: {{project.priority}}</span><br>
                 <span style="font-size: 12px; color: #3f3f3f;">Budget: ₱ {{project.budget}}</span><br>
                 <span style="font-size: 12px; color: #3f3f3f;">Vendor: {{project.vendor}}</span><br>
-                <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br><br>
+                <span style="font-size: 12px; color: #3f3f3f;">Status: {{project.status | uppercase}}</span><br>
+                <br>
                 {{project.desc}}
 
               </div>

@@ -10,34 +10,29 @@
         <span style="font-size: 12px; color: #3f3f3f;">Duration: {{module.start | date: 'MMMM dd, y'}} to {{module.end | date: 'MMMM dd, y'}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Priority: {{module.priority == 1 ? 'Low' : module.priority == 2 ? 'Moderate' : module.priority == 3 ? 'High' : ''}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Risk: {{module.risk == 1 ? 'Low' : module.risk == 2 ? 'Moderate' : module.risk == 3 ? 'High' : ''}}</span> <br>
-        <span style="font-size: 12px; color: #3f3f3f;">Quality: {{isExist(module.quality) ? module.quality/5 : 'Unrated'}}</span> <br>
+        <span style="font-size: 12px; color: #3f3f3f;">Quality: {{module.quality}}</span> <br>
         <span style="font-size: 12px; color: #3f3f3f;">Status: {{module.status | uppercase}}</span> <br><br>
         {{module.description}}
       </div>
       <div class="item tabs tabs-icon-left" style="background: #fff;">
-        <a class="tab-item" ng-click="vm.openModalSummaryModule(module)" style="background: #fff; color: #000;">
-          <i class="icon ion-android-list"></i>
-          Summary
-        </a>
-        <p>|</p>
         <a ui-sref="dashboard.submodule({module_id: module.id})" class="tab-item" ng-click="" style="background: #fff; color: #000;">
           <i class="icon ion-clipboard"></i>
           Submodules
         </a>
-        <p ng-hide="module.status === 'completed' || module.status === 'failed'">|</p>
-        <a ng-click="vm.completeModule(module)" ng-hide="module.status === 'completed' || module.status === 'failed'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+        <p ng-hide="module.status === 'completed' || module.status === 'expired'">|</p>
+        <a ng-click="vm.completeModule(module)" ng-hide="module.status === 'completed' || module.status === 'expired'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
           <i class="icon ion-checkmark-circled"></i>
           Complete
         </a>
-        <p ng-show="module.status === 'failed'">|</p>
-        <a ng-click="vm.markAsOngoing(module)" ng-show="module.status === 'failed'" class="tab-item" ng-click="" style="background: #fff; color: #000;">
+        <p ng-show="module.status === 'expired' || module.status === 'for review'">|</p>
+        <a ng-click="vm.markAsOngoing(module)" ng-show="module.status === 'expired' || module.status === 'for review'" class="tab-item" style="background: #fff; color: #000;">
           <i class="icon ion-play"></i>
-          On-Going
+          Ongoing
         </a>
-      </div>
+      </div> 
     </div>
   </ion-content>
-  <ion-floating-button ng-if="vm.project.user.data.id == vm.user.id" ng-show="vm.availablePercentage > 0"
+  <ion-floating-button ng-if="vm.project.user.data.id == vm.user.id" ng-show="vm.availablePercentage > 0" ng-hide="vm.project.status == 'completed' || vm.project.status == 'expired'"
     ng-click="vm.createModule()" button-color="#fff" icon="ion-plus" icon-color="#11c1f3">
   </ion-floating-button>
 

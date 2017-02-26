@@ -1,20 +1,24 @@
-  <ion-popover-view style="height: {{vm.module.status === 'Ongoing' || !(vm.module.status === 'Completed') ? ((70*3) + 10) + 'px'}};">
+  <ion-popover-view style="height: {{!(vm.module.status === 'completed') ? ((70*3) + 10) + 'px' : ((70*1) + 30) + 'px'}};">
     <ion-header-bar>
       <h1 class="title">Modules Options</h1>
     </ion-header-bar>
     <ion-content>
        <ion-list>
-        <ion-item menu-close ng-if="!(vm.module.status === 'Completed')" ng-click="vm.editModule(module)">
+        <ion-item menu-close ng-if="!(vm.module.status === 'completed')" ng-click="vm.editModule(module)">
           <i class="icon ion-edit"></i>&nbsp;&nbsp;&nbsp;
           Edit
         </ion-item>
-        <ion-item menu-close ng-if="!(vm.module.status === 'Completed')" ng-click="vm.deleteModule()">
+        <ion-item menu-close ng-if="!(vm.module.status === 'completed')" ng-click="vm.deleteModule()">
           <i class="icon ion-android-cancel"></i>&nbsp;&nbsp;&nbsp;
           Delete
         </ion-item>
-        <ion-item menu-close ng-if="vm.module.status === 'Ongoing'" ng-click="vm.tagPeople(vm.module)">
+        <ion-item menu-close ng-if="vm.module.status === 'ongoing' || vm.module.status == 'for review'" ng-click="vm.tagPeople(vm.module)">
         <i class="icon ion-android-person-add"></i>&nbsp;&nbsp;&nbsp;
           Assign Tagged
+        </ion-item>
+        <ion-item menu-close ng-if="vm.module.status === 'completed'" ng-click="vm.tagPeople(vm.module)">
+        <i class="icon ion-android-person-add"></i>&nbsp;&nbsp;&nbsp;
+          Rate Quality
         </ion-item>
       </ion-list>
     </ion-content>
