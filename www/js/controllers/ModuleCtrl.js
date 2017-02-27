@@ -134,6 +134,9 @@ function ModuleCtrlFunction(
           vm.closePopover();
           $state.reload();
         } else {
+          module.submodules.data.forEach(function(submodule) {
+            SubmoduleService.update({submodule: submodule.id}, {status: "ongoing"});
+          });
           vm.closePopover();
         }
       });

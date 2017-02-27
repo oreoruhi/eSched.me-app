@@ -119,15 +119,15 @@
         console.log(project);
         // TODO:dj complete of module and submodules
         // ugly fucking cordovaDatePicker
-        ProjectData.update({ project: project.id }, { status: "Completed" },
+        ProjectData.update({ project: project.id }, { status: "completed" },
           function (resp, header) {
 
             project.meetings.data.forEach(function(meeting) {
-              MeetingData.update({meeting: meeting.id}, {status: 'Completed'});
+              MeetingData.update({meeting: meeting.id}, {status: 'completed'});
             });
 
             project.modules.data.forEach(function(module) {
-              ModuleData.update({module: module.id}, {status: "Completed"},
+              ModuleData.update({module: module.id}, {status: "completed"},
                 function(resp, head) {
                   module.submodules.data.forEach(function(submodule) {
                     SubmoduleService.update({submodule: submodule.id}, {status: "Completed"},
@@ -136,6 +136,25 @@
                 }
               );
             });
+
+            vm.getProjects();
+
+          },
+          function (error) {
+            console.log(error);
+          }
+        );
+      };
+
+      vm.ongoingProject = function (project) {
+        console.log(project);
+        // TODO:dj complete of module and submodules
+        // ugly fucking cordovaDatePicker
+        ProjectData.update({ project: project.id }, { status: "ongoing" },
+          function (resp, header) {
+
+            vm.getProjects();
+
           },
           function (error) {
             console.log(error);
