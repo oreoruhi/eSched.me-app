@@ -10,6 +10,7 @@ function ModuleCtrlFunction(
   SubmoduleService,
   $stateParams,
   $state,
+  $log,
   $ionicHistory,
   API,
   _
@@ -90,8 +91,12 @@ function ModuleCtrlFunction(
     appModalService.show('templates/modals/module/create-module.html', 'ModuleModalCtrl as vm', vm.project)
       .then(function (result) {
         if(result) {
-          vm.modules = _.union(vm.modules, [result]);
+          $log.info(result);
+          //vm.modules = _.union(vm.modules, [result]);
+          refreshData();
+          $log.info(vm.modules);
           refreshPercentage();
+          $state.reload();
         }
       });
   };
@@ -106,6 +111,7 @@ function ModuleCtrlFunction(
             return el.id == result.module.data.id;
           });
           refreshPercentage();
+          $state.reload();
         }
       });
   }

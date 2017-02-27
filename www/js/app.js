@@ -48,7 +48,8 @@ angular.module('eSchedMe', [
         whiteListedDomains: [
           'api.diaz.tech',
           '192.168.0.10:8100',
-          '192.168.0.10:3000'
+          '192.168.0.10:3000',
+          '*'
         ]
       });
 
@@ -97,6 +98,3 @@ angular.module('eSchedMe', [
       "URL": "https://api.diaz.tech"
       // "URL": "http://192.168.0.10:3000"
     });
-
-
-
