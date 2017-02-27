@@ -64,7 +64,20 @@ function ModuleCtrlFunction(
       function (resp, header) {
         console.log(resp);
         vm.project = resp.data;
-        vm.modules = resp.data.modules.data;
+        // vm.modules = resp.data.modules.data;
+        if(vm.project.user.data.id == vm.user.id){
+          vm.myModules = $stateParams.module;
+        } else {
+          vm.myModules = [];
+          vm.modules.forEach(function(module){
+            console.log(module);
+            module.tagged.data.forEach(function(user){
+              if(user.id == vm.user.id){
+                vm.myModules.push(module);
+              }
+            });
+          });
+        }
         vm.availablePercentage = 100;
         _.each(vm.modules, function(obj) {
           obj.end = new Date(obj.end).toISOString();
@@ -92,11 +105,9 @@ function ModuleCtrlFunction(
       .then(function (result) {
         if(result) {
           $log.info(result);
-          //vm.modules = _.union(vm.modules, [result]);
-          refreshData();
+          vm.myModules = _.union(vm.myModules, [result]);
           $log.info(vm.modules);
           refreshPercentage();
-          $state.reload();
         }
       });
   };
@@ -107,11 +118,10 @@ function ModuleCtrlFunction(
       .then(function (result) {
         if(!result) return;
         if(result.message === "Module Deleted!") {
-          vm.modules = _.reject(vm.modules, function (el) {
+          vm.myModules = _.reject(vm.myModules, function (el) {
             return el.id == result.module.data.id;
           });
           refreshPercentage();
-          $state.reload();
         }
       });
   }
@@ -121,10 +131,13 @@ function ModuleCtrlFunction(
     ModuleData.update({module: module.id}, {status: "completed"},
       function(resp, header) {
         if(resp.message === 'Module Updated!') {
-          module.submodules.data.forEach(function(submodule) {
-            SubmoduleService.update({submodule: submodule.id}, {status: "completed"});
-          });
+          if(module.submodules) {
+            module.submodules.data.forEach(function(submodule) {
+              SubmoduleService.update({submodule: submodule.id}, {status: "completed"});
+            });
+          }
         }
+        refreshData();
         $state.reload();
       }
     );
