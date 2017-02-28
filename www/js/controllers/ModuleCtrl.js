@@ -29,20 +29,19 @@ function ModuleCtrlFunction(
     console.log($stateParams.project);
     console.log($stateParams.module);
     vm.project = $stateParams.project;
-    vm.modules = $stateParams.module;
     console.log("yung nagchecheck ng tagged");
     console.log(vm.modules);
     vm.user = JSON.parse(window.localStorage.getItem('user'));
 
     if(vm.project.user.data.id == vm.user.id){
-      vm.myModules = $stateParams.module;
+      vm.modules = $stateParams.module;
     } else {
-      vm.myModules = [];
-      vm.modules.forEach(function(module){
+      vm.modules = [];
+      $stateParams.module.forEach(function(module){
         console.log(module);
         module.tagged.data.forEach(function(user){
           if(user.id == vm.user.id){
-            vm.myModules.push(module);
+            vm.modules.push(module);
           }
         });
       });
