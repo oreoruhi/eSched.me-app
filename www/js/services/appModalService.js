@@ -37,11 +37,17 @@
         };
         modalScope.openDatePicker = function (provider) {
           $ionicPlatform.ready(function() {
+            var minDate;
+            if (new Date(parameters.start).getTime() > new Date().getTime()) {
+              minDate = new Date(parameters.start).valueOf();
+            } else {
+              minDate = new Date().valueOf();
+            }
             var projectOptions = {
               date: new Date(),
               mode: 'date',
-              minDate: new Date().valueOf(),
-              maxDate: new Date(projectData.data[0].end).valueOf()
+              minDate: minDate,
+              maxDate: new Date(parameters.end).valueOf()
             };
             $cordovaDatePicker.show(projectOptions)
               .then(function(result) {

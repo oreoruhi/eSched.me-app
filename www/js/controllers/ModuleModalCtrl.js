@@ -9,6 +9,7 @@ angular.module('eSchedMe')
     $scope,
     $ionicModal,
     $log,
+    $ionicPopup,
     ProjectData,
     $http,
     API) {
@@ -21,8 +22,7 @@ angular.module('eSchedMe')
     vm.availablePercentage = parameters.availablePercentage;
     vm.modal = {};
     vm.modal.percentage = vm.availablePercentage;
-    $scope.start = new Date();
-    $scope.end = new Date();
+    var startDate;
   };
   if(!parameters.user) {
       $scope.end = new Date(parameters.end);
@@ -122,6 +122,13 @@ angular.module('eSchedMe')
   };
 
   vm.saveModule = function (start, end) {
+    if(end.getTime() < start.getTime()) {
+      $ionicPopup.alert({
+        title: "Invalid End Date",
+        template: 'End date should be greater than Start date'
+      });
+      return;
+    }
     ModuleData.save({
       'activity_id': parameters.id,
       'title': vm.modal.name,
