@@ -32,7 +32,7 @@
               <!--<input type="number" id="percentage" name="percentage" ng-model="percentage" min="0" max="{{remainingPercentage}}" style="color:#fff;" required autocomplete="off">-->
               <!--<span class="highlight"></span>-->
               <!--<span class="bar-input"></span>-->
-              <input type="range" min="1" max="{{vm.availablePercentage}}" value="{{vm.modalpercentage}}" ng-model="vm.modal.percentage">
+              <input type="range" min="1" max="{{vm.availablePercentage}}" value="{{vm.modal.percentage}}" ng-model="vm.modal.percentage">
               <label class="label-date">Percentage</label>
               <!--<label>Percentage</label>-->
               <span style="color:#fff;">Taken percent: {{vm.modal.percentage}}% Max percent: {{vm.availablePercentage}}%</span>
@@ -74,7 +74,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input id="start-date" type="date" name="start-date" ng-readonly="true" ng-model="start" ng-click="openDatePicker('start')" style="color:#000;" required autocomplete="off">
+              <input id="start-date" type="date" name="start-date" ng-readonly="true" ng-model="start" ng-click="openDatePicker('start')" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Date Range (Start):</label>
@@ -84,7 +84,7 @@
         <div class="row">
           <div class="col">
             <div class="group">
-              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('end')" style="color:#000;" required autocomplete="off">
+              <input type="date" id="end-date" name="end-date" ng-readonly="true" ng-model="end" ng-click="openDatePicker('end')" style="color:#fff;" required autocomplete="off">
               <span class="highlight"></span>
               <span class="bar-input"></span>
               <label class="label-date">Date Range (End):</label>
