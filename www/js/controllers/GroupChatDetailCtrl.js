@@ -33,6 +33,7 @@
     }
 
     self.sendGroupMessage = function(message) {
+      $ionicLoading.show({template: '<ion-spinner>'});
       var id = self.data[0].id;
       $log.info('ID is: ' + id);
       $http.post(API.URL + '/api/v1/group/message', {
@@ -40,6 +41,8 @@
         'message': message
       }).then(function(data) {
         $log.info(data);
+        self.msgToSend = '';
+        $ionicLoading.hide();
       });
     };
 

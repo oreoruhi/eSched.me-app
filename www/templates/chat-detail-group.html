@@ -4,10 +4,10 @@
 
       <span ng-repeat="msg in vm.data">
         <span>
-          <span class="system-msg" ng-if="msg.sender_id == -1">
+          <!-- <span class="system-msg" ng-if="msg.sender_id == -1">
             {{msg.message}}
             <span am-time-ago="msg.created"></span>
-          </span>
+          </span> -->
         </span>
         <span ng-if="msg.sender_id != -1">
           <p class="username">{{msg.user.first_name + ' ' + msg.user.last_name}}</p>
@@ -32,9 +32,9 @@
 
   <form name="sendMessageForm" novalidate>
       <ion-footer-bar class="bar-stable item-input-insetmessage-footer" keyboard-attach>
-              <input id="msg-input" class="input-message" type="text" placeholder="Message" ng-model="message">
+              <input id="msg-input" class="input-message" type="text" placeholder="Message" ng-model="vm.msgToSend">
               <div class="footer-btn-wrap">
-                <button ng-click="vm.sendGroupMessage(message)" class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
+                <button ng-click="vm.sendGroupMessage(vm.msgToSend)" class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
                 </button>
               </div>
       </ion-footer-bar>
