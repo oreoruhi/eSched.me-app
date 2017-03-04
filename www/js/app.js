@@ -6,6 +6,7 @@
 angular.module('eSchedMe', [
   'ionic',
   'angular-jwt',
+  'angularMoment',
   'eSchedMe.controllers',
   'eSchedMe.services',
   'eSchedMe.directives',
@@ -95,6 +96,7 @@ angular.module('eSchedMe', [
         });
     })
     .constant('API', {
-      "URL": "https://api.diaz.tech"
-      // "URL": "http://192.168.0.10:3000"
+      //"URL": "https://api.diaz.tech"
+      //"URL": "http://192.168.0.10:3000"
+      "URL": "http://localhost:3000"
     });
