@@ -58,7 +58,7 @@
     <ion-content>
       <div class="search-result">
         <ion-list>
-          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult | filter: dataCtrl.searchInput" href="#/dashboard/user/{{result.id}}">
+          <ion-item menu-close ng-repeat="result in dataCtrl.searchResult | filter: dataCtrl.searchInput" href="#/dashboard/user/{{result.id}}" ng-if="result.id != -1">
             {{result.first_name}} {{result.last_name}}
           </ion-item>
         </ion-list>
