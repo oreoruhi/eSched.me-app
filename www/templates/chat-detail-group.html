@@ -2,20 +2,23 @@
   <ion-content class="content-body padding">
     <section class="chats">
 
-      <span>
-        <span ng-repeat="msg in vm.data">
+      <span ng-repeat="msg in vm.data">
+        <span>
           <span class="system-msg" ng-if="msg.sender_id == -1">
             {{msg.message}}
+            <span am-time-ago="msg.created"></span>
           </span>
         </span>
-        <span>
-          <p class="username">Adan France Cruz</p>
-          <!-- Possibly use ng-class for class changing here -->
-          <div class="from-them">
-            <p>New module updated!</p>
+        <span ng-if="msg.sender_id != -1">
+          <p class="username">{{msg.user.first_name + ' ' + msg.user.last_name}}</p>
+
+          <div class="from-them" ng-if="msg.sender_id != vm.user_id">
+            <p>{{msg.message}}</p>
+            <span am-time-ago="msg.created"></span>
           </div>
-          <div class="from-me">
-            <p>Thanks. Keep on working hard :)</p>
+          <div class="from-me" ng-if="msg.sender_id == vm.user_id">
+            <p>{{msg.message}}</p>
+            <span am-time-ago="msg.created"></span>
           </div>
           <div class="clear"></div>
         </span>
@@ -29,9 +32,9 @@
 
   <form name="sendMessageForm" novalidate>
       <ion-footer-bar class="bar-stable item-input-insetmessage-footer" keyboard-attach>
-              <input id="msg-input" class="input-message" type="text" placeholder="Message">
+              <input id="msg-input" class="input-message" type="text" placeholder="Message" ng-model="message">
               <div class="footer-btn-wrap">
-                <button class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
+                <button ng-click="vm.sendGroupMessage(message)" class="button button-icon icon ion-ios-paperplane footer-btn" style="float:right;" type="submit">
                 </button>
               </div>
       </ion-footer-bar>
