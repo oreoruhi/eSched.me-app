@@ -25,7 +25,7 @@
       $log.info(self.user_id);
       self.data = requests.data;
       setTimeout(function() {$ionicScrollDelegate.scrollBottom(true);}, 500);
-      Pusher.subscribe('groupchat.' + self.data[0].id, 'App\\Events\\GroupChatEvent', function(message) {
+      Pusher.subscribe('groupchat.' + $stateParams.id, 'App\\Events\\GroupChatEvent', function(message) {
         $log.info(message);
         self.data.push(message.message);
         $ionicScrollDelegate.scrollBottom(true);
@@ -34,10 +34,9 @@
 
     self.sendGroupMessage = function(message) {
       $ionicLoading.show({template: '<ion-spinner>'});
-      var id = self.data[0].id;
-      $log.info('ID is: ' + id);
+      $log.info('ID is: ' + $stateParams.id);
       $http.post(API.URL + '/api/v1/group/message', {
-        'group_chat_id': id,
+        'group_chat_id': $stateParams.id,
         'message': message
       }).then(function(data) {
         $log.info(data);
