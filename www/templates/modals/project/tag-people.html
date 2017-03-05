@@ -9,7 +9,7 @@
 
 
       <ion-list>
-        <p style="color: #fff; margin-bottom: 10px;">Your associates</p>
+        <p style="color: #fff; margin-bottom: 10px;">Your associates available for tagging: </p>
         <ion-item
           ng-repeat="person in friends | filter: searchFilter"
           ng-click="addTag(project.id, person.id)">

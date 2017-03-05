@@ -15,6 +15,8 @@
       $cordovaDatePicker,
       $ionicPopover,
       $state,
+      $ionicLoading,
+      $ionicPopup,
       API) {
       var vm = this;
       vm.showModules = false;
@@ -199,6 +201,7 @@
             }).then(function (result) {
               $scope.allFriends = result.data.data;
               $scope.friends = filterFriends(result.data.data, project.tagged.data);
+              console.log($scope.friends);
             });
             $scope.addTag = vm.addTag;
             $scope.unTag = vm.unTag;
@@ -212,6 +215,7 @@
       };
 
       vm.addTag = function (project_id, person_id) {
+        $ionicLoading.show({template: '<ion-spinner>'});
         $http({
           method: 'POST',
           url: API.URL + '/api/v1/activity/' + project_id + '/tag',
@@ -219,8 +223,19 @@
             "user_id": person_id
           }
         }).then(function (result) {
+          console.log(result);
           $scope.project = result.data.activity.data;
-          $scope.friends = filterFriends($scope.friends, $scope.project.tagged.data);
+          // $scope.friends = filterFriends($scope.friends, $scope.project.tagged.data);
+          $scope.friends = $scope.friends.filter(function(friend) {
+            return friend.id != person_id;
+          });
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Request Sent!',
+            template: 'A Tag Request to your Associate has been sent.'
+          });
+          console.log($scope.friends);
+          // TODO: The bug is that pending tags are not included in activity.tagged
         })
       };
 
