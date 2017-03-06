@@ -2,7 +2,13 @@
   'use strict';
 
   var app = angular.module('eSchedMe');
-  app.controller('TagsCtrl', function($http, $log, API) {
+  app.controller('TagsCtrl', function(
+    $http,
+    $log,
+    $ionicLoading,
+    DataService,
+    API) {
+
     var self = this;
 
     _init();
@@ -18,8 +24,16 @@
 
     self.acceptTag = function (activityId) {
       $log.warn('Accepting Tag in Project ID: ' + activityId);
+      $ionicLoading.show({template: '<ion-spinner>'});
       $http.post(API.URL + '/api/v1/me/pending_activity_tags/approve/' + activityId)
         .then(function () {
+          DataService.GetUserById()
+            .then(function(result) {
+              self.user = result.data.data;
+              window.localStorage.setItem('user_id', self.user.id);
+              window.localStorage.setItem('user', JSON.stringify(self.user));
+              $ionicLoading.hide();
+            });
           _init();
         });
     };
