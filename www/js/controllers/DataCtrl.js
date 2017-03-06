@@ -17,7 +17,8 @@ DataCtrlFunction.$inject = [
   '$cordovaDatePicker',
   '$location',
   '_',
-  'ProjectData'
+  'ProjectData',
+  'API'
 ];
 
 function DataCtrlFunction(
@@ -36,7 +37,8 @@ function DataCtrlFunction(
   $cordovaDatePicker,
   $location,
   _,
-  ProjectData) {
+  ProjectData,
+  API) {
 
 
   var dataCtrl = this;
@@ -79,6 +81,15 @@ function DataCtrlFunction(
         window.localStorage.setItem('user', JSON.stringify(dataCtrl.user));
         console.log(dataCtrl.user);
       });
+      // TODO: Multiple HTTP Request for Badge data is bad
+      $http.get(API.URL + '/api/v1/me/pending_activity_tags')
+        .then(function (resp) {
+          dataCtrl.tagCount = resp.data.length;
+        });
+      $http.get(API.URL + '/api/v1/me/requests')
+        .then(function (resp) {
+          dataCtrl.associateCount = resp.data.data.length;
+        });
   }
 
 
