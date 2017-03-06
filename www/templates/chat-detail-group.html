@@ -10,7 +10,7 @@
           </span> -->
         </span>
         <span ng-if="msg.sender_id != -1">
-          <p class="username">{{msg.user.first_name + ' ' + msg.user.last_name}}</p>
+          <p ng-hide="msg.sender_id == vm.user_id" class="username">{{msg.user.first_name + ' ' + msg.user.last_name}}</p>
 
           <div class="from-them" ng-if="msg.sender_id != vm.user_id">
             <p>{{msg.message}}</p>

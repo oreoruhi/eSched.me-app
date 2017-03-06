@@ -1,4 +1,4 @@
-<ion-view view-title="Message Thread">
+ <ion-view view-title="Message Thread">
   <ion-content class="content-body padding">
     <section class="chats">
 
@@ -8,9 +8,11 @@
         <!-- Possibly use ng-class for class changing here -->
         <div ng-hide="msg.sender_id == vm.user_id" class="from-them">
           <p>{{msg.message}}</p>
+          <span am-time-ago="msg.created"></span>
         </div>
         <div ng-show="msg.sender_id == vm.user_id" class="from-me">
           <p>{{msg.message}}</p>
+          <span am-time-ago="msg.created"></span>
         </div>
         <div class="clear"></div>
       </span>
