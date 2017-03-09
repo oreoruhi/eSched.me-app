@@ -15,14 +15,11 @@ angular.module('eSchedMe')
       })
 
       .state('dashboard', {
-        // cache: false,
+        //cache: false,
         url: '/dashboard',
         abstract: true,
         templateUrl: 'templates/dashboard.html',
-        controller: 'DataCtrl as dataCtrl',
-        data: {
-          //role: 'User'
-        }
+        controller: 'DataCtrl as dataCtrl'
       })
 
       .state('dashboard.newsfeed', {

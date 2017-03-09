@@ -29,6 +29,7 @@
           Notification
         </ion-item>
         <ion-item menu-close ui-sref="dashboard.tags">
+          <span class="badge badge-assertive" ng-hide="dataCtrl.tagCount == 0">{{dataCtrl.tagCount}}</span>
           Tag Requests
         </ion-item>
         <ion-item menu-close ui-sref="dashboard.project">
@@ -38,6 +39,7 @@
           Inbox
         </ion-item>
         <ion-item menu-close ui-sref="dashboard.friend">
+          <span class="badge badge-assertive" ng-hide="dataCtrl.associateCount == 0">{{dataCtrl.associateCount}}</span>
           Associates
         </ion-item>
         <ion-item menu-close ui-sref="dashboard.timeline">

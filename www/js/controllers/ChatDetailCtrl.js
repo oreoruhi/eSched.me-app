@@ -24,8 +24,9 @@
       self.user_id = window.localStorage.getItem('user_id');
       self.sender_id = self.messages[0].sender_id != self.user_id ? self.messages[0].sender_id : self.user_id;
       self.receiver_id = self.messages[0].receiver_id != self.user_id ? self.messages[0].receiver_id : self.messages[0].sender_id;
+      self.channel_id = self.messages[0].parent_id ? self.messages[0].parent_id : self.messages[0].id;
       setTimeout(function() {$ionicScrollDelegate.scrollBottom(true);}, 500);
-      Pusher.subscribe('message.' + self.user_id, 'App\\Events\\ChatEvent', function(message) {
+      Pusher.subscribe('message.' + self.channel_id, 'App\\Events\\ChatEvent', function(message) {
         console.log(message);
         var msg = message.message;
         if (msg.sender_id == self.user_id || msg.receiver_id == self.user_id) {
@@ -51,7 +52,7 @@
         console.log(result);
         $ionicLoading.hide();
         if(result.status == 200) {
-          self.messages.push(result.data);
+          // self.messages.push(result.data);
           $ionicScrollDelegate.scrollBottom(true);
         }
       });

@@ -85,10 +85,12 @@ function DataCtrlFunction(
       $http.get(API.URL + '/api/v1/me/pending_activity_tags')
         .then(function (resp) {
           dataCtrl.tagCount = resp.data.length;
+          console.log(resp);
         });
       $http.get(API.URL + '/api/v1/me/requests')
         .then(function (resp) {
           dataCtrl.associateCount = resp.data.data.length;
+          console.log(resp);
         });
   }
 
@@ -336,4 +338,15 @@ function DataCtrlFunction(
 
   angular.extend(modalScope, dataCtrl);
   modalScope.userId = userId;
+
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    // console.log(fromState.name);
+    // console.log(toState.name);
+    if(fromState.name != toState.name) {
+      init();
+      console.log(dataCtrl.tagCount);
+      console.log('State Change Event Fron DataCtrl')
+      console.log(dataCtrl.associateCount);
+    }
+  });
 }

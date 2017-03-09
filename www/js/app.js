@@ -59,7 +59,7 @@ angular.module('eSchedMe', [
       $urlRouterProvider.otherwise('/');
     })
 
-    .run(function ($rootScope, $state, $cookieStore, LoginService, $ionicHistory, $ionicLoading) {
+    .run(function ($rootScope, $state, $cookieStore, LoginService, $ionicHistory, $ionicLoading, DataService) {
 
         function unauthorized() {
             console.log("User is unauthorized. Sending to login page.");
@@ -77,6 +77,13 @@ angular.module('eSchedMe', [
         $rootScope.$on('$stateChangeStart', function(event, toState) {
           $ionicLoading.show({template: '<ion-spinner>', duration: 1200});
           console.log('state change');
+          // DataService.GetUserById()
+          //   .then(function(result) {
+          //     var user = result.data.data;
+          //     window.localStorage.setItem('user_id', user.id);
+          //     window.localStorage.setItem('user', JSON.stringify(user));
+          //     console.log('user changed');
+          //   });
         });
 
         $rootScope.$on('loaded', function() {
