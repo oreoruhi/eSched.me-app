@@ -24,6 +24,10 @@
       self.user_id = window.localStorage.getItem('user_id');
       $log.info(self.user_id);
       self.data = requests.data;
+      self.limitDate = moment().subtract(10, 'days');
+      self.data = self.data.filter(function(msg) {
+        return moment(msg.created).isAfter(self.limitDate);
+      });
       setTimeout(function() {$ionicScrollDelegate.scrollBottom(true);}, 500);
       Pusher.subscribe('groupchat.' + $stateParams.id, 'App\\Events\\GroupChatEvent', function(message) {
         $log.info(message);
