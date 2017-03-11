@@ -20,12 +20,16 @@
 
     function _init() {
       console.log(requests);
+      self.limitDate = moment().subtract(10, 'days');
       self.messages = requests.data.data;
       self.user_id = window.localStorage.getItem('user_id');
       self.sender_id = self.messages[0].sender_id != self.user_id ? self.messages[0].sender_id : self.user_id;
       self.receiver_id = self.messages[0].receiver_id != self.user_id ? self.messages[0].receiver_id : self.messages[0].sender_id;
       self.channel_id = self.messages[0].parent_id ? self.messages[0].parent_id : self.messages[0].id;
       setTimeout(function() {$ionicScrollDelegate.scrollBottom(true);}, 500);
+      self.messages = self.messages.filter(function(msg) {
+        return moment(msg.created).isAfter(self.limitDate);
+      });
       Pusher.subscribe('message.' + self.channel_id, 'App\\Events\\ChatEvent', function(message) {
         console.log(message);
         var msg = message.message;
