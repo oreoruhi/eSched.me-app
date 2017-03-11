@@ -4,7 +4,7 @@
       <ion-item ng-repeat="tag in vm.pendingTags" class="item-remove-animate item-avatar item-icon-right item-text-wrap" href="">
         <h2>You are tagged to the project "{{tag.title}}" .</h2>
       <ion-option-button ng-click="vm.acceptTag(tag.id)" class="button-calm">Accept</ion-option-button>
-      <ion-option-button class="button-assertive">Decline</ion-option-button>
+      <ion-option-button ng-click="vm.untagMe(tag.id)"class="button-assertive">Decline</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

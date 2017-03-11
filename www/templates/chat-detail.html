@@ -6,7 +6,7 @@
           <!--TODO : Parent Message not appearing because of null-->
         <p ng-hide="msg.sender_id == vm.user_id" class="username">{{msg.sender.data.first_name}} {{msg.sender.data.last_name}}</p>
         <!-- Possibly use ng-class for class changing here -->
-        <div ng-hide="msg.sender_id == vm.user_id" class="from-them">
+        <div ng-hide="msg.sender_id == vm.user_id"  class="from-them">
           <p>{{msg.message}}</p>
           <span am-time-ago="msg.created"></span>
         </div>
