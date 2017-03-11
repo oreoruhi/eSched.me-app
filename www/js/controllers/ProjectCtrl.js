@@ -300,6 +300,10 @@
         $state.go('dashboard.meeting',{project: project});
       };
 
+      vm.goToMeetingDirect = function(project){
+        $state.go('dashboard.meeting',{project: project});
+      };
+
       vm.getProjects();
 
     }
