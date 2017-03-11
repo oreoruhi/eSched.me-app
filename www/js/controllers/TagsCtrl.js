@@ -49,7 +49,7 @@
       .then(function(result) {
         $log.info(result);
         $ionicLoading.hide();
-        _init();
+        _init();   
       });
     }
 
