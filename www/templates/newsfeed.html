@@ -1,13 +1,13 @@
 <ion-view view-title="Notifications">
   <div class="padding fixed-header content-body">
-    <center><button class="button button-block button-stable"><b>X</b> Clear Notifications</button></center>
+    <center><button class="button button-block button-stable" ng-click="vm.clearNotif()"><b>X</b> Clear Notifications</button></center>
   </div>
   <ion-content class="content-body notif-content" style="margin-top:85px;">
     <ion-list>
       <!-- put ng-click on each item. upon ng-click, delete item then redirect to tag requests -->
-      <ion-item class="item-remove-animate item-avatar item-icon-left item-text-wrap">
-        <h2>Adan France Cruz edited the status of Submodule "Project Title" from "Ongoing" to "Complete".</h2>
-        <p>Friday, October 14, 2016</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-left item-text-wrap" ng-repeat="notification in vm.notifications">
+        <h2>{{notification.message}}</h2>
+        <p>{{notification.created | date: 'MMMM dd, y'}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

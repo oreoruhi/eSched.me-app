@@ -26,7 +26,8 @@ angular.module('eSchedMe')
         url: '/newsfeed',
         views: {
           'menuContent': {
-            templateUrl: 'templates/newsfeed.html'
+            templateUrl: 'templates/newsfeed.html',
+            controller: 'NotifCtrl as vm'
           }
         }
       })
