@@ -1,5 +1,8 @@
 <ion-view view-title="Inbox">
   <ion-content class="content-body">
+  <div ng-if="vm.messages.length == 0" style="padding-top: 65%;">
+    <center><p style="color: #fff; font-size: 20px;">There are no Private Messages to show</p></center>
+  </div>
     <ion-list>
       <ion-item ng-repeat="msg in vm.messages" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="dashboard.chat({id: msg.id})">
         <img ng-src="./img/no-image.jpg">
@@ -24,11 +27,13 @@
         <ion-tab title="Group Chat" icon-on="ion-android-contacts" icon-off="ion-android-contacts">
         <ion-content class="content-body">
             <div style="margin-top: 44px;"></div>
+              <div ng-if="friend.requests.length == 0" style="padding-top: 65%;">
+                <center><p style="color: #fff; font-size: 20px;">There are no Group Messages to show</p></center>
+              </div>
               <ion-list>
                 <ion-item ng-repeat="gc in vm.group_messages" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="dashboard.groupchat({id: gc.id})">
                   <img ng-src="./img/no-image.jpg">
                   <h2>{{gc.group_name}}</h2>
-                  <p>New module updated!</p>
                 </ion-item>
               </ion-list>
         </ion-content>

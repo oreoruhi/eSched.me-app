@@ -1,4 +1,4 @@
-<ion-view view-title="Project eSched.me">
+<ion-view view-title="Message Thread">
   <ion-content class="content-body padding">
     <section class="chats">
 
@@ -14,11 +14,11 @@
 
           <div class="from-them" ng-if="msg.sender_id != vm.user_id">
             <p>{{msg.message}}</p>
-            <span am-time-ago="msg.created"></span>
+            <span style="font-size: 10px;" am-time-ago="msg.created"></span>
           </div>
           <div class="from-me" ng-if="msg.sender_id == vm.user_id">
             <p>{{msg.message}}</p>
-            <span am-time-ago="msg.created"></span>
+            <span style="font-size: 10px;" am-time-ago="msg.created"></span>
           </div>
           <div class="clear"></div>
         </span>

@@ -24,6 +24,7 @@ angular.module('eSchedMe.services', [])
         };
 
         service.signout = function (user) {
+          window.localStorage.clear();
           if(user.fuid) {
             $cordovaFacebook.logout().then(
             function( success ) {

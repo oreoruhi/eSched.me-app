@@ -20,6 +20,7 @@
     API,
     user,
     PersonalTaskData,
+    LoginService,
     _
   ) {
 
@@ -126,7 +127,28 @@
         });
     };
 
+  self.signout = function() {
+    console.log("signout clicked");
+    var user = window.localStorage.getItem('user');
+    user = JSON.parse(user);
+    console.log(user);
+    LoginService.signout(user);
+  };
 
+  self.changeInfo = function(firstname, lastname, skills, aboutme, occupation, question, answer) {
+    DataService.editProfile(
+        self.user.id,
+        firstname,
+        lastname, 
+        skills,
+        aboutme,
+        occupation,
+        question,
+        answer
+      ).then(function(result){
+        $state.go('dashboard.newsfeed');
+      });
+  }
 
     init();
     angular.extend(modalScope, profileCtrl);

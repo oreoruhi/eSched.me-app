@@ -1,6 +1,8 @@
 ﻿<ion-view view-title="Projects">
   <ion-content class="content-body">
-
+  <div ng-if="vm.projects.data.length == 0" style="padding-top: 65%;">
+    <center><p style="color: #fff; font-size: 20px;">There are no Projects to show</p></center>
+  </div>
     <div class="list card" ng-repeat="project in vm.projects.data" >
       <div class="item item-button-right">
         <p>{{project.title}}</p>
@@ -57,6 +59,9 @@
         <ion-tab title="Tagged Projects" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
         <ion-content class="content-body">
             <div style="margin-top: 64px;"></div>
+            <div ng-if="vm.user.tagged_activities.data.length == 0" style="padding-top: 60%;">
+              <center><p style="color: #fff; font-size: 20px;">There are no Tagged Projects to show</p></center>
+            </div>
             <div class="list card" ng-repeat="project in vm.user.tagged_activities.data">
               <div class="item item-button-right">
                 <p>{{project.title}}</p>
