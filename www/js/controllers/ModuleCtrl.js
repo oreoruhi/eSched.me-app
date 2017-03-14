@@ -47,8 +47,8 @@ function ModuleCtrlFunction(
       });
     }
     _.each(vm.myModules, function(obj) {
-      obj.end = new Date(obj.end).toISOString();
-      obj.start = new Date(obj.start).toISOString();
+      obj.end = moment(obj.end).format('ll');
+      obj.start = moment(obj.start).format('ll');
       console.log(obj.percentage);
       vm.availablePercentage -= obj.percentage;
       console.log("chenaboo sa loob ng obj");
@@ -79,8 +79,8 @@ function ModuleCtrlFunction(
         }
         vm.availablePercentage = 100;
         _.each(vm.myModules, function(obj) {
-          obj.end = new Date(obj.end).toISOString();
-          obj.start = new Date(obj.start).toISOString();
+          obj.end = moment(obj.end).format('ll');
+          obj.start = moment(obj.start).format('ll');
           console.log(obj.percentage);
           vm.availablePercentage -= obj.percentage;
         });
@@ -145,7 +145,7 @@ function ModuleCtrlFunction(
 
   vm.markAsOngoing = function (module) {
     console.log(module);
-    module.end = new Date(module.end);
+    module.end = moment(module.end).format('ll');
     appModalService.show('templates/modals/module/mark-as-ongoing.html', 'ModuleModalCtrl as vm', module)
       .then(function (result) {
         if (!result) {
