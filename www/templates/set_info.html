@@ -1,0 +1,119 @@
+<ion-view view-title="Set Info" align-title="center" scroll="true" class="content-body">
+    <ion-content>
+        <section>
+                <div class="row">
+                    <div class="col header">
+                        <center><img src="./img/esched-clock-small.png" class = "logo top-space" /></center>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
+                        <form>
+                            <div class="list signUp">
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="firstname" name="firstname" ng-model="vm.user.first_name" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Firstname</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.user.last_name" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Lastname</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.user.aboutme" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>About</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.user.occupation" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Occupation</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.user.skills" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Skills</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="group">
+                                      <!-- <input type="number" id="difficulty" name="difficulty" ng-model="difficulty" style="color:#fff;" required autocomplete="off">
+                                      <span class="highlight"></span>
+                                      <span class="bar-input"></span>-->
+                                      <select class="item item-input item-select" style="width:100%;" ng-model="vm.user.security_q" required>
+                                        <option value="" selected="selected" hidden disabled>Select Security Question</option>
+                                            <option value="1">What is your mother's maiden name?</option>
+                                            <option value="2">What is the name of the elementary school you graduated from?</option>
+                                            <option value="3">What was your dream career?</option>
+                                            <option value="4">Where do you want to retire?</option>
+                                            <option value="5">What it your pet's name?</option>
+                                            <option value="6">What is your favorite teacher's nickname?</option>
+                                            <option value="7">What is the first name of the person you had your first kiss with?</option>
+                                            <option value="8">In what city does your nearest sibling live?</option>
+                                      </select>
+                                      <label class="label-date">Question</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                      <div class="group">
+                                        <input type="text" id="lastname" name="lastname" ng-model="vm.user.security_a" style="color:#fff;" required autocomplete="off">
+                                        <span class="highlight"></span>
+                                        <span class="bar-input"></span>
+                                        <label>Answer</label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <h4 style="color:red;" ng-bind="vm.errormessage"></h4>
+
+                                <div class="">
+                                    <center>
+                                        <button class="button button-medium button-stable" type="button" ng-click="vm.signout()">
+                                            Logout
+                                        </button>
+                                         &nbsp;&nbsp;
+                                        <button class="button button-medium button-calm" type="button"
+                                                ng-click="vm.changeInfo(vm.user.first_name, vm.user.last_name, vm.user.skills, vm.user.aboutme, vm.user.occupation, vm.user.security_q, vm.user.security_a)">
+                                            Save Info
+                                        </button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+        </section>
+    </ion-content>
+</ion-view>
+
+

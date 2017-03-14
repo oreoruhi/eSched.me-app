@@ -1,5 +1,8 @@
 <ion-view view-title="Submodules">
   <ion-content class="content-body">
+    <div ng-if="ctrl.module.submodules.data.length == 0" style="padding-top: 65%;">
+      <center><p style="color: #fff; font-size: 20px;">There are no Submodules to show</p></center>
+    </div>
     <div class="list card" ng-repeat="submodule in ctrl.module.submodules.data">
       <div class="item item-button-right">
         <p>{{submodule.title}}</p>

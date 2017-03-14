@@ -14,6 +14,20 @@ angular.module('eSchedMe')
         controller: 'SignUpCtrl as vm'
       })
 
+      .state('set-info', {
+        url: '/setinfo',
+        templateUrl: 'templates/set_info.html',
+        controller: 'ProfileCtrl as vm',
+        resolve: {
+          user: function($http, $ionicLoading) {
+            return $http({
+              method: 'GET',
+              url: API.URL + '/api/v1/me'
+            });
+          }
+        }
+      })
+
       .state('dashboard', {
         //cache: false,
         url: '/dashboard',

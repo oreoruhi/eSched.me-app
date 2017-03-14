@@ -1,5 +1,8 @@
 <ion-view view-title="Tag Requests">
   <ion-content class="content-body">
+  <div ng-if="vm.pendingTags.length == 0" style="padding-top: 65%;">
+    <center><p style="color: #fff; font-size: 20px;">There are no Tag Requests to show</p></center>
+  </div>
     <ion-list>
       <ion-item ng-repeat="tag in vm.pendingTags" class="item-remove-animate item-avatar item-icon-right item-text-wrap" href="">
         <h2>You are tagged to the project "{{tag.title}}" .</h2>

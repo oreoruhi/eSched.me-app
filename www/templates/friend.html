@@ -1,5 +1,8 @@
 <ion-view view-title="Associates">
   <ion-content class="content-body">
+  <div ng-if="friend.requests.length == 0" style="padding-top: 65%;">
+    <center><p style="color: #fff; font-size: 20px;">There are no Associate Requests to show</p></center>
+  </div>
     <ion-list>
       <ion-item ng-repeat="request in friend.requests" ui-sref="dashboard.otheruser({id: request.id})">
         <img ng-if="request.img_name" class="post-profile-image" ng-src="https://esched.me/prof_imgs/{{request.img_name}}">
@@ -20,6 +23,9 @@
       <ion-tab title="Associate List" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
 	    <ion-content class="content-body">
 	        <div style="margin-top: 44px;"></div>
+          <div ng-if="friend.friends.length == 0" style="padding-top: 65%;">
+            <center><p style="color: #fff; font-size: 20px;">You have no Associates</p></center>
+          </div>
           <ion-list>
 			      <ion-item ng-repeat="person in friend.friends" ui-sref="dashboard.otheruser({id: person.id})">
               <img ng-if="person.img_name" class="post-profile-image" ng-src="https://esched.me/prof_imgs/{{person.img_name}}">

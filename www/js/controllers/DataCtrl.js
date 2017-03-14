@@ -80,7 +80,13 @@ function DataCtrlFunction(
         window.localStorage.setItem('user_id', dataCtrl.user.id);
         window.localStorage.setItem('user', JSON.stringify(dataCtrl.user));
         console.log(dataCtrl.user);
+
+        if(dataCtrl.user.about_me === null || dataCtrl.user.occupation === null || dataCtrl.user.skills === null){
+          $state.go('set-info');
+        }
+
       });
+
       // TODO: Multiple HTTP Request for Badge data is bad
       $http.get(API.URL + '/api/v1/me/pending_activity_tags')
         .then(function (resp) {

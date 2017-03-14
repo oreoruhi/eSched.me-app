@@ -134,20 +134,35 @@
       }
 
 
-      vm.editProfile = function(userId ,first_name, last_name, skills, about_me, occupation) {
-        return $http ({
-          method: 'POST',
-          url: API.URL + '/api/v1/me/update',
-          headers: {
-            'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
-          },
-          data: {
+      vm.editProfile = function(userId ,first_name, last_name, skills, about_me, occupation, question, answer) {
+        var data = {};
+
+        if (question == null && answer == null ) {
+         data = {
             "first_name" : first_name,
             "last_name" : last_name,
             "skills" : skills,
             "about_me" : about_me,
             "occupation" : occupation
           }
+        } else {
+         data = {
+            "first_name" : first_name,
+            "last_name" : last_name,
+            "skills" : skills,
+            "about_me" : about_me,
+            "occupation" : occupation,
+            "question" : question,
+            "answer" : answer
+          }
+        }
+        return $http ({
+          method: 'POST',
+          url: API.URL + '/api/v1/me/update',
+          headers: {
+            'Authorization': 'Bearer ' + window.localStorage.getItem('id_token')
+          },
+          data:data
         }).then(function(result) {
           console.log(result);
         });

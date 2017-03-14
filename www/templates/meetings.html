@@ -1,5 +1,8 @@
 <ion-view view-title="Meetings">
   <ion-content class="content-body">
+    <div ng-if="vm.meetings.data.length == 0" style="padding-top: 65%;">
+      <center><p style="color: #fff; font-size: 20px;">There are no Meetings to show</p></center>
+    </div>
     <div ng-repeat="meeting in vm.meetings.data">
       <meeting-card meeting="meeting"></meeting-card>
     </div>
